@@ -1,7 +1,7 @@
 
 public class RotateFunction {
 	
-	public int maxRotateFunction(int[] A) {
+	public static int maxRotateFunction(int[] A) {
         // * idea: get the rotated array directly (do need to actually rotate the array, just get the result directly), then count all the sums, return the max one
         // *** result: 1020 - 1063 ms, beat 2%, most of the solution was on 4 -6 ms.
         // consider optimisation:
