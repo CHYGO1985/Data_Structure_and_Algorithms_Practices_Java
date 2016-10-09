@@ -1,6 +1,5 @@
 import java.util.TreeSet;
 
-
 public class ContainsDuplicateIII {
 	
 	public static boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
@@ -8,7 +7,7 @@ public class ContainsDuplicateIII {
         // *** result: 59-69ms, beat 20 - 12%, there must be better solutions. Fastest solution in the database can be 0ms.
         
         // *** second time: try this solution: another solution can be: sort the array, then keep the original index.
-        
+		// (it is actually another way of implementing sliding window + treeset)
         
         TreeSet<Integer> numSet = new TreeSet<Integer>();
         
