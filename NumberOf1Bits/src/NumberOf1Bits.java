@@ -40,6 +40,7 @@ public class NumberOf1Bits {
 		System.out.println(hammingWeight(-2147483648));
 		System.out.println(Integer.toBinaryString(1<<31));
 		System.out.println(Integer.toBinaryString(-2147483648));
+		
 	}
 
 }
