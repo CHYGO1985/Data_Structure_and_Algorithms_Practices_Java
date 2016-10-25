@@ -2,7 +2,7 @@
 public class SingleNumber {
 	
 	public static int singleNumber(int[] nums) {
-        // * idea: find differences --> bit manipulation (exclusive or) or math calculation
+        // *** idea: find differences --> bit manipulation (exclusive or) or math calculation
         // *** result: 1ms, beat 40.05% the fastest in the database.
         int num = 0;
         
@@ -15,7 +15,7 @@ public class SingleNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+        System.out.print(Integer.toBinaryString(-3));
 	}
 
 }
