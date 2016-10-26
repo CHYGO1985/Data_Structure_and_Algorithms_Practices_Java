@@ -1,3 +1,5 @@
+import java.util.Random;
+
 
 public class ProductOfArrayExceptSelf {
 	
@@ -23,6 +25,21 @@ public class ProductOfArrayExceptSelf {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		// test
+		
+		Random ran = new Random();
+		for (int i = 2; i < 10; i ++) {
+			
+			//System.out.println((int)(Math.random()*2));
+			/*
+			int a = (int)Math.random()*2;
+			if (0 == a) {
+			    System.out.println(" "+ i + ":" + a);
+			}
+			*/
+			
+			System.out.println(ran.nextInt(20));
+		}
 
 	}
 
