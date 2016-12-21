@@ -2,13 +2,15 @@
 public class RotateImage {
 	
 	public  static void rotate(int[][] matrix) {
-        // Idea: Drow n=2,3,4 paper to find regulation
+		// Idea: Drow n=2,3,4 paper to find regulation
         // 1) square cirle
         // a. i + (0 -> (n - 2)), j + ((n-1) -> 1)
         // b. i + ((n -1) -> 1), j - (0 -> (n-2))
         // c. i - (0 -> (n -2)), j - ((n-1) -> 1)
         // d. i - ((n-1) -> 1), j + (0 -> (n-2))
         // 2. number of circles, n/2
+        // result: 2ms fastest in the database, beat 61.12
+        // things learned: the change of n for every circle
         
         // special case: matrix.length = 0/1
         if (null == matrix || 0 == matrix.length
@@ -16,6 +18,7 @@ public class RotateImage {
                 return;
         }
         
+        // loop for numner of circles
         // loop for numner of circles
         int n = matrix.length;
         int circle = n / 2;
@@ -52,7 +55,8 @@ public class RotateImage {
                 shift2 --;
             }
             
-            n--;
+            // *** I miss the change of n for every circle for the first time.
+            n -= 2;
         }
     }
 
