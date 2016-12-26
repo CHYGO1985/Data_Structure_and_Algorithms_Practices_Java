@@ -15,6 +15,17 @@ public class LCAOfABinaryTree {
     }
 
 	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		
+		/*
+		// method 2: https://discuss.leetcode.com/topic/18561/4-lines-c-java-python-ruby/7
+        // result: 11ms, 30.09%,  beat 63.81%, fastest is 9ms
+            if (root == null || root == p
+                || root == q) return root;
+            TreeNode left = lowestCommonAncestor(root.left, p, q);
+            TreeNode right = lowestCommonAncestor(root.right, p, q);
+            return left == null ? right : right == null ? left : root;
+         */   
+         
         // Idea: post-order traverse + Hash Map (easy to find match in hash map)
         // 1) common ancestor --> need ancestors infor --> need to keep the infor when traverse
         // 2) pre-order and in-order are not suitable to keep ancestor infor
