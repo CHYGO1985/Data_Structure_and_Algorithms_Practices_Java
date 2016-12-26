@@ -4,6 +4,8 @@ import java.util.List;
 
 
 public class PermutationsII {
+	// Idea: I figure out the solution, but do not know how write the recursive method
+	// ref: https://discuss.leetcode.com/topic/31445/really-easy-java-solution-much-easier-than-the-solutions-with-very-high-vote
 	
 	public static List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
