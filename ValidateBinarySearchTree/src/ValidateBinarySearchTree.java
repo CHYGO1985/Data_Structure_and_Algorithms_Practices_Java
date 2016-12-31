@@ -105,7 +105,7 @@ public class ValidateBinarySearchTree {
     }
     
     // indiMin is for the whole left subtree
-    public boolean checkBST(TreeNode root, long min, long max) {
+    public boolean  checkBST(TreeNode root, long min, long max) {
         
         if (null == root) {
             return true;
@@ -126,21 +126,22 @@ public class ValidateBinarySearchTree {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		/*
-		TreeNode node55 = new TreeNode(5, null, null);
-		TreeNode node5 = new TreeNode(5, node55, null);
-		TreeNode root = new TreeNode(10, node5, null);
-		*/
-		
-		TreeNode node0 = new TreeNode(0, null, null);
-		TreeNode node2 = new TreeNode(2, null, null);
-		TreeNode node4 = new TreeNode(4, null, null);
-		TreeNode node6 = new TreeNode(6, null, null);
-		TreeNode node1 = new TreeNode(1, node0, node2);
-		TreeNode node5 = new TreeNode(5, node4, node6);
-		TreeNode root = new TreeNode(3, node1, node5);
-		
-		boolean isValid = isValidBST(root);
+		// test case:
+		/* []
+			[1]
+			[2,1,3]
+			[10, 5, 15, 1,8,null,7,null,null,1]
+			[1,3,null,null,4,2,null]
+			[10,8,null,7,null,6,null,5,null,5]
+			[10,8,null,8]
+			[2147483647]
+			[-2147483648,null,2147483647]
+			[5, 14,null, 1]
+			[3,1,5,0,2,4,6,null,null,null,3]
+			[3,1,5,0,2,4,6]
+
+		 * 
+		 */
 	}
 
 }
