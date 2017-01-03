@@ -21,6 +21,7 @@ public class FlattenBinaryTreeToLinked {
 	
 	// * method 2: post order
     // ref: https://discuss.leetcode.com/topic/11444/my-short-post-order-traversal-java-solution-for-share
+	// runtime: 1ms
     private TreeNode prev = null;
 
     public void flatten(TreeNode root) {
