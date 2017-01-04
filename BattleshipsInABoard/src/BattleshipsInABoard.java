@@ -1,4 +1,3 @@
-
 public class BattleshipsInABoard {
 
 	public static int countBattleships(char[][] board) {
