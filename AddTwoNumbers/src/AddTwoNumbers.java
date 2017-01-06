@@ -14,7 +14,7 @@ public class AddTwoNumbers {
     // a node to linkedlist (as I always use l1 = l1.next(even if when l1.next == null)), so it failed to add it to
     // the list.
     
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         
         if (null == l1) {
             return l2;
