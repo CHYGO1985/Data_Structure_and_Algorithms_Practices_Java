@@ -4,6 +4,9 @@ import java.util.List;
 
 public class PopulatingNextRightPointersII {
 	
+	// idea: use "next" as the source to traverse the tree
+    // result: 1ms, beat 50.32%, fastest is 1ms
+	
 	public static class TreeLinkNode {
 	    int val;
 	    TreeLinkNode left, right, next;
