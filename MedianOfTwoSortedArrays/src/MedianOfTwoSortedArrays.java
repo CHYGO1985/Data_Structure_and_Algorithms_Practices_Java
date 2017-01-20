@@ -136,14 +136,14 @@ public class MedianOfTwoSortedArrays {
     
     private static double getMedian(int[] nums) {
         
-        int len = nums.length;
+    	int len = nums.length;
         // *** be careful about boundaries in an array
         if (1 == len) {
             return nums[0];
         }
         
         // *** be careful about boundaries in an array
-        if (len % 2 != 0) {
+        if (0 == len % 2) {
             // original: return (nums[len / 2 + front - 1] + nums[len / 2 + front - 1 + 1]) / 2;
             return (double)(nums[(len - 1) / 2] + nums[(len - 1) / 2 + 1]) / 2;
         }
