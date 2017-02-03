@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MinNumOfArrBurstBal {
 
 	public static int findMinArrowShots(int[][] points) {
@@ -22,6 +21,8 @@ public class MinNumOfArrBurstBal {
         // ，那么就得再来一发，既然又来了一发，那么我们此时就要把end设为当前气球的结束点了，这样贪婪算法遍历结束后就能得
         // 到最少的箭数了
         
+		// implementation ref: https://discuss.leetcode.com/topic/66579/java-greedy-soution
+		
         // hanlde malinput
         if (null == points || 0 == points.length || 0 == points[0].length) {
             return 0;
