@@ -1,3 +1,5 @@
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -15,8 +17,10 @@ public class MergeIntervals {
         // 1) if B.start >= A.start && B.start <= A.end (after sorting, B.start must bigger than A.start)
         // A.end = B.end; list.remove(B)
         // 2) else B.start >= A.end, then do nother
-        // things learned: 1) the use of sort(List<T> list, Comparator<? super T> c), *** I one put in Comparator<> should
+		// things learned: 1) the use of sort(List<T> list, Comparator<? super T> c), *** I one put in Comparator<> should
         // be Interval, not List<Interval>
+        // 2) when iterate through a list and doing removing at the same time, be careful about the index
+        // 3) reverse thinking for array, list, string...
         // result: 38ms, beat 13%
         /*
         if (null == intervals || 0 == intervals.size() || 1 == intervals.size()) {
