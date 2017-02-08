@@ -1,20 +1,22 @@
+// idea: use array to build TrieNode
+// result: 188ms. beat 28%
 class TrieNode {
-	    
-	    // to focus on the algorithm (all the fields I set them as public)
-	    // use array to represent pair infor, the index is used as the value of char
-	    public TrieNode[] array;
-	    // to check whether it is a leaf Node of word
-	    public boolean isEnd;
-	    
-	    public TrieNode() {
-	        array = new TrieNode[26];
-	        for (int i = 0; i < array.length; i ++) {
-	            array[i] = null;
-	        }
-	        isEnd = false;
-	    }
-	}
-
+    
+    // to focus on the algorithm (all the fields I set them as public)
+    // use array to represent pair infor, the index is used as the value of char
+    public TrieNode[] array;
+    // to check whether it is a leaf Node of word
+    public boolean isEnd;
+    
+    public TrieNode() {
+        array = new TrieNode[26];
+        for (int i = 0; i < array.length; i ++) {
+            array[i] = null;
+        }
+        isEnd = false;
+    }
+}
+ 
 class Trie {
 
     private TrieNode root;
@@ -56,6 +58,8 @@ class Trie {
             return false;
         }
         
+        /*
+        // refactoring to a method, as it duplicates in startsWith
         TrieNode curNode = root;
         
         for (int i = 0; i < word.length(); i ++) {
@@ -68,8 +72,10 @@ class Trie {
                 return false;
             }
         }
+        */
+        TrieNode node = searchNode(word);
         
-        return true == curNode.isEnd ? true : false;
+        return node == null ? false : node.isEnd == true ? true : false; 
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
@@ -79,6 +85,7 @@ class Trie {
             return false;
         }
         
+        /*
         TrieNode curNode = root;
         
         for (int i = 0; i < prefix.length(); i ++) {
@@ -91,13 +98,35 @@ class Trie {
                 return false;
             }
         }
+        */
         
-        return true;
+        return searchNode(prefix) == null ? false : true;
+    }
+    
+    public TrieNode searchNode (String para) {
+
+        if (null == para || 0 == para.length()) {
+            return null;
+        }
+        
+        TrieNode curNode = root;
+        for (int i = 0; i < para.length(); i ++) {
+        
+            char temp = para.charAt(i);
+            if (curNode.array[temp - 'a'] != null) {
+                curNode = curNode.array[temp - 'a'];
+            }
+            else {
+                return null;
+            }
+        }
+        
+        return curNode;
     }
 }
 
+
 public class ImplementTrie {
-	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
