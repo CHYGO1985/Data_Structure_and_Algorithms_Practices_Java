@@ -8,6 +8,17 @@ public class BiTreeMaxPathSum {
 		TreeNode(int x) { val = x; }
 	}
 	
+	// idea: postorder + greedy (cal from bottom) 
+    // 1) how to cal the leaf nodes
+    
+    // https://discuss.leetcode.com/topic/4407/accepted-short-solution-in-java/2
+    // round 1: *** I did not consider the case of a negative number
+    // *** 1) I misunderstand the concept of path (the most important mistake)
+    //  [1,2,3,,4,5,4,5], the path is 5,2,1,3,5 not all will be included in the path
+    // *** 2) I do not know how to hanlde negative numbers for root, left and right (this is vital)
+    // The solution: left and right return 0, and use Math.max(left, right) + node.val
+    // *** 3) I do not know how to handle leaf node
+    // The solution: return 0 for null
     static int maxValue;
     
     public static int maxPathSum(TreeNode root) {
