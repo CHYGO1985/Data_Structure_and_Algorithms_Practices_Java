@@ -19,7 +19,7 @@ public class ThreeSum {
         
         // things learned: 1) Arrays.asList(nums[i], nums[lo], nums[hi])
         
-        int target = 0;
+		int target = 0;
         // sort array
         List<List<Integer>> res = new LinkedList<>();
         if (null == nums || 0 == nums.length) {
@@ -31,33 +31,43 @@ public class ThreeSum {
         // avoid duplicate number
         // sum = target - nums[i]
         // allocate low and high
-        for (int i = 0; i < nums.length; i ++) {
-            if (0 == i || (i != 0 && nums[i] != nums[i - 1])) {
-                int low = i + 1;
-                int high = nums.length - 1;
-                int sum = target - nums[i];
-                // while low < high
-                // 1) if low + high == sum, 
-                // a. add the date to result list
-                // b. find the next avil low and high
-                // 2) low + high < sum, low ++
-                // 3) low + high > sum, low --
-                while (low < high) {
-                    if (nums[low] + nums[high] == sum) {
-                        res.add(Arrays.asList(nums[i], nums[low], nums[high]));
-                        while (low < high && nums[low] == nums[low + 1])
-                            low ++;
-                        while (low < high && nums[high] == nums[high - 1])
-                            high --;
+        for (int i = 0; i < nums.length - 2; i ++) {
+            // coz the target is 0, if min > 0, then it is impossible to reach 0. 
+            // ref: https://discuss.leetcode.com/topic/32302/java-minor-improve-beats-95
+            // improvement of method 2
+            if(nums[i] > 0) break; 
+            
+            if(i > 0 && nums[i] == nums[i-1])
+                continue;
+                
+            int low = i + 1;
+            int high = nums.length - 1;
+            int sum = target - nums[i];
+            // while low < high
+            // 1) if low + high == sum, 
+            // a. add the date to result list
+            // b. find the next avil low and high
+            // 2) low + high < sum, low ++
+            // 3) low + high > sum, low --
+            // *** my improvement of method 2: if min > sum, there no need to continue
+            if(nums[low] > sum) 
+                continue;
+                
+            while (low < high) {
+                if (nums[low] + nums[high] == sum) {
+                    res.add(Arrays.asList(nums[i], nums[low], nums[high]));
+                    while (low < high && nums[low] == nums[low + 1])
                         low ++;
+                    while (low < high && nums[high] == nums[high - 1])
                         high --;
-                    }
-                    else if (nums[low] + nums[high] < sum) {
-                        low ++;
-                    }
-                    else {
-                        high --;
-                    }
+                    low ++;
+                    high --;
+                }
+                else if (nums[low] + nums[high] < sum) {
+                    low ++;
+                }
+                else {
+                    high --;
                 }
             }
         }
