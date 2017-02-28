@@ -1,7 +1,7 @@
 
 public class CoinChangeMin {
 
-	public int coinChange(int[] coins, int amount) {
+	public static int coinChange(int[] coins, int amount) {
         // idea: greedy --> from max to min, need to check all possibility with different numbers
         // 1.dp (status array) --> bottom up: int[] count (length = amount + 1)
         // 1) for those < min coin, always - 1;

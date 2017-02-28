@@ -47,6 +47,8 @@ public class CoinChange {
 	Way 3: the remaining 2 which use 1 use another 2 
 
 	public static long makeChange(int[] coins, int money) {
+	
+	    // amount 1 to n, dp puls 0, so + 1
 	    long[] DP = new long[money + 1]; // O(N) space.
 	    DP[0] = (long)1; 	// n == 0 case.
 	    for(int i = 0 ; i < coins.length; i++) {
