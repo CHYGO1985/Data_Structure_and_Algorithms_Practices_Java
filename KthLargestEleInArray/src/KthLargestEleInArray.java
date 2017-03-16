@@ -57,7 +57,7 @@ public class KthLargestEleInArray {
             exch(a, i, j);
         }
         
-        // this swap is to put the pivot to the middle of the sperated array
+        // this swap is to put the pivot a[lo] to the middle of the sperated array
         // e.g. {4,2,1,5,3,6,7} --> {4,2,1,3,5,6,7} --> swap {3,2,1,4,5,6,7}
         exch(a, lo, j);
         return j;
@@ -75,11 +75,11 @@ public class KthLargestEleInArray {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 int[] arr = {3,2,1,5,6,4};
+		 int[] arr = {3,2,1,5,6,4,7};
 		// int[] arr = {1,2,3,4,5,6};
 		// int[] arr = {3,1,2,6,7,8,9};
 		
-		int b = findKthLargest(arr, 3);
+		int b = findKthLargest(arr, 2);
 	}
 
 }

@@ -63,8 +63,8 @@ public class ValidateBinarySearchTree {
         
         // compare with parent node 
         // 1) previous left or right is false, then return false
-        // 2) max < root, else false
-        // 3) min > root, else false
+        // 2) left.max < root, else false
+        // 3) right.min > root, else false
         if ( (null != left && (left.max >= root.val || false == left.isValid) )
              || (null != right && (right.min <= root.val || false == right.isValid) ) ) {
             return new Result(false, 0, 0);

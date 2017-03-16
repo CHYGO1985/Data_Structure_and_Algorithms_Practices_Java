@@ -7,6 +7,14 @@ public class CoinChange {
 		return makeChange(coins, money, 0, new HashMap<String, Long>());
 	}
 	
+	/**
+	 * 
+	 * @param coins kinds of coins [1,2,4]
+	 * @param money total money amount for change
+	 * @param index
+	 * @param memo
+	 * @return
+	 */
 	public static long makeChange(int[] coins, int money, int index, HashMap<String, Long> memo) {
 		
 		if (money == 0) {
@@ -45,7 +53,8 @@ public class CoinChange {
 	Way 1: all use 1 is same as previous,
 	Way 2:  then use coins 2, puls remain 2 use 1
 	Way 3: the remaining 2 which use 1 use another 2 
-
+    */
+	/*
 	public static long makeChange(int[] coins, int money) {
 	
 	    // amount 1 to n, dp puls 0, so + 1
@@ -60,8 +69,8 @@ public class CoinChange {
 	    }       
 	    return DP[money];
 	}
-	*/
-
+    */
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] coints = {4,2,1};

@@ -19,9 +19,37 @@ public class FlattenBinaryTreeToLinked {
 		}
     }
 	
+	// round 2: method, from left to right, without extra space
+    public void flatten(TreeNode root) {
+        
+        helper(root);
+    }
+    
+    public TreeNode helper(TreeNode root) {
+        if (null == root) return null;
+        TreeNode left = helper(root.left);
+        TreeNode right = helper(root.right);
+        if (null != left) {
+            //*** node to hanlde right==null || != null seperately
+            if (null != right) {
+            	TreeNode temp = left;
+            	while (temp.right != null) {
+            		temp = temp.right;
+            	}
+            	temp.right = right;
+            }
+            
+        	root.right = left;
+        	root.left = null;
+        }
+        
+        return root;
+    }
+	
 	// * method 2: post order
     // ref: https://discuss.leetcode.com/topic/11444/my-short-post-order-traversal-java-solution-for-share
 	// runtime: 1ms
+	/*
     private TreeNode prev = null;
 
     public void flatten(TreeNode root) {
@@ -33,7 +61,7 @@ public class FlattenBinaryTreeToLinked {
         root.left = null;
         prev = root;
     }
-        
+    */
     /*
     // method 1: preorder + linkedlist
     public void flatten(TreeNode root) {
@@ -80,6 +108,12 @@ public class FlattenBinaryTreeToLinked {
 		[10,8,null,7,null,6,null,5]
 		[10,null,8,null,7,null,6,null,5]
 		*/
+		TreeNode node4 = new TreeNode(4);
+		TreeNode node5 = new TreeNode(5);
+		TreeNode node2 = new TreeNode(2, node4, node5);
+		TreeNode node3 = new TreeNode(3);
+		TreeNode root = new TreeNode(1,node2,node3);
+		flatten(root);
 	}
 
 }
