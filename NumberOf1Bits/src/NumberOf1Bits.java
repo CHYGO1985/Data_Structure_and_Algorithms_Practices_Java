@@ -4,6 +4,7 @@ public class NumberOf1Bits {
         
         // straight forward: & 1 from bit 1 to 32
         // *** result: 2ms, beat around 16%
+    	/*
         int oneBits = 0;
         
         for (int i = 0; i < 32; i ++) {
@@ -19,8 +20,7 @@ public class NumberOf1Bits {
         }
     
         return oneBits;
-        
-        /*
+        */
          // you need to treat n as an unsigned value
          // http://bookshadow.com/weblog/2015/03/10/leetcode-number-1-bits/
          // *** result: 1ms, beat 89.42%, the fatest solution.
@@ -31,13 +31,12 @@ public class NumberOf1Bits {
             n >>>= 1;
         }
         return ans;
-        */
     }
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		System.out.println(hammingWeight(-2147483648));
+		System.out.println(hammingWeight(11));
 		System.out.println(Integer.toBinaryString(1<<31));
 		System.out.println(Integer.toBinaryString(-2147483648));
 		

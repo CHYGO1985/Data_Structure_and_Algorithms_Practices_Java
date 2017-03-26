@@ -113,7 +113,6 @@ public class FlattenBinaryTreeToLinked {
 		TreeNode node2 = new TreeNode(2, node4, node5);
 		TreeNode node3 = new TreeNode(3);
 		TreeNode root = new TreeNode(1,node2,node3);
-		flatten(root);
 	}
 
 }
