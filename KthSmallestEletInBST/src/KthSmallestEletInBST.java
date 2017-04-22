@@ -10,7 +10,8 @@ public class KthSmallestEletInBST {
 	
 	 public int kthSmallest(TreeNode root, int k) {
         // Round 1: **** used 1 hour, did not get the O(log(n)) solution
-        
+		// *** things learned: can only count the num of nodes as half
+		 
         // Idea: i thought about building a list (in-order), then search the kth in the list, O(n)
         // 1. I was thinking to use bianry search, but stuck on get the whole nodes count of the tree --> can count only half
         // The method only count half nodes of the tree

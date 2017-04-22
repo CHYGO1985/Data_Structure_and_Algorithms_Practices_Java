@@ -1,38 +1,44 @@
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 
 public class WordBreak {
-	
-		
-	        
-    public static boolean wordBreak(String s, List<String> wordDict) {
-            
-    	boolean[] f = new boolean[s.length() + 1];
+    // round 1: *** spend 2 hours work on wrong understanding of the question 
+    // test case --> i misunderstood the question: segmented into a space-separated sequence 
+    // of one or more dictionary words. -- > I thought match at least one will be true, it required the exact match,
+    // the segmented array must contains only words from dict
+    /*
+    "aaaaaaa"
+    ["aaaa", "aa"]
+    should return false;
+    "leetcode"
+    ["leet","cod"]
+    should return false;
+    "leetcode"
+    ["leet","code", "aa"]
+    should return true
+    */
+    
+    // idea: trie + hashmap (store the index of beginning letter in the word)
+    // *** things learned: nested and inner class
+    // refs: https://discuss.leetcode.com/topic/6156/java-implementation-using-dp-in-two-ways
+    
+    
+    public boolean wordBreak(String s, List<String> wordDict) {
+        
+        boolean[] f = new boolean[s.length() + 1];
         
         f[0] = true;
         
-        
-        /* First DP
-        for(int i = 1; i <= s.length(); i++){
-            for(String str: dict){
-                if(str.length() <= i){
-                    if(f[i - str.length()]){
-                        if(s.substring(i-str.length(), i).equals(str)){
-                            f[i] = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }*/
+        Set<String> set = new HashSet<String>();
+        for (String temp : wordDict)
+            set.add(temp);
         
         //Second DP
         for(int i=1; i <= s.length(); i++){
             for(int j=0; j < i; j++){
-                if(f[j] && wordDict.contains(s.substring(j, i))){
+                if(f[j] && set.contains(s.substring(j, i))){
                     f[i] = true;
                     break;
                 }
@@ -41,14 +47,4 @@ public class WordBreak {
         
         return f[s.length()];
     }
-    
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String s = "leetcode";
-		List<String> list = new LinkedList<String>();
-		list.add("leet");
-		list.add("code");
-		boolean res = wordBreak(s, list);
-	}
-
 }
