@@ -25,6 +25,7 @@ public class MaxXORInArray {
         // *** 1. how to represent negative value: https://www.calvin.edu/academic/rit/webBook/chapter5/negative.htm
         // *** 2. Integer.bitCount(): count number of one-bit, Integer.highestOneBit(): return the value of the highest
         // one-bit, NB: not the position
+    	// *** 3. using bit to solve bit manipulation problem
         
         // round 2:
         /*
