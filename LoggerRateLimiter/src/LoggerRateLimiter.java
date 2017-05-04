@@ -4,7 +4,8 @@ import java.util.Map;
 
 public class LoggerRateLimiter {
 	
-	// round 1: *** did not test the case that the message may come at time 0 (I thought about it when setting default value
+	// round 1: 15 minutes, solved
+    // *** did not test the case that the message may come at time 0 (I thought about it when setting default value
     // but I did not check)
     // result: 165ms, beat 79.97%
 
