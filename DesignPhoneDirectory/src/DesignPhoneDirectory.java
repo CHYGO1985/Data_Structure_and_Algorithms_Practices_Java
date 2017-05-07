@@ -31,7 +31,7 @@ public class DesignPhoneDirectory {
     public int get() {
         
         /*
-        // random method
+        //  random method
         int[] picked = new int[2];
         picked[0] = -1;
         picked[1] = -1;
