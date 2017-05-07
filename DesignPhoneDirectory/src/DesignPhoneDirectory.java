@@ -6,7 +6,7 @@ public class DesignPhoneDirectory {
     // idea: 1) match --> hash / set, but requires restore, then use hash --> or use array
     // 20 minutes, 413ms: beat 93.52%
     
-    // *** 1. things learned: resvoir sampling and get random node in a list
+    // *** 1.things learned: resvoir sampling and get random node in a list
     // https://leetcode.com/problems/linked-list-random-node/#/description
     
     int[] entries;
