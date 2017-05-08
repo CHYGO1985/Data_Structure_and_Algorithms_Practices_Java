@@ -2,10 +2,16 @@
 public class RepSubstringPattern {
 	
 	public static boolean repeatedSubstringPattern(String s) {
+		// round 1: kmp, used 3 hours to pick up KMP and coding (the returning condition is hard)
+        
         // idea: use replace() and subSequences, iterate until half of the s, check whether if the result is ""
         // method 1: TLE --> add control (s.len / sub.len == 0) --> 401ms. beat 4%
         
-        // method 2: use KMP (did not think about it)
+        // method 2: use KMP
+        // ref: https://discuss.leetcode.com/topic/68089/repeated-substring-pattern-simple-java-solution-using-kmp
+        // run time: 25ms, 82.59%
+        // ****test cases (for confirming the return condition)
+        // 1. abca, abaa, abab, aa
         
         // *** check whether it is a prime number:
         // ref: https://leetcode.com/problems/count-primes/#/description
@@ -16,7 +22,6 @@ public class RepSubstringPattern {
         if (null == s || 0 == s.length() || 1 == s.length())
             return false;
         
-        // int len = (s.length() % 2 == 0) ? (s.length() / 2) : (isPrime(s.length() + 1) ? 1 : (s.length() / 3 + 1));
         int len = (s.length() % 2 == 0) ? (s.length() / 2) : (s.length() / 3 + 1);
         
         // optimise: length = even, odd, prime number?
@@ -63,11 +68,18 @@ public class RepSubstringPattern {
             }
         }
         
-        return len % (len - 1 - next[len-1]) == 0 ? true : false;
+        // for case: aa / abac && ababa
+        /*
+        if (s.charAt(suffix) == s.charAt(prefix))
+            return len % (len - 1 - next[len - 1]) == 0 ? true : false;
+        */
+        // refactoring
+        // *** hardest part:  the condition needs to be checked very carefully
+        return s.charAt(suffix) == s.charAt(prefix) 
+            && len % (len - 1 - next[len - 1]) == 0 ? true : false;
     }
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String s = "abab";
 		boolean res = repeatedSubstringPattern(s);
 		

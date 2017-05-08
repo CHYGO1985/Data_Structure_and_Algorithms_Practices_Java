@@ -36,7 +36,7 @@ public boolean validWordSquare(List<String> words) {
                 return false;
             }
             
-            // for test case: ["abc","b"]
+            // *** for test case: ["abc","b"]
             if (row1 < rowStr.length())
                 return false;
         }
