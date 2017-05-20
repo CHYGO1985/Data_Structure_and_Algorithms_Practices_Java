@@ -46,8 +46,8 @@ class ManacherAlgorithm {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] res = buildPalinArray("abababa");
-
+		// bccbbbbc, abababa
+		int[] res = buildPalinArray("bccbbbbc");
 	}
 
 }
