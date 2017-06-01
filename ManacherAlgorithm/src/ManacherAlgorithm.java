@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-//ref: https://www.youtube.com/watch?v=nbTSfrEfo6M
+// ref: https://www.youtube.com/watch?v=nbTSfrEfo6M
 // Comments: I extend the method which is to find all palindrome substrings of a given string.
 
 class ManacherAlgorithm {
@@ -27,7 +27,6 @@ class ManacherAlgorithm {
 	private static int[] buildPalinArray(String s) {
 		
 		char[] arr = preProcessor(s);
-		
 		int[] pal = new int[arr.length]; 
 		
 		pal[0] = pal[1] = 0;
