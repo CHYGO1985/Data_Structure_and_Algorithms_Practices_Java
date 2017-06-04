@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * round 1: 
- * method 1: solved, 50m, 164ms, beat 48%, hashmap<string, list> + merge two sorted list(check which one is smaller)
+ * method 1: solved, 50m, 166ms, beat 56%, hashmap<string, list> + merge two sorted list(check which one is smaller)
  * 
  * Test: 0 match, 1 match
  * 
@@ -46,7 +46,7 @@ public class ShortestWordDistanceII {
             // this significantly improve the performance
             if (distance == 1) break;
             
-            if (list1.get(index1) < list2.get(index2)) index1 ++;
+            if (pos1 < pos2) index1 ++;
             // list 2 ele > list 1 ele, then list 2 move to next ele
             else index2 ++;
         }
