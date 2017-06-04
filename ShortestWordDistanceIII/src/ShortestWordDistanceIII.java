@@ -7,7 +7,6 @@
 public class ShortestWordDistanceIII {
 	public int shortestWordDistance(String[] words, String word1, String word2) {
         
-        int distance = Integer.MAX_VALUE;
         if (null == words || words.length == 0) return -1;
         boolean isSame = (word1.equals(word2) == true) ? true : false;
         
