@@ -60,6 +60,7 @@ public class LonelyPixelI {
         for (int row = 0; row < rowLen; row ++) {
             for (int col = 0; col < colLen; col ++) {
                 if (picture[row][col] == 'B') {
+                	// use < 'Y', the char can still reach to Y, means the col has at least two Bs
                     if (picture[0][col] < 'Y' && picture[0][col] != 'V') picture[0][col] ++;
                     if (row == 0) fstRowCount ++;
                     else if (picture[row][0] < 'Y' && picture[row][0] != 'V') picture[row][0] ++;
@@ -84,7 +85,7 @@ public class LonelyPixelI {
 	}
 
 	public static void main(String[] args) {
-		int a = findLonelyPixel(new char[][]{{'W', 'W', 'W', 'B'},{'W', 'W', 'B', 'W'},{'W','B','W','W'}, {'B','W','W','W'}});
+		int a = findLonelyPixel(new char[][]{{'W', 'W', 'W', 'B'},{'W', 'B', 'B', 'W'},{'W','B','W','W'}, {'B','W','W','W'}});
 
 	}
 
