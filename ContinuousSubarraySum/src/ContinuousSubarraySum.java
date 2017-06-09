@@ -3,11 +3,11 @@ import java.util.Map;
 
 /**
  * round 1: O(n) unsolved, 4 hours (use the wrong match position, should find the same val not the matching val)
- * ***
+ * *** 
  * pre : 5  1 1 5 0
  *       23 2 6 4 7
  * cur : 5  2 0 0 1
- * find 5 and 5, then return true
+ * find 5 and 5, then return true (I used 1 and 5, which cause it cannot detech multiple value, e.g. 2 1 1 2 for 6 )
  * when there is a repeat, means the interval % k == 0 or interval == 0 (when k = 0)
  * 
  * idea: optimise from brutal force
@@ -42,6 +42,7 @@ public class ContinuousSubarraySum {
 	}
 
 	public static void main(String[] args) {
-		boolean res = checkSubarraySum(new int[]{23, 2, 6 ,4, 7}, 6);
+		// boolean res = checkSubarraySum(new int[]{23, 2, 6 ,4, 7}, 6);
+		boolean res = checkSubarraySum(new int[]{5, 2, 1, 4, 7}, 6);
 	}
 }
