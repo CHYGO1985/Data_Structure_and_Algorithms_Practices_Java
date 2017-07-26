@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 // ref: https://www.youtube.com/watch?v=nbTSfrEfo6M
 // Comments: I extend the method which is to find all palindrome substrings of a given string.
-
 class ManacherAlgorithm {
 	
 	private static char[] preProcessor (String s) {
@@ -33,16 +31,24 @@ class ManacherAlgorithm {
 		
 		int center = 0, right = 0, mir = 0;
 		for (int i = 1; i < pal.length - 1; i ++) {
+			// *** what is mir? the left part of the array (corresponding to i)
 			mir = 2 * center - i;
 			if (i < right) 
 				// *** why use min here?? it might be the case that i + pal[i] > R
 				pal[i] = Math.min(pal[mir], right - i);
 				//pal[i] = pal[mir];
 			
+			// *** from i + (i + pal[i]) && i - (pal[i] + 1) : why pal[i] + 1
+			// pal[i]: the current palindrome length
+			// pal[i] + 1: the next char pos
+			// i + pal[i] + 1: the next char pos at right
+			// i - (pal[i] + 1): the next char pos at left
 			while (arr[i + pal[i] + 1] == arr[i - pal[i] - 1]) pal[i] ++;
 			
 			if (i + pal[i] > right) {
+				// center move to i
 				center = i;
+				// right boundary = pal[i](palindrome length) + i
 				right = i + pal[i];
 			}
 		}
@@ -50,7 +56,7 @@ class ManacherAlgorithm {
 		return pal;
 	}
 	
-	// Manacher's algorithm to get all palindroms substring of a fiven string
+	// Manacher's algorithm to get all palindroms substring of a given string
 	// for test case: "bccbbbbc"
 	// the map will be:  {16=[cbbbbc], 2=[b, bccb], 4=[c, cc], 6=[cc, cbbbbc], 8=[bccb, bb, bbb, bbbb], 10=[bb], 12=[bbb], 14=[bbbb]}
 	// it can be seem that "cc" belonds to 4 and 6 
@@ -254,7 +260,7 @@ class ManacherAlgorithm {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// bccbbbbc, abababa
-		// int[] res = buildPalinArray("bccbbbbc");
+		int[] res = buildPalinArray("bccbbbbc");
 	}
 
 }
