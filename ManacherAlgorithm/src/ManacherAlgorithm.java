@@ -4,8 +4,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-// ref: https://www.youtube.com/watch?v=nbTSfrEfo6M
-// Comments: I extend the method which is to find all palindrome substrings of a given string.
+/**
+ * ref: https://www.youtube.com/watch?v=nbTSfrEfo6M
+ * Comments: I extend the method which is to find all palindrome substrings of a given string.
+ * 1. longest palindrome: return the max in arr[] : 
+ * reason, for aaa
+ * arr:  # a # a # a #
+ * index:1 2 3 4 5 6 7
+ * len:  0 1 2 3 2 1 0
+ *  for odd: len[3] = 2, means (left 1) + (right 1) = 2
+ *  for even: len[4] = 2, mean (left 1) + (centre 1) + (right 1) = 3   
+ *  
+ * 2. number of palindromes: sum of arr[i]/2
+ * arr:  # a # a # a #
+ * index:1 2 3 4 5 6 7
+ * len:  0 1 2 3 2 1 0 
+ * reason: 
+ *  for odd: len[3] = 2,  2/2 = 1, means get rid of #, so = a | a
+ *  for even: len[4] = 3, 3/2 = 1, means get rid of all #, get a | a | a, so = 1    
+ *  
+ * arr:  # a # a # a # a #
+ * index:1 2 3 4 5 6 7 8 9
+ * len:  0 1 2 3 4 3 2 1 0
+ * len[4] = 4. 4/4 = 2, means left = 2 and right = 2. so a | a and aa | aa
+ *  
+ * Leetcode: 647. Palindromic Substrings
+ *  
+ * @author jingjiejiang
+ *
+ */
 class ManacherAlgorithm {
 	
 	private static char[] preProcessor (String s) {
@@ -261,6 +288,7 @@ class ManacherAlgorithm {
 		// TODO Auto-generated method stub
 		// bccbbbbc, abababa
 		int[] res = buildPalinArray("bccbbbbc");
+		//int[] res = buildPalinArray("aaaa");
 	}
 
 }
