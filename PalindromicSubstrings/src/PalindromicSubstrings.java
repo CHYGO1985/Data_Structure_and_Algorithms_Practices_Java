@@ -13,7 +13,8 @@
  * ref: https://discuss.leetcode.com/topic/96821/java-dp-solution-based-on-longest-palindromic-substring
  *
  * @author jingjiejiang
- * @history 1. Jul 27, 2017
+ * @history 
+ * 1. Jul 27, 2017
  */
 public class PalindromicSubstrings {
 	
