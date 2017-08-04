@@ -3,6 +3,7 @@
  * 650. 2 Keys Keyboard
  *
  * round 1: solved, 40 minutes, O(n^2) solution, beat 64.15%
+ * *** first time I did not think about odd and non-prime numer, e.g. 9, 15
  * DP: 1) if n is even: dp[j / 2] + 2; (copy the closet dp[x])
  * the theory is: take 8 as example,as 4 is from 2, if only copy 2 to reach 8, 
  * then the another 4 will cost more than 2 for sure, but if copy 4 if will cost
