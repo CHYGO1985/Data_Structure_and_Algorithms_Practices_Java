@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.xml.transform.Templates;
-
 /**
  * 
  * 638. Shopping Offers
@@ -60,6 +58,8 @@ public class ShoppingOffers {
         // dp[0][0][x][0][0][0], set as single price
         dp[0][0][0][0][0][0] = 0;
         
+        // *** unnecessary statements
+        /*
         for (int i = 1; i < 7; i ++) 
             dp[i][0][0][0][0][0] = i * price0;
         
@@ -77,7 +77,8 @@ public class ShoppingOffers {
         
         for (int i = 1; i < 7; i ++)
             dp[0][0][0][0][0][i] = i * price5;
-         
+        */
+        
         // start from dp[1][1][0][0][0][0], check all "special"s, get the min of it
         // finish the process at dp[need.get(0)][needs.get(1)][needs.get(2)]...[needs.get(5)]
         for (int i = 0; i < 7; i ++) 
