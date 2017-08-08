@@ -3,8 +3,10 @@
  * 62. Unique Paths
  * 
  * round 1: solved, 25 minutes, typical DP problem
+ * 1) method 1: 2 dimensional dp
  * 
  * *** I used 2 dimensional dp array, but it can use 1 dimensional dp array
+ * 2) method 2: 1 dimensional dp
  * 
  * @author jingjiejiang
  * @history 
