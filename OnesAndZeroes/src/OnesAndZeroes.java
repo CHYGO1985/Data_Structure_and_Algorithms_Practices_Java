@@ -21,6 +21,8 @@ public class OnesAndZeroes {
         
         // brutal force: for each string, check whether the sum of 1: 0 > m : n 
         // (need to check every possible start, i : j = i + 1 --> len)
+		
+		// 0/1 knapsack
         
         if (null == strs || 0 == strs.length) return 0;
         
