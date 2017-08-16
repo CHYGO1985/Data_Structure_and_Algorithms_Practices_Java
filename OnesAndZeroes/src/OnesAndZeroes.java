@@ -17,7 +17,14 @@ public class OnesAndZeroes {
         // 0 0 0 0 0 0 0 0 0 0 0
         // 1       1
         // 2        
-        // 3 1                
+        // 3 1   
+		
+		//   0   1   2   3   4
+        //   0   0   0   0   0    
+        // 111   1   0   0   0
+        //  10   1   0   0   0
+        // 100   1   1   0   0
+        //1000   1   1   1   0
         
         // brutal force: for each string, check whether the sum of 1: 0 > m : n 
         // (need to check every possible start, i : j = i + 1 --> len)
