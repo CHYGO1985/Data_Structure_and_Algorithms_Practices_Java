@@ -4,7 +4,7 @@ import java.util.Arrays;
  * 
  * 474. Ones and Zeroes
  * 
- * Round 1: solved, 12 hours to get solution. 
+ * Round 1: solved, 0/1 knapsack, 12 hours to get solution. 
  * 
  * Idea: 1， From the question, it can tell it is a 0/1 knapsack problem. From
  * an array of candidates, find the max solution
