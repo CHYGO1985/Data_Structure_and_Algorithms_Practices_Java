@@ -1,99 +1,120 @@
 import java.util.Arrays;
-import java.util.Comparator;
 
-
+/**
+ * 
+ * 474. Ones and Zeroes
+ * 
+ * Round 1: solved, 12 hours to get solution. 
+ * 
+ * Idea: 1， From the question, it can tell it is a 0/1 knapsack problem. From
+ * an array of candidates, find the max solution
+ * 
+ * 2. But a traditional 0/1 knapsack problem is with one array of candidates
+ * and one limitation, this question is one array of candidates with two limits
+ * , so thinking of using three dimensional array. 
+ * x:num of 1; y: num of 0; z: index of candidates array
+ * 
+ * so the dp[i][j][z] = Math.max(dp[i][j][z - 1], dp[i - x][j - y][z] + 1)
+ * dp[i][j][z - 1] means without selecting the current ele
+ * dp[i - x][j - y][z] + 1 means selecting the current ele
+ * 
+ * 3. like the optimisation of 0/1 knapsack problem, we can optimise the solution
+ * from 3-dimensional dp to 2-dimensional dp
+ * we used the same 2-dimensional array to save previous ele's status (dp[i][j][z - 1])
+ * 
+ * for 2-dimensional array to avoid update the privous status, we update the status
+ * of dp array from bottom-right to top-left
+ * 
+ * row: 1, col: 0
+ * 1100, 10, 0001, 1, 0 5 ： 3
+ * 
+ * dp[i][j] = Math.max(dp[i][j], dp[i - x][j - y]);
+ * The first dp[i][j] means do not select current element with x 1s and y 0s
+ * The second dp[i][j] means select the current element
+ * 
+ * 1) start status  (from bottom right to top left to update the matrix)
+ * 	 0 1 2 3 4 5
+ * 0 0 0 0 0 0 0
+ * 1 0 0 0 0 0 0
+ * 2 0 0 0 0 0 0       
+ * 3 0 0 0 0 0 0
+ * 
+ * 2) for 1100 : One 2: Zero 2
+ * 	 0 1 2 3 4 5
+ * 0 0 0 0 0 0 0
+ * 1 0 0 0 0 0 0
+ * 2 0 0 1 1 1 1       
+ * 3 0 0 1 1 1 1
+ * 
+ * 3) for 10 : One 1: Zero 1
+ * 	 0 1 2 3 4 5
+ * 0 0 0 0 0 0 0
+ * 1 0 1 1 1 1 1
+ * 2 0 1 1 1 1 1       
+ * 3 0 1 1 2 2 2
+ * 
+ * 4) for 0001 : One 1: Zero 3
+ * 	 0 1 2 3 4 5
+ * 0 0 0 0 0 0 0
+ * 1 0 1 1 1 1 1
+ * 2 0 1 1 1 2 2       
+ * 3 0 1 1 2 2 2 
+ * 
+ * 4) for 1 : One 1: Zero 0
+ * 	 0 1 2 3 4 5
+ * 0 0 0 0 0 0 0
+ * 1 0 1 1 1 1 1
+ * 2 0 2 2 2 2 2       
+ * 3 0 2 2 2 3 3
+ * 
+ * 5) for 0 : One 0: Zero 1
+ * 	 0 1 2 3 4 5
+ * 0 0 0 0 0 0 0
+ * 1 0 1 2 2 2 2
+ * 2 0 2 3 3 3 3       
+ * 3 0 2 3 3 4 4
+ * 
+ * 
+ * @author jingjiejiang
+ * @history 
+ * 1. Aug 18, 2017
+ */
 public class OnesAndZeroes {
-
-	/*
+	
 	public int findMaxForm(String[] strs, int m, int n) {
-        // sort, then start from shortest (greedy) --> wrong : 111, 10, 100, 100 6 : 3
-        // 111 -> [0, 3], 1000 -> [3, 1]
-        // --> 0/1 kknapsack problem, pick or not pick
-        // dp[m][n]
         
-        // row: 1 col: 0
-        // [3,0],[1,3],[1,3],[1,3]
-        
-        //   0 1 2 3 4 5 6 7 8 9
-        // 0 0 0 0 0 0 0 0 0 0 0
-        // 1       1
-        // 2        
-        // 3 1   
-		
-		//   0   1   2   3   4
-        //   0   0   0   0   0    
-        // 111   1   0   0   0
-        //  10   1   0   0   0
-        // 100   1   1   0   0
-        //1000   1   1   1   0
-        
-        // brutal force: for each string, check whether the sum of 1: 0 > m : n 
-        // (need to check every possible start, i : j = i + 1 --> len)
-		
-		// 0/1 knapsack
-        
+        // m: num of 0, n: num of 1
         if (null == strs || 0 == strs.length) return 0;
         
-        Arrays.sort(strs, new Comparator<String>() {
-            public int compare(String str1, String str2) {
-                return str1.length() - str2.length();
-            }
-        });
+        int[][] dp = new int[m + 1][n + 1];
         
-        int res = 0;
-        for (String str: strs) {
+        for (int i = 0; i < dp.length; i ++)
+            Arrays.fill(dp[i], 0);
+        
+        for (String str : strs) {
             
-            if (str.length() > m + n) break ;
-            int i = 0;
-            while (i < str.length()) {
-                char temp = str.charAt(i ++);
-                if (temp == '1') n --;
-                else if (temp == '0') m --;
-            }
-            if (m >= 0 && n >= 0) res ++;
+            int[] val = count(str); // count num of 1 and 0 respectively
+            for (int row = m; row >= 0; row --) 
+                for (int col = n; col >= 0; col --)
+                    if (row - val[0] >= 0 && col - val[1] >= 0)
+                        dp[row][col] = Math.max(dp[row][col], 1 + dp[row - val[0]][col - val[1]]);
         }
         
-        return res;
+        return dp[m][n];
     }
-	*/
-	// ref : https://discuss.leetcode.com/topic/76103/0-1-knapsack-detailed-explanation
-	public int findMaxForm(String[] strs, int m, int n) {
-	    int l = strs.length;
-	    int[][][] dp = new int[l+1][m+1][n+1];
-	    
-	    for (int i = 0; i < l+1; i++) {
-	        int[] nums = new int[]{0,0};
-	        if (i > 0) {
-	            nums = calculate(strs[i-1]);
-	        }
-	        for (int j = 0; j < m+1; j++) {
-	            for (int k = 0; k < n+1; k++) {
-	                if (i == 0) {
-	                    dp[i][j][k] = 0;
-	                } else if (j>=nums[0] && k>=nums[1]) {
-	                    dp[i][j][k] = Math.max(dp[i-1][j][k], dp[i-1][j-nums[0]][k-nums[1]]+1);
-	                } else {
-	                    dp[i][j][k] = dp[i-1][j][k];
-	                }
-	            }
-	        }
-	    }
-	    
-	    return dp[l][m][n];
-	}
-
-	private int[] calculate(String str) {
-	    int[] res = new int[2];
-	    Arrays.fill(res, 0);
-	    
-	    for (char ch : str.toCharArray()) {
-	        if (ch == '0') {
-	            res[0]++;
-	        } else if (ch == '1') {
-	            res[1]++;
-	        }
-	    }
-	    
-	    return res;
-	}
+    
+    private int[] count(String str) {
+        
+        int[] val = new int[2];
+        Arrays.fill(val, 0);
+        
+        int i = 0;
+        while (i < str.length()) {
+            char temp = str.charAt(i ++);
+            if (temp == '0') val[0] ++;
+            else if (temp == '1') val[1] ++;
+        }
+        
+        return val;
+    }
 }
