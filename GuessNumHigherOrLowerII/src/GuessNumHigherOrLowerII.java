@@ -1,31 +1,40 @@
 /**
  * 
- * round 1: 
+ * 375. Guess Number Higher or Lower II
  * 
- * idea: from divide two to divide three
+ * round 1: unsolved, 
  * 
- * 1) cann't find any regulation when draw from 1 to 14
- * 2) so go back to try to find the best strategy first
+ * ref: https://discuss.leetcode.com/topic/51353/simple-dp-solution-with-explanation/2
  * 
- * 1) the best strategy is binary search and I did not explore it well for best strategy
- * and then I went for divide for 3 parts, however, I still can't find any regulation.
- * 
- * at the beginning, from 1 to 14, I only find out that compare the n-1 + n- 3 with n- 3 + min[n - 4], in which use n -3 first,
- * however it cannot be scaled to larger number like 50.
- * 
- * 2) I go back to binary search
- * for 1 2 3 4 5 6 7 8 9 10 11 12 13 14
- * I find that the matching point is 13 --> 13 can identify 12 and 14, so next point to divide the part is 11
- * 8 9 10 *11* 12 13 14, 
- * 3) and 11 it still does not cover all eles so go to next point, which is 7, so 1 2 3 4 5 6 *7* 8 9 10 11 12 13 14
- * so 7 is the
- * 
- * divide three still does not work, so go back and start from scratch and draw from 1 to 15 and try to find regulation
- *  
+ * Idea: I was trying to find regulations to form a dp formula, but did not success. And I stick on it. However it turns
+ * out that it is a dp solution that save the intermediate status, not a traditional dp that goes iterately and then reach
+ * to an answer. 
  * 
  * @author jingjiejiang
- *
+ * @history 
+ * 1. Aug 22, 2017
  */
 public class GuessNumHigherOrLowerII {
 
+	public int getMoneyAmount(int n) {
+        
+        int[][] records = new int[n + 1][n + 1];
+        
+        return findGuarantee(records, 1, n);
+    }
+    
+    private int findGuarantee(int[][] records, int start, int end) {
+        
+        if (start >= end) return 0;
+        if (records[start][end] != 0) return records[start][end];
+        int res = Integer.MAX_VALUE;
+        
+        for (int i = start; i <= end; i ++) {
+            int temp = i + Math.max(findGuarantee(records, start, i - 1), findGuarantee(records, i + 1, end));
+            res = Math.min(res, temp);
+        }
+        
+        records[start][end] = res;
+        return res;
+    }
 }
