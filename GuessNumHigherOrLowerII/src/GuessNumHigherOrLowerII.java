@@ -6,9 +6,14 @@
  * 
  * ref: https://discuss.leetcode.com/topic/51353/simple-dp-solution-with-explanation/2
  * 
- * Idea: I was trying to find regulations to form a dp formula, but did not success. And I stick on it. However it turns
- * out that it is a dp solution that save the intermediate status, not a traditional dp that goes iterately and then reach
+ * Idea: I was trying to find regulations to form a dp formula, but did not success. And I stick on it. I draw from 1 to 18 to reserve the
+ * results, tried to find certain regulation.
+ * However it turns out that it is a dp solution that save the intermediate status, not a traditional dp that goes iterately and then reach
  * to an answer. 
+ * 
+ * the solution of this question is based on the formula that from i to j, when pick k between i and j, the max val is
+ * k + Math.max(findMax(i, k - 1), findMax(k + 1, j)) (max means the worst case), and the cost that guarantee a win is a min(means the best strategy) 
+ * among all the k vals between i and j.
  * 
  * @author jingjiejiang
  * @history 
