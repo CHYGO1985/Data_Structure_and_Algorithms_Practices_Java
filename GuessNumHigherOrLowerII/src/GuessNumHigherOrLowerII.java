@@ -6,8 +6,9 @@
  * 
  * ref: https://discuss.leetcode.com/topic/51353/simple-dp-solution-with-explanation/2
  * 
- * Idea: I was trying to find regulations to form a dp formula, but did not success. And I stick on it. I draw from 1 to 18 to reserve the
- * results, tried to find certain regulation.
+ * Idea: I was trying to find regulations to form a dp formula, but did not success (I drew from 1 to 18 to reserve the
+ * results, tried to find certain regulation). And I stick on it. --> when I cannot find any regulation, I should try another
+ * method. 
  * However it turns out that it is a dp solution that save the intermediate status, not a traditional dp that goes iterately and then reach
  * to an answer. 
  * 
