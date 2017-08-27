@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 /**
  * 
@@ -14,25 +13,44 @@ import java.util.Arrays;
  * e.g. rows = 2, cols = 8, sentence = ["a"]
  * "hello" ends at 6, and then "world" ends at 6 as well
  * 
- * TLE for
- * ["a"]
- * 20000
- * 20000
+ * 4) *** the key to optimise from brutal force solution is to change the question to 2-dimensional array to 
+ * 1-dimensional array
  * 
  * improved method: checking repeat mode : still TLE
- * ["a","bcd"]
- * 20000
- * 20000
+ * ["a","bcd"] 20000 20000
  * 
  * ref: DP solution ref: https://discuss.leetcode.com/topic/62364/java-optimized-solution-17ms/2
+ * The DP solution transfer from a 2 dimensional array to one dimensional array problem
+ * e.g. ("a", "bcd", "e"), 3, 6
+ * we switch to a one dimensional array question 
+ * a _ b c d _ e _ a _ b  c  d  _  e  _  a  _  b  c  d  _  e  _
+ * 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ * 1) A dumb way we can check the next start index for each word is to use brutal force, check one by one,
+ * However, it is still use many time for repeated calculation
+ *  a _ bcd _ e _ f _ g _ ... _ z
+ *  bcd _ e _ f _ ... _ z _ a
+ *  e _ f _ ... _ z _ a _ bcd
+ *  
+ *  We can see that it recalculated many repeated cases
+ *  
+ * 2) to optimise it, we change it to a 1 dimensional array, so the previous added words.length can still be
+ * kept, we only need to exclude the length of the previous starter word.
+ * 
+ * The process is:
+ * 1) start from a (index = 0), we got (a _ b c d _) len = 6, wordsCount = 2, dp[0] = 2
+ * 2) start from bcd (index = 1), we use len - (a_).length = 4, then start count, as (b c d _).length already
+ * in len, so we start with next word e, which index = wordsCount % sentence.length
+ * get (b c d _ e _) len = 6, wordsCount = 3. dp[1] = 3
+ * 3) start from e (index = 2), get (e _ a _ _ _) len = 4, wordsCount = 4
+ * so dp[2] = 4
  * 
  * @author jingjiejiang
  * @history 
  * 1.Aug 24, 2017
- * 
  */
 public class SentenceScreenFitting {
 
+	// Method 1: brutal force
 	/*
 	public int wordsTyping(String[] sentence, int rows, int cols) {
         //idea: fit the words into two dimensional array one by one
@@ -68,6 +86,9 @@ public class SentenceScreenFitting {
     }
     */
 	
+	
+	// DP : used dp array to save the end pos of each words with index i
+	/*
 	 public static int wordsTyping(String[] sentence, int rows, int cols) {
         //idea: fit the words into two dimensional array one by one
         
@@ -105,6 +126,7 @@ public class SentenceScreenFitting {
         
         return count;
     }
+    */
 	
 	// ref: https://discuss.leetcode.com/topic/62364/java-optimized-solution-17ms/2
 	// DP solution, add my own comments
@@ -147,9 +169,49 @@ public class SentenceScreenFitting {
     }
     */
 	
+	// my implementation of DP method
+	public static int wordsTyping(String[] sentence, int rows, int cols) {
+        
+        if (null == sentence || 0 == sentence.length) return 0;
+        
+        int[] dp = new int[sentence.length];
+        
+        int wordsCount = 0;
+        int len = 0;
+        // get all the "next start index" for each word in the sentence
+        for (int i = 0; i < sentence.length; i ++) {
+            
+            if (len > 0)
+                len -= sentence[i - 1].length() + 1;
+            
+            // iterate through each cols, check whether how many words the a row can contain
+            // when start with sentence[i]
+            
+            // when i start with 0, len should add from i;
+            // when i > 1, len should add from i + 1 (as i already in the len)
+            // *** so we use wordsCount here for the index
+            while (len + sentence[wordsCount % sentence.length].length() <= cols)
+                len += sentence[(wordsCount ++) % sentence.length ].length() + 1;
+            
+            dp[i] = wordsCount;
+        }
+        
+        int count = 0;
+        int startIndex = 0;
+        // from 0 to row, get all the words count
+        for (int i = 0; i < rows; i ++) {
+            
+            count += dp[startIndex] - startIndex;
+            startIndex = dp[startIndex] % sentence.length;
+        }
+        
+        return count / sentence.length;
+    }
+	
 	public static void main (String[] args) {
 		
-		// int a = wordsTyping(new String[]{"a", "bcd", "e"}, 3, 6);
-		int a = wordsTyping(new String[]{"hello", "world"}, 2, 8);
+		int a = wordsTyping(new String[]{"a", "bcd", "e"}, 3, 6);
+		// int a = wordsTyping(new String[]{"hello", "world"}, 2, 8);
+		System.out.println(a);
 	}
 }
