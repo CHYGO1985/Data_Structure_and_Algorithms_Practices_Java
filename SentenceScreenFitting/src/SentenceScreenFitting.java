@@ -1,8 +1,11 @@
 
 /**
  * 
+ * 418. Sentence Screen Fitting
  * 
- * round 1: 
+ * round 1: unsolved (TLE), do not know how to optimise from brutal force solution. 
+ * (did not thing about transform 2 dimensional problem to 1 dimensional problem.)
+ * 
  * 1) I first implement brutal force idea, then I got TLE error for test case (["a"], 2000, 2000)
  * 2) the error reminds me that I should optimise the method, so I do not need to compute the repeated case
  * and I observer that for every start of a word in a row, it ends in an identical index for each wordIndex(*** check explain below)
@@ -19,6 +22,7 @@
  * improved method: checking repeat mode : still TLE
  * ["a","bcd"] 20000 20000
  * 
+ * Method 1: DP
  * ref: DP solution ref: https://discuss.leetcode.com/topic/62364/java-optimized-solution-17ms/2
  * The DP solution transfer from a 2 dimensional array to one dimensional array problem
  * e.g. ("a", "bcd", "e"), 3, 6
@@ -44,9 +48,29 @@
  * 3) start from e (index = 2), get (e _ a _ _ _) len = 4, wordsCount = 4
  * so dp[2] = 4
  * 
+ * Method 2: transform to 1 dimensional array, then use the total length of each array (cols) to check how many
+ * sentence it can contains. 
+ * ref: https://discuss.leetcode.com/topic/62455/21ms-18-lines-java-solution
+ * 
+ * e.g. ("a", "bcd", "e"), 3, 6
+ * we switch to a one dimensional array question (a _ b c d _ e _ : leng is 8) 
+ * we used the suffix _ here, as it is convenient to connect to a 1 dimensional array
+ * a _ b c d _ e _ a _ b  c  d  _  e  _  a  _  b  c  d  _  e  _
+ * 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ * 0 1 2 3 4 5
+ *             0 1 2 3 (_ _)
+ *                     0  1  2  3  4  5
+ *                     
+ * We can see the total length is 16 (this is what we need to find). which is 'a' at index 16.
+ * From the process, we can find that 
+ * 1) if end is at a '_' (the first line), then start with next one
+ * 2) if end is at a char (the second line 'c'), then we go back until meets a _
+ * 
  * @author jingjiejiang
  * @history 
  * 1.Aug 24, 2017
+ * 2.Aug 28, 2017
+ * 1) Add analysis of method 2
  */
 public class SentenceScreenFitting {
 
@@ -170,6 +194,7 @@ public class SentenceScreenFitting {
     */
 	
 	// my implementation of DP method
+	/*
 	public static int wordsTyping(String[] sentence, int rows, int cols) {
         
         if (null == sentence || 0 == sentence.length) return 0;
@@ -206,6 +231,29 @@ public class SentenceScreenFitting {
         }
         
         return count / sentence.length;
+    }
+	*/
+	
+	public static int wordsTyping(String[] sentence, int rows, int cols) {
+        String s = String.join(" ", sentence) + " ";
+        int start = 0, l = s.length();
+        for (int i = 0; i < rows; i++) {
+            start += cols;
+            // *** we do not use start - 1 here, as we are going to find the
+            // index at 16 not 15, see explaination at the beginning
+            
+            // 1) a row must start with a char not ' '
+            if (s.charAt(start % l) == ' ') {
+                start++;
+            // 2) a row cannot be ended in the mid of a word 
+            } else {
+                while (start > 0 && s.charAt((start-1) % l) != ' ') {
+                    start--;
+                }
+            }
+        }
+        
+        return start / s.length();
     }
 	
 	public static void main (String[] args) {
