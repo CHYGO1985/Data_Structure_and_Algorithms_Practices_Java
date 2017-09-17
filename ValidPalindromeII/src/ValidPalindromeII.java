@@ -21,6 +21,7 @@
  */
 public class ValidPalindromeII {
 	
+	/*
 	public boolean validPalindrome(String s) {
         int left = 0;
         int right = s.length() - 1;
@@ -31,19 +32,41 @@ public class ValidPalindromeII {
     private boolean isValid(String s, int left, int right, int count) {
         
         while (left <= right) {
-            if (s.charAt(left) != s.charAt(right)) {
+//            if (s.charAt(left) != s.charAt(right)) {
+//                if (count == 1) return false;
+//                else {
+//                    if (left + 1 == right) return true;
+//                    else {
+//                        return isValid(s, left + 1, right, 1) | isValid(s, left, right - 1, 1);
+//                    } 
+//                }
+//            }
+        	// further optimise
+        	if (s.charAt(left) != s.charAt(right)) {
                 if (count == 1) return false;
-                else {
-                    if (left + 1 == right) return true;
-                    else {
-                        return isValid(s, left + 1, right, 1) | isValid(s, left, right - 1, 1);
-                    }                        
-                }
+                else return isValid(s, left + 1, right, 1) | isValid(s, left, right - 1, 1);
             }
-            
             left ++;
             right --;
         }
+        
+        return true;
+    }
+    */
+	
+	// 7 lines solution
+	public boolean validPalindrome(String s) {
+        
+        return isValid(s, -1, s.length(), 0);
+    }
+    
+    private boolean isValid(String s, int left, int right, int count) {
+        
+        while ( ++ left <= -- right) 
+        	if (s.charAt(left) != s.charAt(right)) {
+                if (count == 1) return false;
+                return isValid(s, left + 1, right, 1) | isValid(s, left, right - 1, 1);
+            }
         
         return true;
     }
