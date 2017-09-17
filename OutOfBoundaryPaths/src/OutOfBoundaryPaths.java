@@ -55,7 +55,6 @@ public class OutOfBoundaryPaths {
         // if N = 0, and not out of boudary return 0;
         return count % CONSTANT;
     }
-    
     */
 	
 	private static final int CONSTANT = (int)(Math.pow(10, 9)) + 7;
@@ -70,42 +69,46 @@ public class OutOfBoundaryPaths {
         int sum = 0;
         int count = 0;
         // init dp
-        sum = countPath(dp, i, j, sum, count);
+        
+        sum = countPath(dp, dp, i, j, sum, count);
+        
         count ++;
         
         while (count < N) {
             // iterate through dp, find the dp[x][y] == count, update dp with count + 1
+            int[][] temp = new int[m][n];
             for (int row = 0; row < dp.length; row ++)
                 for (int col = 0; col < dp[0].length; col ++)
                     if (dp[row][col] != 0 && dp[row][col] % count == 0)
-                       sum = countPath(dp, row, col, sum, count);
+                       sum = countPath(dp, temp, row, col, sum, count);
+            dp = temp;
             count ++;
         }
         
         return sum;
     }
     
-    private static int countPath(int[][] dp, int row, int col, int sum, int count) {
+    private static int countPath(int[][] dp, int[][] temp, int row, int col, int sum, int count) {
         
         int factor = count == 0 ? 1 : dp[row][col] / count;
         if (row - 1 < 0) sum += factor;
         // it won't affect the data, as it can only go up,down,left and right
-        else dp[row - 1][col] = (count + 1) * factor;
+        else temp[row - 1][col] = (count + 1) * factor;
 
         if (row + 1 >= dp.length) sum += factor;
-        else dp[row + 1][col] = (count + 1) * factor;
+        else temp[row + 1][col] = (count + 1) * factor;
 
         if (col - 1 < 0) sum += factor;
-        else dp[row][col - 1] = (count + 1) * factor;
+        else temp[row][col - 1] = (count + 1) * factor;
 
         if (col + 1 >= dp[0].length) sum += factor;
-        else dp[row][col + 1] = (count + 1) * factor; 
+        else temp[row][col + 1] = (count + 1) * factor; 
         
         return sum % CONSTANT;
     }
 	
 	public static void main (String[] args) {
-		findPaths(2,2,2,0,0);
+		findPaths(1,3,3,0,1);
 	}
 
 }
