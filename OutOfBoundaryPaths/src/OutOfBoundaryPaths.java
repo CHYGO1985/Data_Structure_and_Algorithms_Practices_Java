@@ -1,6 +1,6 @@
 /**
  * 
- *  576. Out of Boundary Paths
+ * 576. Out of Boundary Paths
  *  
  * round 1: 30m, top-down DP, TLE, 4 hours space compression, 2 dimensional dp
  * 
