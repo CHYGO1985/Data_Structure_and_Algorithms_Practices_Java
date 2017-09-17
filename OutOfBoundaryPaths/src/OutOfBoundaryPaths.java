@@ -1,13 +1,23 @@
 /**
  * 
- * round 1: 30m, top-down DP, TLE
- * idea: straight forward, top-down DP --> TLE
+ *  576. Out of Boundary Paths
+ *  
+ * round 1: 30m, top-down DP, TLE, 4 hours space compression, 2 dimensional dp
  * 
- * --> reverse thinking, from OutOfBoundary to start point.
- * also, from drawing, it can be found that 
+ * idea: straight forward, top-down DP, 3 dimensional array --> TLE
+ * 
+ * --> reverse thinking, from OutOfBoundary to start point --> still
+ * need to cal lots of possibilities
+ * 
+ * --> think about space compression from 3 dimensional to 2 dimensional
+ * use previous status to construct next dp status. the difficult part
+ * is to prevent data interruption when constructing the next dp from
+ * previous dp? I could not find a nice solution
+ * *** use 2 dimensional array. one is to save temporary status.
  * 
  * @author jingjiejiang
- *
+ * @history
+ * 1. Sep 17, 2017
  */
 public class OutOfBoundaryPaths {
 	
@@ -57,58 +67,35 @@ public class OutOfBoundaryPaths {
     }
     */
 	
-	private static final int CONSTANT = (int)(Math.pow(10, 9)) + 7;
-    
-    public static int findPaths(int m, int n, int N, int i, int j) {
-        // top-down dp
-        // *** the length for N should be N + 1
-        // *** did not consider the fact of multiple balls at one position
-        // 1 3 3 0 1 is 12 not 10, consider the return ball of step 5
-        int[][] dp = new int[m][n];
+	public int findPaths(int m, int n, int N, int i, int j) {
+        if (N <= 0) return 0;
         
-        int sum = 0;
-        int count = 0;
-        // init dp
+        final int MOD = 1000000007;
+        int[][] count = new int[m][n];
+        count[i][j] = 1;
+        int result = 0;
         
-        sum = countPath(dp, dp, i, j, sum, count);
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         
-        count ++;
-        
-        while (count < N) {
-            // iterate through dp, find the dp[x][y] == count, update dp with count + 1
+        for (int step = 0; step < N; step++) {
             int[][] temp = new int[m][n];
-            for (int row = 0; row < dp.length; row ++)
-                for (int col = 0; col < dp[0].length; col ++)
-                    if (dp[row][col] != 0 && dp[row][col] % count == 0)
-                       sum = countPath(dp, temp, row, col, sum, count);
-            dp = temp;
-            count ++;
+            for (int r = 0; r < m; r++) {
+                for (int c = 0; c < n; c++) {
+                    for (int[] d : dirs) {
+                        int nr = r + d[0];
+                        int nc = c + d[1];
+                        if (nr < 0 || nr >= m || nc < 0 || nc >= n) {
+                            result = (result + count[r][c]) % MOD;
+                        }
+                        else {
+                            temp[nr][nc] = (temp[nr][nc] + count[r][c]) % MOD;
+                        }
+                    }
+                }
+            }
+            count = temp;
         }
         
-        return sum;
+        return result;
     }
-    
-    private static int countPath(int[][] dp, int[][] temp, int row, int col, int sum, int count) {
-        
-        int factor = count == 0 ? 1 : dp[row][col] / count;
-        if (row - 1 < 0) sum += factor;
-        // it won't affect the data, as it can only go up,down,left and right
-        else temp[row - 1][col] = (count + 1) * factor;
-
-        if (row + 1 >= dp.length) sum += factor;
-        else temp[row + 1][col] = (count + 1) * factor;
-
-        if (col - 1 < 0) sum += factor;
-        else temp[row][col - 1] = (count + 1) * factor;
-
-        if (col + 1 >= dp[0].length) sum += factor;
-        else temp[row][col + 1] = (count + 1) * factor; 
-        
-        return sum % CONSTANT;
-    }
-	
-	public static void main (String[] args) {
-		findPaths(1,3,3,0,1);
-	}
-
 }
