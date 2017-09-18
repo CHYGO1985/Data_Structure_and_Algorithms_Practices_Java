@@ -23,7 +23,7 @@
  * 
  * then is to find the regulation to build dp array, iterate a few grids, it can be 
  * found that
- * dp[i][j] = dp[i-1][j] + dp[j-1][i] + dp[i-1][j-1]
+ * dp[i][j] = dp[i-1][j] + dp[j-1][i] - dp[i-1][j-1]
  * 
  * @author jingjiejiang
  * @history
