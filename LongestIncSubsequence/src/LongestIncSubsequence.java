@@ -1,6 +1,12 @@
 import java.util.Arrays;
 
-
+/**
+ * round 2: sep, 19, 2017
+ * 
+ * @author jingjiejiang
+ * @history
+ * 1. Sep 19, 2017
+ */
 public class LongestIncSubsequence {
 	
 	public static int lengthOfLIS(int[] nums) {            
