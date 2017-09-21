@@ -50,7 +50,6 @@
  * @author jingjiejiang
  * @history
  * 1. Sep 21, 2017
- *
  */
 public class UglyNumberII {
 
