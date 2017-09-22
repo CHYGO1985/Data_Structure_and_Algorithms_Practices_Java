@@ -123,7 +123,7 @@ public class MedianOfTwoSortedArrays {
                 low = mid2 + 1; // A1's lower half is too big; need to move C1 left (C2 right)
             }
             else if (L2 > R1) {
-                high = mid2 - 1; ; // A2's lower half too big; need to move C2 left.
+                high = mid2 - 1; // A2's lower half too big; need to move C2 left.
             }
             else {
                 return (Math.max(L1,L2) + Math.min(R1, R2)) / 2;
