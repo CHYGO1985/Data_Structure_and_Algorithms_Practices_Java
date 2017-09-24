@@ -9,7 +9,18 @@
  * e.g. 3A, 3B, 2C,2D,2E n = 2	
  * so the basic frame will be A _ _ A _ _ A
  * 
- * 2) based on the assumption, we need to decide how many are
+ * num of intervals = num of A - 1
+ * 
+ * 2) based on the assumption, we need to decide how many chars are there
+ * out of A _ _ A _ _ A
+ * 
+ * 3) cause the order does not matter, we can tell that if num of other chars
+ * > n * (A - 1) (empty places)
+ * then total = sum 
+ * 
+ * 4) if <=. we need to consider the case like AAABBB, nums of B > (A - 1)
+ * so, except from, we need one more for B A _ _ A _ _ A B
+ * which is frame + (appear num of X - (A - 1))  
  * 
  * @author jingjiejiang
  * @history
