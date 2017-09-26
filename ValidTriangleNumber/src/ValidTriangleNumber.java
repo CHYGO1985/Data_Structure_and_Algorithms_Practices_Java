@@ -7,6 +7,9 @@ import java.util.Arrays;
  * 
  * round 1: unsolved, do not know how to optimise from O(n^3) brutal force to O(n^2)
  * *** array --> two pointers tech(same sides or frond + end)
+ * idea: 2nd and 3rd loops are for finding the 2nd and 3rd sides, so we should
+ * think about using two pointers in one loop to find 2nd and 3rd side.
+ * 
  * ref: https://discuss.leetcode.com/topic/92099/java-o-n-2-time-o-1-space/2
  * 
  * test case: 
