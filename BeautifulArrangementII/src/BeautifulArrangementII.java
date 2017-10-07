@@ -21,6 +21,7 @@
  */
 public class BeautifulArrangementII {
 	
+	/*
 	public int[] constructArray(int n, int k) {
         
         int[] res = new int[n];
@@ -43,6 +44,33 @@ public class BeautifulArrangementII {
                 res[index ++] = 1 + left;
                 left ++;
             }
+        }
+        
+        int count = n - res[1];
+        // *** be careful about the conditions here
+        while (count > 0) {
+            res[index ++] = n - (count - 1);
+            count --;
+        }
+        return res;
+    }
+	*/
+	
+	// optimised
+	public int[] constructArray(int n, int k) {
+        
+        int[] res = new int[n];
+        // the maximum different gaps are n - 1
+        if (k == 0 || k > n - 1) return res;
+        
+        int left = 1;
+        int right = k + 1;
+
+        int index = 0;
+        while (left <= right) {
+            if (index % 2 != 0) res[index ++] = right --;
+            // index % 2 == 0
+            else res[index ++] = left ++;
         }
         
         int count = n - res[1];
