@@ -37,10 +37,18 @@ public class TreeBuilding {
 		while (index < nums.length - 1 && queue.isEmpty() == false) {
 			
 			TreeNode tmp = queue.poll();
-			tmp.left = new TreeNode(nums[index ++]);
-			if (tmp.left.val != -1) queue.add(tmp.left);
-			tmp.right = new TreeNode(nums[index ++]);
-			if (tmp.right.val != -1) queue.add(tmp.right);
+			
+			if (nums[index] != -1) {
+				tmp.left = new TreeNode(nums[index]);
+				queue.add(tmp.left);
+			}
+			index ++;
+			
+			if (nums[index] != -1) {
+				tmp.right = new TreeNode(nums[index]);
+				queue.add(tmp.right);
+			}
+			index ++;
 		}
 	}
 
