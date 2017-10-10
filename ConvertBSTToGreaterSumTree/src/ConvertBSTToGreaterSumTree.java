@@ -27,9 +27,9 @@ public class ConvertBSTToGreaterSumTree {
 	
 	public static class TreeNode {
 		
-		public int val;
-		public TreeNode left;
-		public TreeNode right;
+		private int val;
+		private TreeNode left;
+		private TreeNode right;
 		
 		public TreeNode(int val) {
 			this.val = val;
