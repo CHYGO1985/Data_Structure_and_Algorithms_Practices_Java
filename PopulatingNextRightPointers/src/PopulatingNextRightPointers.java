@@ -11,6 +11,9 @@ import java.util.List;
  * 2) extend to 3 layers full tree, see whether the method still work
  * 3) extend the tree to 4 layer and see method get from 2) can work or not
  * 
+ * recursive method:
+ * http://algorithms.tutorialhorizon.com/provide-the-next-siblings-pointers-in-a-given-binary-tree/
+ * 
  * @author jingjiejiang
  * @history
  * 1. round 2. Oct 11, 2017
