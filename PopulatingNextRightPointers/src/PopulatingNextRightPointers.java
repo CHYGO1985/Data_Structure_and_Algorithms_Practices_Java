@@ -1,7 +1,20 @@
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * 
+ * 116. Populating Next Right Pointers in Each Node
+ * 
+ * round 2: unsolved, 40m, recursive method
+ * idea: how to design tree recursive process:
+ * 1) start with 3 nodes, only 2 layers
+ * 2) extend to 3 layers full tree, see whether the method still work
+ * 3) extend the tree to 4 layer and see method get from 2) can work or not
+ * 
+ * @author jingjiejiang
+ * @history
+ * 1. round 2. Oct 11, 2017
+ */
 public class PopulatingNextRightPointers {
 	
 	public class TreeLinkNode {
@@ -9,11 +22,35 @@ public class PopulatingNextRightPointers {
 	    TreeLinkNode left, right, next;
 	    TreeLinkNode(int x) { val = x; }
 	}
-    
+	
+	
+	// recursive method
+	/*
 	public void connect(TreeLinkNode root) {
-        // idea: similar to zigzag traverse
-        // method 1: traditional layer order traverse to assign each next
-        // space: need one list, size = nodes count / 2.
+
+		if (null == root)
+			return;
+		root.next = null;
+		buildConnect(root);
+	}
+
+	private void buildConnect(TreeLinkNode root) {
+
+		if (root == null)
+			return;
+
+		if (root.left != null)
+			root.left.next = root.right;
+		if (root.next != null && root.right != null)
+			root.right.next = root.next.left;
+
+		buildConnect(root.left);
+		buildConnect(root.right);
+	}
+    */
+	
+	// level order traverse
+	public void connect(TreeLinkNode root) {
         
         // method 2: preorder (to build layer infor) to assign each next
         // space: need a List<List>
@@ -33,6 +70,7 @@ public class PopulatingNextRightPointers {
             return ;
         }
         
+        // if it is a new layer
         if (list.size() <= layer) {
             
             List<TreeLinkNode> curList = new LinkedList<TreeLinkNode>();
@@ -52,10 +90,5 @@ public class PopulatingNextRightPointers {
         buildNext(root.left, list, layer + 1);
         buildNext(root.right, list, layer + 1);
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
