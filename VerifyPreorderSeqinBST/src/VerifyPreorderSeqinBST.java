@@ -1,6 +1,18 @@
 /**
  * 
+ * 255. Verify Preorder Sequence in Binary Search Tree
+ * 
  * round 1: unsolved
+ * 
+ * ref: https://discuss.leetcode.com/category/322/verify-preorder-sequence-in-binary-search-tree
+ * 
+ * idea: i was stuck at the situation when the preorder array violate the rule of BST
+ * *** the rule is that. 1) go through the array, find the first ele A > previous ele
+ * 2). from start to A, find the one that is closet and smaller than A, make it
+ * as the limit for the lowest (limit), if further find one < limit, then it is
+ * not an array for BST
+ * 3) iterate through rest the array, when meet one > previous one, than repeat 1), 2) 
+ * else, only check whether current ele < limit
  * 
  * @author jingjiejiang
  * @history
