@@ -34,7 +34,7 @@ public class TreeBuilding {
 		
 		int index = 1;
 		
-		while (index < nums.length - 1 && queue.isEmpty() == false) {
+		while (index < nums.length && queue.isEmpty() == false) {
 			
 			TreeNode tmp = queue.poll();
 			
@@ -44,7 +44,7 @@ public class TreeBuilding {
 			}
 			index ++;
 			
-			if (nums[index] != -1) {
+			if (index < nums.length && nums[index] != -1) {
 				tmp.right = new TreeNode(nums[index]);
 				queue.add(tmp.right);
 			}
