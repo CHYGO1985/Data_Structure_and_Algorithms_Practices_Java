@@ -1,4 +1,14 @@
-
+/**
+ * 
+ * 110. Balanced Binary Tree
+ * 
+ * round 2: 10m, solved, 1 attemp
+ * idea: depth/ distance problem, same method as 687. Longest Univalue Path
+ * 
+ * @author jingjiejiang
+ * @history
+ * 1. Oct 16, 2017
+ */
 public class BalancedBinaryTree {
 	
 	public static class TreeNode {
@@ -8,6 +18,30 @@ public class BalancedBinaryTree {
 		 TreeNode(int x) { val = x; }
     }
 	
+    public boolean isBalanced(TreeNode root) {
+        
+        boolean[] res = new boolean[]{true};
+        
+        checkHeight(root, res);
+        return res[0];
+    }
+    
+    private int checkHeight(TreeNode root, boolean[] res) {
+        
+        if (root == null) return 0;
+        
+        // + 1 means every layer, the height increases 1
+        int left = checkHeight(root.left, res) + 1;
+        int right = checkHeight(root.right, res) + 1;
+        
+        int dif = Math.abs(left - right);
+        if (dif > 1)
+            res[0] = false;
+            
+        return Math.max(left, right);  
+    }
+	
+    /*
 	public static boolean isBalanced(TreeNode root) {
         // * idea: from HFS algorithm --> judge height
         // *** problem: I was not familiar with height search algorithm
@@ -24,6 +58,7 @@ public class BalancedBinaryTree {
         
         return true;
     }
+    */
     
     /*
     // method 1
@@ -72,10 +107,5 @@ public class BalancedBinaryTree {
             
             return Math.max(leftTree, rightTree);
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
