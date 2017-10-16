@@ -42,22 +42,23 @@ public class LongestUnivaluePath {
     
     private int getPath(TreeNode root, int[] count) {
         
-        // if cur node.val == matchVal, count + 1
-        // (if count > max, max = count)
-        // else count = 1, matchVal = curnode.val
         if (root == null) return 0;
         
         int left = getPath(root.left, count);
         int right = getPath(root.right, count);
         
+        // if root.val == root.left.val, length + 1
+        // otherwise reset to 0
         if (root.left != null && root.val == root.left.val) 
             left ++;
         else left = 0;
         
+        // same as left
         if (root.right != null && root.val == root.right.val)
             right ++;
         else right = 0;
         
+        // check the current subtree (root, left and right)
         count[0] = Math.max(left + right, count[0]);
         
         return Math.max(left, right);
