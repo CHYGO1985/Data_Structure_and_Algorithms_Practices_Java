@@ -1,15 +1,24 @@
-
+/**
+ * 
+ * 270. Closest Binary Search Tree Value
+ * 
+ * round 2: same idea
+ * 
+ * @author jingjiejiang
+ * @history
+ * 1. Oct 18, 2017
+ */
 public class ClosestBSTValue {
 	
 	public static class TreeNode {
-	    int val;
-	    TreeNode left;
-	    TreeNode right;
-	    TreeNode(int x, TreeNode left, TreeNode right) {
-	    	this.val = x;
-	    	this.left = left;
-	    	this.right = right;
-	    }
+		
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+		
+		public TreeNode(int val) {
+			this.val = val;
+		}
 	}
 
 	public int closestValue(TreeNode root, double target) {
@@ -42,10 +51,4 @@ public class ClosestBSTValue {
         
         return value;
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
