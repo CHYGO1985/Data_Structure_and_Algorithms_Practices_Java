@@ -7,7 +7,13 @@ import java.util.List;
  * 
  * round 1: solved, 3 hrs,
  * 
- * idea: 
+ * idea: without using extra space, then use time to exchange for space 
+ * --> so two round traverse, 1st round find max occurrence, 2nd round
+ * find the one that appear as max occurrence, add to list.
+ * 
+ * traverse: for BST tree, always think about inorder first
+ * *** I used 3 hrs, because i used postorder at the beginning, 
+ * 
  * 
  * @author jingjiejiang
  * @history
@@ -62,6 +68,7 @@ public class FindModeInBST {
             max[2] = 1;
         }
         
+        // *** need to update the data every round
         max[0] = Math.max(max[0], max[2]);
         if (max[2] == max[3]) list.add(max[1]);
         
