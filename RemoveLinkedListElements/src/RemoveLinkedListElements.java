@@ -6,7 +6,16 @@ Example
 Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
 Return: 1 --> 2 --> 3 --> 4 --> 5
  */
-
+/**
+ * 
+ * 203. Remove Linked List Elements
+ * 
+ * round 3, solved, 1 attempt, 2 pointers tech (same dir)
+ * 
+ * @author jingjiejiang
+ * @history
+ * 1. Oct 22, 2017
+ */
 public class RemoveLinkedListElements {
 	
 	public class ListNode {
@@ -15,85 +24,28 @@ public class RemoveLinkedListElements {
 		 ListNode(int x) { val = x; }
 	}
 	
-	public static ListNode removeElements(ListNode head, int val) {
-        // * idea: for special case 1->6->6->6->6->2, 6 or
-        // for the case that head.val = val and continuesly (6->6->6->1, 6)
-        // *** result: 2ms, one of 42.54%. fastest, 1 ms, 52.54%.
-        // Improve: mix special case into normal handling, exchange space for time, build a new list
-        // Improved solution: still used 2 extra nodes, and skip the node which has val.
-        // **** result: 1ms.
-        
-        /*
-        // Solution 1: 1ms
-        while (head != null && head.val == val) {
+	public ListNode removeElements(ListNode head, int val) {
+        // skip leading nodes that has val
+        while (head != null && head.val == val) 
             head = head.next;
-        }
-         
-        if (null == head )
-            return head;
-            
-        ListNode newList = head;
-        ListNode shiftHead = newList;
         
-        while (head.next != null) {
-            
-            head = head.next;
-            
-            if (head.val != val) {
-                shiftHead.next = head;
-                shiftHead = shiftHead.next;
-            }
-          
-        }
+        // get a new head, if all nodes matches val, then newHead = null
+        ListNode newHead = head;
         
-        // head == null, means the value of last node == val
-        shiftHead.next = head.next;
+        ListNode curAvail = newHead;
+        ListNode shift = newHead;
         
-        return newList;
-        */
+        while (shift != null) {
+            
+            shift = shift.next;
+            
+            while(shift != null && shift.val == val)
+                shift = shift.next;
+                
+            curAvail.next = shift;
+            curAvail = shift;
+        } 
         
-        // special case: 
-        // 1) head == null
-        // 2) 6->6, 6
-        // solution 2: 2ms
-        while (head != null && head.val == val) {
-            head = head.next;
-        }
-        if (null == head)
-            return head;
-            
-        ListNode shiftNode = head;
-        
-        // iterate through the whole list
-        while (shiftNode != null && shiftNode.next != null) {
-            
-            ListNode emptyNode = shiftNode;
-            boolean hasMatch = false;
-            
-            // for special case 1->6->6->6->6, shiftNode will be null
-            while (emptyNode.next != null && emptyNode.next.val == val) {
-            
-                emptyNode = emptyNode.next;
-                hasMatch = true;
-            }
-            
-            // after there is a or more than one match
-            if (hasMatch) {
-                shiftNode.next = emptyNode.next;
-            }
-            // no match
-            else {
-                shiftNode = emptyNode.next;
-            }
-        }
-        
-        return head;
-        
+        return newHead;
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
