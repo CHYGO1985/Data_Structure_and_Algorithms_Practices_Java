@@ -1,3 +1,4 @@
+
 /**
  * 
  * Build list from an array of data.
@@ -21,8 +22,8 @@ public class ListBuilding {
 		
 		ListNode head = new ListNode(nums[0]);
 		ListNode oriHead = head;
-		for (int i : nums) {
-			ListNode temp = new ListNode(i);
+		for (int i = 1; i < nums.length; i ++) {
+			ListNode temp = new ListNode(nums[i]);
 			head.next = temp;
 			head = head.next;
 		}
