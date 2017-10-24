@@ -30,7 +30,6 @@ public class KMPAlgorithm {
 	}
 
 	public static void main(String[] args) {
-		int[] next = KMPAlgorithm("catacbbcatac");
+		int[] next = KMPAlgorithm("abacccaba");
 	}
-
 }

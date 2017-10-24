@@ -45,6 +45,8 @@ public class AddTwoNumbersII {
     }
     */
 
+	// non - stack solution
+	/*
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         // idea: Method 1: recursive + two pointers technique
         // ref: http://bookshadow.com/weblog/2016/10/29/leetcode-add-two-numbers-ii/
@@ -158,48 +160,6 @@ public class AddTwoNumbersII {
         return addCarry (begin, carry, carryIndex - 1);
     }
     
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*
-		ListNode l1 = new ListNode(9);
-		l1.next = new ListNode(9);
-		l1.next.next = new ListNode(9);
-		l1.next.next.next = new ListNode(9);
-		
-		ListNode l2 = new ListNode(1);
-		*/
-		
-		/*
-		ListNode l1 = new ListNode(7);
-		l1.next = new ListNode(2);
-		l1.next.next = new ListNode(4);
-		l1.next.next.next = new ListNode(3);
-		
-		ListNode l2 = new ListNode(5);
-		l2.next = new ListNode(6);
-		l2.next.next = new ListNode(4);
-		*/
-		
-		/*
-		ListNode l1 = new ListNode(9);
-		l1.next = new ListNode(9);
-		l1.next.next = new ListNode(9);
-		l1.next.next.next = new ListNode(9);
-		
-		ListNode l2 = new ListNode(2);
-		l2.next = new ListNode(2);
-		*/
-		
-		ListNode l1 = new ListNode(9);
-		l1.next = new ListNode(9);
-		l1.next.next = new ListNode(9);
-		l1.next.next.next = new ListNode(9);
-		
-		ListNode l2 = new ListNode(2);
-		l2.next = new ListNode(2);
-		l2.next.next = new ListNode(2);
-		
-		l1 = addTwoNumbers(l1, l2);
-	}
+	*/
 
 }
