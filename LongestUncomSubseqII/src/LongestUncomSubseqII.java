@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class LongestUncomSubseqII {
 	
-	public int findLUSlength(String[] strs) {
+	public static int findLUSlength(String[] strs) {
         // round 2: 
         
         // round 1: used 2 hours to understand the questions, another 3 hours to solve it 
@@ -47,6 +47,8 @@ public class LongestUncomSubseqII {
     }
 
 	public static void main(String[] args) {
+		
+		findLUSlength(new String[]{"abc", "ab"});
 	}
 
 }
