@@ -1,6 +1,6 @@
 /**
  * 
- * 367. Valid Perfect Square
+ * 367. Valid Perfect Square.
  * 
  * round 1: solved, 40m, test case: num = 1
  * 
