@@ -3,7 +3,7 @@
  * 80. Remove Duplicates from Sorted Array II
  * 
  * round 1: half-solved, 20 m, 1 attemps (revised 26. Remove Duplicates from 
- * Sorted Array)
+ * Sorted Array).
  * 
  * idea: need to move avail num to left side -> two pointers tech
  * 
