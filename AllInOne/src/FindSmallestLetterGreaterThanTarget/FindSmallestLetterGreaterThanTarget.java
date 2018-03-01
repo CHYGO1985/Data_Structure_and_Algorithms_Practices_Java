@@ -2,6 +2,10 @@ package FindSmallestLetterGreaterThanTarget;
 
 /**
  * 
+ * 744. Find Smallest Letter Greater Than Target
+ * 
+ * Round 1: 1.5 hrs
+ * Was stuck on return value.
  * 
  * @author jingjiejiang
  * @history
@@ -19,19 +23,26 @@ public class FindSmallestLetterGreaterThanTarget {
             
             mid = (left + right) / 2;
             
-            if ((target - 'a') % 26 < letters[mid] - 'a') {
-                left = mid + 1;
+            // a > z
+            if ((letters[mid] - 'a') > (target - 'a')) {
+                right = mid - 1;
             }
             else {
-                right = mid - 1;
+                left = mid + 1;
             }
         }
         
-        return letters[right - 1];
+        return letters[left] - 'a' > target - 'a' ? letters[left] :
+        	(left == letters.length - 1 ? letters[0] : letters[left + 1]);
     }
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		char[] letters = new char[]{'c','f','j'};
+		char target = 'k';
+		
+		char res = nextGreatestLetter(letters, target);
 
 	}
 
