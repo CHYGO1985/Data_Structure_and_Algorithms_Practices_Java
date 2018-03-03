@@ -42,8 +42,7 @@ public class FindSmallestLetterGreaterThanTarget {
 		char[] letters = new char[]{'c','f','j'};
 		char target = 'k';
 		
-		char res = nextGreatestLetter(letters, target);
-
+		nextGreatestLetter(letters, target);
 	}
 
 }
