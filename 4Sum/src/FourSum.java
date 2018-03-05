@@ -1,11 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 public class FourSum {
 
@@ -186,7 +183,7 @@ public class FourSum {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//int[] a = {-3,-2,-1,0,0,1,2,3};
-		 int[] a = {1,0,-1,0,-2,2};
+		int[] a = {1,0,-1,0,-2,2};
 		List<List<Integer>> list = fourSum(a, 0);
 		
 		int b = 0;
