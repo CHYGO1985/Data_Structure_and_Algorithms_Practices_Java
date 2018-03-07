@@ -31,12 +31,14 @@ public class FindKClosestElements {
         }
         // pos in the mid (+/-)
         // -1,+1,-2,+2 until k-1
-        // (pos - 0) == left numbers of eles
+        // (pos - 0) == left numbers of elem
         // right: pos + 1 to pos + pos - 0
         else {
         	if (pos < 0) {
         		pos = - (pos + 1);
         	}
+        	
+        	// two pointers tech to decide the range
         }
         
         
