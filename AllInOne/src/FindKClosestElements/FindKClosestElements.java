@@ -15,15 +15,30 @@ public class FindKClosestElements {
         
         // pos == -1/0;
         // add from 0 to k - 1
-        
+        if (pos == -1 || pos == 0) {
+        	for (int i = 0; i < k && i < arr.length; i ++) {
+        		list.add(arr[i]);
+        	}
+        }
+        // pos == arr.length - 1/-arr.length - 1
+        // add from arr[arr.length - 1] to arr.length - (k - 1)
+        else if (pos == arr.length - 1 || pos == -arr.length) {
+        	int count = 0;
+        	while (count < k && arr.length - 1 - count >= 0) {
+        		list.add(arr[arr.length - 1 - count]);
+        		count ++;
+        	}
+        }
         // pos in the mid (+/-)
         // -1,+1,-2,+2 until k-1
         // (pos - 0) == left numbers of eles
         // right: pos + 1 to pos + pos - 0
+        else {
+        	if (pos < 0) {
+        		pos = - (pos + 1);
+        	}
+        }
         
-        
-        // pos == arr.length - 1/-arr.length - 1
-        // add from arr[arr.length - 1] to arr.length - (k - 1)
         
         return list;
     }
