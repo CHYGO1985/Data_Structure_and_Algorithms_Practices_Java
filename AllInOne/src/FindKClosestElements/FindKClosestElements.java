@@ -44,8 +44,35 @@ public class FindKClosestElements {
         // two pointers tech
         
         // find start position
+        int startPos = pos > 0 ? pos : - (pos + 1);
         
         // from start position get k eles (left side and right side)
+        int count = 1;
+        list.add(arr[startPos]);
+        int left = startPos - 1;
+        int right = startPos + 1;
+        while (left > 0 && right < arr.length - 1 && count < k - 1) {
+        	
+        	if (Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)) {
+        		left --; 
+        	}
+        	else {
+        		right ++;
+        	}
+        	count ++;
+        }
+        
+        while (count < k - 1 && left > 0) {
+        	left --;
+        	count ++;
+        }
+        
+        while (count < k - 1 && right < arr.length - 1) {
+        	right ++;
+        	count ++;
+        }
+        
+        // add arr ele from left to right as arr
         
         
         return list;
