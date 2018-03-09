@@ -13,7 +13,7 @@ public class FindKClosestElements {
         int pos = Arrays.binarySearch(arr, 1);
         pos = pos < 0 ? - (pos + 1) : pos;
         
-        // pos == -1/0;
+        // pos == -1/0
         // add from 0 to k - 1
         if (pos == -1 || pos == 0) {
         	for (int i = 0; i < k && i < arr.length; i ++) {
@@ -40,6 +40,12 @@ public class FindKClosestElements {
         	
         	// two pointers tech to decide the range
         }
+        
+        // two pointers tech
+        
+        // find start position
+        
+        // from start position get k eles (left side and right side)
         
         
         return list;
