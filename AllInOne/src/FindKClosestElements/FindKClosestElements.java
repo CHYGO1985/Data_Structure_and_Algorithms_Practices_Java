@@ -51,7 +51,7 @@ public class FindKClosestElements {
         list.add(arr[startPos]);
         int left = startPos - 1;
         int right = startPos + 1;
-        while (left > 0 && right < arr.length - 1 && count < k - 1) {
+        while (left > 0 && right < arr.length - 1 && count < k) {
         	
         	if (Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)) {
         		left --; 
@@ -62,12 +62,12 @@ public class FindKClosestElements {
         	count ++;
         }
         
-        while (count < k - 1 && left > 0) {
+        while (count < k && left > 0) {
         	left --;
         	count ++;
         }
         
-        while (count < k - 1 && right < arr.length - 1) {
+        while (count < k && right < arr.length - 1) {
         	right ++;
         	count ++;
         }
