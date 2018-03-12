@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 658. Find K Closest Elements
+ * 
+ * @author jingjiejiang
+ *
+ */
 public class FindKClosestElements {
 	
 	public static List<Integer> findClosestElements(int[] arr, int k, int x) {
