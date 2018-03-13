@@ -49,7 +49,7 @@ public class FindKClosestElements {
         
         // two pointers tech
         
-        // find start position
+        // find start position 
         int startPos = pos > 0 ? pos : - (pos + 1);
         
         // from start position get k eles (left side and right side)
