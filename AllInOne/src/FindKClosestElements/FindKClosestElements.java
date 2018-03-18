@@ -17,48 +17,18 @@ public class FindKClosestElements {
 	
 	public static List<Integer> findClosestElements(int[] arr, int k, int x) {
         
-		List<Integer> list = new LinkedList<>();
+List<Integer> list = new LinkedList<>();
         
-        int pos = Arrays.binarySearch(arr, x);
-        pos = pos < 0 ? - (pos + 1) : pos;
-        if (k == 0) {
-            return list;
-        }
-        if (k == 1) {
-            list.add(arr[pos]);
-            return list;
-        }
-        
-        int right = pos;
-        int left = right - 1;
-        int count = 1;
-        
-        if (arr[pos] == x) {
-            right ++;
+        int lo = 0, hi = arr.length - k;
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            if (x - arr[mid] > arr[mid+k] - x)
+                lo = mid + 1;
+            else
+                hi = mid;
         }
         
-        while (left >= 0 && right < arr.length && count < k ) {
-            
-            if (Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)) {
-                left --;
-            }
-            else {
-                right ++;
-            }
-            count ++;
-        }
-        
-        while (left >= 0 && count < k) {
-            left --;
-            count ++;
-        }
-        
-        while (right < arr.length && count < k) {
-            right ++;
-            count ++;
-        }
-        
-        for (int i = left >= 0 ? left : 0; i < right; i ++) {
+        for (int i = lo; i < lo + k; i ++) {
             list.add(arr[i]);
         }
         
