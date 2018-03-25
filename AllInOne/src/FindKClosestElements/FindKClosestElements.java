@@ -11,7 +11,8 @@ import java.util.List;
  * https://leetcode.com/problems/find-k-closest-elements/discuss/106419/O(log-n)-Java-1-line-O(log(n)-+-k)-Ruby
  * 
  * @author jingjiejiang
- *
+ * @history
+ * 1. Created on Mar 22, 2018
  */
 public class FindKClosestElements {
 	
