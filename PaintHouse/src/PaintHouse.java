@@ -3,7 +3,9 @@
 * three rows DP
 * ref: https://discuss.leetcode.com/topic/21311/simple-java-dp-solution
 * @author jingjiejiang
-* @history Jul 7, 2017
+* @history 
+* 1. Jul 7, 2017
+* 2. May 6, 2018 did not think about the dif color for adjacent house (unsolved)
 */
 public class PaintHouse {
 
