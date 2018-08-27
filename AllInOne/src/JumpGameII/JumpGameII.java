@@ -1,7 +1,5 @@
 package JumpGameII;
 
-import java.util.Arrays;
-
 // dfs
 // 2 3 1 1 4
 // 0 1 2 2 2
@@ -10,6 +8,11 @@ import java.util.Arrays;
 // 0 1 1 2 3
 
 // 1 2 0 1 2
+/**
+ * 
+ * @author jingjiejiang created on Aug 25, 2017
+ *
+ */
 public class JumpGameII {
 	
 //	public static int jump(int[] nums) {
@@ -34,8 +37,11 @@ public class JumpGameII {
 	
 	public static int jump(int[] A) {
 		int jumps = 0, curEnd = 0, curFarthest = 0;
+		// why A should be less than length - 1 ? because it is to check to jump to last position
 		for (int i = 0; i < A.length - 1; i++) {
 			curFarthest = Math.max(curFarthest, i + A[i]);
+			// if i reaches the current end, give it a jump, and curEnd = curFarthest (the fast pos that can be jump in current round
+			// from curBegin to curEnd)
 			if (i == curEnd) {
 				jumps++;
 				curEnd = curFarthest;
@@ -45,7 +51,6 @@ public class JumpGameII {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] nums = new int[]{2, 3, 1, 1, 4};
 		System.out.println(jump(nums));
 	}
