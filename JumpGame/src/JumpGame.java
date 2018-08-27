@@ -1,6 +1,10 @@
-
+/**
+ * 
+ * @author jingjiejiang
+ * @history last edited Aug 27, 2018
+ */
 public class JumpGame {
-	
+
 	public static boolean canJump(int[] nums) {
         // idea: method 1: DFS search method
         // for every element, search from 1 to max jump
@@ -31,10 +35,7 @@ public class JumpGame {
         
         return 0 == lastCon? true : false;
     }
-
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
-
 }
