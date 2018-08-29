@@ -1,13 +1,5 @@
 package JumpGameII;
 
-// dfs
-// 2 3 1 1 4
-// 0 1 2 2 2
-
-// 2 0 1 1 4
-// 0 1 1 2 3
-
-// 1 2 0 1 2
 /**
  * 
  * @author jingjiejiang created on Aug 25, 2017
