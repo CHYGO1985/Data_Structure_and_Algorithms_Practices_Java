@@ -19,6 +19,9 @@ import org.omg.PortableInterceptor.IORInterceptor;
 // use one for loop to get the start and end of each letter
 // 1) from pos 0, when meet a new letter, record the pos as its start and end pos
 // 2) only update the end pos array
+
+// further optimise:
+// start array can be got rid of.
 /**
  * 
  * @author jingjiejiang created on Aug 29, 2018
@@ -28,16 +31,10 @@ public class PartitionLabels {
 	
 	public static List<Integer> partitionLabels(String S) {
 		List<Integer> res = new LinkedList<Integer>();
-		int[] start = new int[25];
-		Arrays.fill(start, -1);
-		int[] end = new int[25];
+		int[] end = new int[26];
 		
 		for (int index = 0; index < S.length(); index ++) {
-			int curLetter = S.charAt(index) - 'a';
-			if (start[curLetter] == -1) {
-				start[curLetter] = index;
-			}
-			end[curLetter] = index;
+			end[S.charAt(index) - 'a'] = index;
 		}
 		
 		int curEnd = 0;
@@ -58,7 +55,8 @@ public class PartitionLabels {
     }
 
 	public static void main(String[] args) {
-		String S = "ababcbacadefegdehijhklij";
+//		String S = "ababcbacadefegdehijhklij";
+		String S = "qvmwtmzzse";
 		List<Integer> list = partitionLabels(S);
 		for (int index = 0; index < list.size(); index ++) {
 			System.out.println(list.get(index));
