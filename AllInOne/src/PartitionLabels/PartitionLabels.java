@@ -19,6 +19,11 @@ import org.omg.PortableInterceptor.IORInterceptor;
 // use one for loop to get the start and end of each letter
 // 1) from pos 0, when meet a new letter, record the pos as its start and end pos
 // 2) only update the end pos array
+/**
+ * 
+ * @author jingjiejiang created on Aug 29, 2018
+ *
+ */
 public class PartitionLabels {
 	
 	public static List<Integer> partitionLabels(String S) {
