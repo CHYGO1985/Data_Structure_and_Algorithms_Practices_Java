@@ -112,7 +112,7 @@ public class Permutations {
     		list.add(convertArrayToList(temp));
     		
     		// within the swap, swap 1 --- 2, 3, ..., nums.length
-    		permuteSwapper(list, nums, 0);
+    		permuteSwapper(list, nums, rear);
     	}
     	
     	// how the process will be ended
