@@ -1,9 +1,7 @@
 package BestTimeBuyAndSellStock;
 
-import javax.xml.ws.RespectBinding;
-
 // DP solution
-public class BestTimeBuyAndSellStock {
+public class BestTimeBuyAndSellStockTrans {
 	
 	// every day, can buy or sell or do nothing
 	// for buy/sell status digit: 0 -> buy, 1 -> sell
