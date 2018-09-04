@@ -17,7 +17,8 @@ public class BestTimeBuyAndSellStockII {
         	res[(i + 1) % 2][1] = Math.max(res[i % 2][1], res[i % 2][0] - prices[i]);
         }
         
-        return Math.max(res[prices.length % 2][0], res[prices.length % 2][1]);
+        // only when hold 0 stock at the end will get the max
+        return res[prices.length % 2][0];
     }
 
 	public static void main(String[] args) {

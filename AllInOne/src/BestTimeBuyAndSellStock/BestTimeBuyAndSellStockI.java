@@ -39,7 +39,7 @@ public class BestTimeBuyAndSellStockI {
 			profit[(i + 1) % 2][1] = Math.max(profit[i % 2][1], - prices[i]);
 		}
         
-        return Math.max(profit[prices.length % 2][0], profit[prices.length % 2][1]);		
+        return profit[prices.length % 2][0];		
 	}
 
 	// variable: buy/sell on day X
