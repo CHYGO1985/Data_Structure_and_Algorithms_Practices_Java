@@ -14,7 +14,7 @@ public class BestTimeBuyAndSellStockIII {
 		profit[0][1][1] = Integer.MIN_VALUE;
 		profit[0][2][1] = Integer.MIN_VALUE;
 		
-		for (int i = 0, k = 0; i < prices.length; i ++) {
+		for (int i = 0; i < prices.length; i ++) {
 			profit[(i + 1) % 2][1][0] = Math.max(profit[i % 2][1][0], profit[i % 2][1][1] + prices[i]);
 			profit[(i + 1) % 2][1][1] = Math.max(profit[i % 2][1][1], profit[i % 2][0][0] - prices[i]);
 			profit[(i + 1) % 2][2][0] = Math.max(profit[i % 2][2][0], profit[i % 2][2][1] + prices[i]);
