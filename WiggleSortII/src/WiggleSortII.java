@@ -33,7 +33,7 @@ public class WiggleSortII {
         return (1 + 2*index) % (n | 1);
     }
 	
-	public static int findKthLargest(int[] nums, int k) {
+	public static int findKthLargest(int[]nums, int k) {
 
         final int ERROR_CODE = -1;
         
