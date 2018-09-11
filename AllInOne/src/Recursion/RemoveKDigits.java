@@ -7,6 +7,7 @@ package Recursion;
  */
 public class RemoveKDigits {
 	
+	// Recursion
 	// 2314535: k = 2 (k <= 0 - samllest), find 1 first (the smallest), 23 = 2, then delete 23
 	// if 234, then delete 34, the bigger one
 	// 561234 : k = 3 (k > digits 0 - samllest), find 1 first, 56 = 2
@@ -63,6 +64,7 @@ public class RemoveKDigits {
 	}
 	*/
 
+	// Greedy
 	// ref: https://leetcode.com/problems/remove-k-digits/discuss/88660/A-greedy-method-using-stack-O(n)-time-and-O(n)-space
 	public static String removeKdigits(String num, int k) {
         int digits = num.length() - k;
