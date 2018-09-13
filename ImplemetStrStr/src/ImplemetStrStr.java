@@ -2,7 +2,7 @@
 public class ImplemetStrStr {
 	
 // **** thins learned: write pseudo code, which will decrease the time spend on a problem.
-    
+	
     /*
     public int strStr(String haystack, String needle) {
       for (int i = 0; ; i++) {
@@ -126,7 +126,6 @@ public class ImplemetStrStr {
     */
     
     // *** 2nd round: implementation of KMP
-	
 	public static int strStr(String haystack, String needle) {
 
 		// special case: 
@@ -140,13 +139,12 @@ public class ImplemetStrStr {
             return 0;
         
         int indexHS = 0;
-        int indexND = 0;
+        int indexND = 0; // do not need to init with -1, as in next array, arr[0] = -1
         int[] next = buildNext(needle, ndlLen);
         
         while(indexHS < haystack.length()) {
         	
         	if ( -1 == indexND || haystack.charAt(indexHS) == needle.charAt(indexND)) {
-        		
         		// can not put here, coz it also handle next[indexND] = -1
         		/*
         		if (indexND == ndlLen - 1) {
@@ -197,7 +195,7 @@ public class ImplemetStrStr {
 		// TODO Auto-generated method stub
 		
 		String a = "ababac";
-		//String a = "aac";
+		String bb = "bac";
         int[] c = buildNext(a, 6);
         
         String aa = "mississippi";
@@ -208,6 +206,8 @@ public class ImplemetStrStr {
         for (int b: c) {
         	System.out.println(b);
         }
+        
+        System.out.println(strStr(a, bb));
         
 	}
 
