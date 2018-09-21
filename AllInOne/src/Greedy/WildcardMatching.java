@@ -1,47 +1,40 @@
 package Greedy;
 
+import java.nio.file.spi.FileSystemProvider;
+
+/**
+ * https://leetcode.com/problems/wildcard-matching/discuss/170982/Concise-Java-DP-solution-easy-to-understand
+ * 
+ * @author jingjiejiang created on Sep 21, 2018
+ *
+ */
 public class WildcardMatching {
 	
 	// if *? , check the pos of ?, match it with strIdx
 	public static boolean isMatch(String s, String p) {
-		int strIdx = 0;
-		int patIdx = 0;
+		boolean[][] res = new boolean[s.length() + 1][p.length() + 1];
+		res[0][0] = true;
 		
-		for (; patIdx < p.length() && strIdx < s.length(); patIdx ++) {
-			if (p.charAt(patIdx) == s.charAt(strIdx) || p.charAt(patIdx) == '?') {
-				strIdx ++;
-			}
-			else if (p.charAt(patIdx) == '*') {
-				if (patIdx < p.length() - 1) {
-					char next = p.charAt(patIdx + 1);
-					if (next == '?') {
-						// aa *??? check length: (length - 1 - start + 1 = length - start)
-						if (p.length()- (patIdx + 1) > s.length() - strIdx) {
-							return false;
-						}
-						else {
-							strIdx = s.length() - (p.length() - (patIdx + 1));
-						}
-					}
-					else {
-						int nextInStr = s.lastIndexOf("" + next);
-						if (nextInStr < 0) {
-							return false;
-						}
-						else {
-							patIdx = patIdx + 1; // only + 1, coz, it will ++ at for loop
-							strIdx = nextInStr + 1;
-						}
-					}
+		for (int i = 1; i < res[0].length; i ++) {
+			if (p.charAt(i - 1) == '*') res[0][i] = res[0][i - 1];
+		}
+
+		for (int strIdx = 1; strIdx < res.length; strIdx ++) {
+			for (int patIdx = 1; patIdx < res[0].length; patIdx ++) {
+				if (s.charAt(strIdx - 1) == p.charAt(patIdx - 1) || p.charAt(patIdx - 1) == '?') {
+					res[strIdx][patIdx] = res[strIdx - 1][patIdx - 1];
 				}
-				else return true;
-			}
-			else { 
-				return false;
+				else if (p.charAt(patIdx - 1) == '*') {
+					res[strIdx][patIdx] = res[strIdx - 1][patIdx - 1] || res[strIdx - 1][patIdx]
+							|| res[strIdx][patIdx - 1];
+				}
+				else {
+					res[strIdx][patIdx] = false;
+				}
 			}
 		}
 		
-		return (patIdx >= p.length() && strIdx < s.length()) || (patIdx < p.length() && strIdx >= s.length())? false : true;
+		return res[s.length()][p.length()];
     }
 
 	public static void main(String[] args) {
@@ -56,7 +49,7 @@ public class WildcardMatching {
 //		String s = "a";
 //		String p = "?*";
 		String s = "acdcb";
-		String p = "a*c?b";
+		String p = "a*cb";
 		System.out.println(isMatch(s, p));
 	}
 
