@@ -1,63 +1,98 @@
 package Greedy;
 
+import java.util.Arrays;
+
+/**
+ * solution: https://leetcode.com/problems/create-maximum-number/discuss/77285/Share-my-greedy-solution
+ * explanation: https://web.archive.org/web/20160120093629/http://algobox.org/create-maximum-number/
+ * @author jingjiejiang
+ *
+ */
 public class CreateMaximumNumber {
 	
 	public static int[] maxNumber(int[] nums1, int[] nums2, int k) {
         
 		int[] res = new int[k];
-		int[] arr = new int[nums1.length * 2 + nums2.length];
-        int max = Integer.MIN_VALUE;
-        int maxPos = 0;
+		int[] cursors = new int[2]; // record the current valid val positions 0 for nums1
+		int[] starts = new int[2];
+		
+		// check which array should go first, false: nums1
+		boolean pickOne = compare(Arrays.copyOf(nums1, nums1.length), Arrays.copyOf(nums2, nums2.length)); 
         
-        // assemble nums1 + nums2 + nums1
-        System.arraycopy(nums1, 0, arr, 0, nums1.length);
-        System.arraycopy(nums2, 0, arr, nums1.length, nums2.length);
-        System.arraycopy(nums1, 0, arr, nums1.length + nums2.length, nums1.length);
+		int resIdx = 0;
+		while (k > 0)  {
+			resIdx = findMax(nums1, nums2, starts, cursors, res, resIdx, k, pickOne);
+			k --;
+		}
         
-        // find the max
-        for (int index = 0; index < arr.length; index ++) {
-        	if (arr[index] > max) {
-        		max = arr[index];
-        		maxPos = index;
-        	}
-        }
-        res[0] = max;
-        // deal with max < nums1.length, nums1.length < max < nums2.length 
-        int limit =  (maxPos < nums1.length) ? nums1.length + nums2.length : arr.length; 
-        	
-        return getMaxArray(arr, res, 1, maxPos + 1, k - 1, limit);
+        return res;
     }
 	
-	// search from start to limit
-	public static int[] getMaxArray(int[] arr, int[] target, int targetPos, int start, int k, int limit) {
+	// choose the smaller one or shorter one 
+	public static boolean compare(int[] cpy1, int[] cpy2) {
 		
-		if (start + k >= limit) {
-			System.arraycopy(arr, start, target, targetPos, k);
-			k = 0;
-		}
+    	Arrays.sort(cpy1);
+    	Arrays.sort(cpy2);
+    	int i = 0;
+    	for (; i < cpy1.length && i < cpy2.length; i ++) {
+    		if (cpy1[i] > cpy2[i]) {
+    			return false;
+    		}
+    		else if (cpy1[i] < cpy2[i]) {
+    			return true;
+    		}
+    	}
+    	
+    	if (i < cpy2.length) return true;
+    	
+    	return false;
+	}
+	
+	public static int findMax(int[] nums1, int[] nums2, int[] starts,
+			int[] cursors, int[] res, int resIdx, int k, boolean pickOne) {
 		
-		if (k == 0) return target;
+		int maxPos1 = 0, maxPos2 = 0, max1 = -1, max2 = -1;
 		
-		target[targetPos] = Integer.MIN_VALUE;
-		int maxPos = 0;
+		for (int index = starts[0]; index < nums1.length; index ++) {
+        	if (nums1[index] > max1
+        			&& (nums1.length - index + nums2.length - cursors[1]) >= k) {
+        		max1 = nums1[index];
+        		maxPos1 = index;
+        	}
+        }
+        
+        for (int index = starts[1]; index < nums2.length; index ++) {
+        	if (nums2[index] > max2 
+        			&& (nums2.length - index + nums1.length - cursors[0]) >= k){
+        		max2 = nums2[index];
+        		maxPos2 = index;
+        	}
+        }
+        
+        if (max1 > max2 || (max1 == max2 && pickOne == true)) {
+        	res[resIdx] = max1; 
+        	cursors[0] = maxPos1 + 1;
+        	starts[0] = maxPos1 + 1;
+        }
+        else {
+        	res[resIdx] = max2;
+        	cursors[1] = maxPos2 + 1;
+        	starts[1] = maxPos2 + 1;
+        }
 		
-		// no need to limit - k + 1 here, as limit is the length, not the actual index
-		for (int index = start; index <= limit - k; index ++) {
-			if (arr[index] > target[targetPos]) {
-				maxPos = index;
-				target[targetPos] = arr[maxPos];
-			}
-		}
-		
-		return getMaxArray(arr, target, targetPos + 1, maxPos + 1, k - 1, limit);
+        return ++ resIdx;
 	}
 	
 	public static void main(String[] args) {
 //		int[] nums1 = new int[]{3, 4, 6, 5};
 //		int[] nums2 = new int[]{9, 1, 2, 5, 8, 3};
-		int[] nums1 = new int[]{3, 9};
-		int[] nums2 = new int[]{8, 9};
-		int[] res = maxNumber(nums1, nums2, 3);
+//		int[] nums1 = new int[]{3, 9};
+//		int[] nums2 = new int[]{8, 9};
+//		int[] nums1 = new int[]{8, 6, 9};
+//		int[] nums2 = new int[]{1, 7, 5};
+		int[] nums1 = new int[]{6, 7};
+		int[] nums2 = new int[]{6,0,4};
+		int[] res = maxNumber(nums1, nums2, 5);
 		for (int val : res) {
 			System.out.println(val);
 		}

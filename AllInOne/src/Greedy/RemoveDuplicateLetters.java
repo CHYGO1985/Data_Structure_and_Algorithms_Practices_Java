@@ -1,6 +1,6 @@
 package Greedy;
 
-re/**
+/**
  *
  * same idea, but did not know how to write code quickly
  * https://leetcode.com/problems/remove-duplicate-letters/discuss/76768/A-short-O(n)-recursive-greedy-solution
