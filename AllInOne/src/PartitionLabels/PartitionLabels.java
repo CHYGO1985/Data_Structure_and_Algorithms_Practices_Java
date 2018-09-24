@@ -1,10 +1,7 @@
 package PartitionLabels;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.omg.PortableInterceptor.IORInterceptor;
 
 // First thought:
 // 1) start from the first leter as 0, find its last pos as curEnd
