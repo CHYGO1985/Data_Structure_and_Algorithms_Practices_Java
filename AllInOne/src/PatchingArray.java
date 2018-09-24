@@ -18,7 +18,7 @@ public class PatchingArray {
 				max += max + 1;
 				cnt++;
 			} else {
-				max += nums[i];
+				max += nums[i]; // add the value that the array has to the max
 				i++;
 			}
 		}
