@@ -9,16 +9,20 @@ public class Temp {
 			return 0;
 		}
 		
-		int[][] res = new int[2][2];
-		res[0][0] = 0;
-		res[0][1] = Integer.MIN_VALUE;
+		int[][][] res = new int[2][3][2];
+		res[0][0][0] = 0;
+		res[0][0][1] = Integer.MIN_VALUE;
+		res[0][1][1] = Integer.MIN_VALUE;
+		res[0][2][1] = Integer.MIN_VALUE;
 		
 		for (int i = 0; i < prices.length; i ++) {
-			res[(i + 1) % 2][0] = Math.max(res[i % 2][0], res[i % 2][1] + prices[i]);
-			res[(i + 1) % 2][1] = Math.max(res[i % 2][1], - prices[i]);
+			res[(i + 1) % 2][1][0] = Math.max(res[i % 2][1][0], res[i % 2][1][1] + prices[i]);
+			res[(i + 1) % 2][1][1] = Math.max(res[i % 2][1][1], res[i % 2][0][0] - prices[i]);
+			res[(i + 1) % 2][2][0] = Math.max(res[i % 2][2][0], res[i % 2][2][1] + prices[i]);
+			res[(i + 1) % 2][2][1] = Math.max(res[i % 2][2][0], res[i % 2][1][0] - prices[i]);
 		}
 		
-		return res[prices.length % 2][0];
+		return res[prices.length % 2][2][0];
     }
 	
 	public static void main(String[] args) {
