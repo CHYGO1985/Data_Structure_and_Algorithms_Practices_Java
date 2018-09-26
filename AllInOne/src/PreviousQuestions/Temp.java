@@ -2,24 +2,25 @@ package PreviousQuestions;
 
 public class Temp {
 
-	// 0 for sell and 1 for buy
-	public static boolean canJump(int[] nums) {
+	public static int jump(int[] nums) {
 		
-		if (nums == null || nums.length == 0) {
-			return true;
+		if (nums == null || nums.length == 0) return 0;
+		
+		int count = 0, curEnd = 0, curMax = 0;
+		for (int i = 0; i < nums.length; i ++) {
+			curEnd = Math.max(curMax, i + nums[i]);
+			if (i == curEnd) {
+				curEnd = curMax;
+				count ++;
+			}
 		}
-		
-		int max = nums[0];
-		for (int i = 1; i < nums.length - 1; i ++) {
-			max = Math.max(max, i + nums[i]);
-		}
-		
-		return max >= nums.length ? true : false; 
+			
+		return count;
     }
 	
 	public static void main(String[] args) {
-//		System.out.println(1 << 1);
-//		System.out.println(new Random().nextInt(32));
+		int[] nums = new int[]{1};
+		System.out.println(jump(nums));
 	}
 
 }
