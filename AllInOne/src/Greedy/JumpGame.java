@@ -1,3 +1,4 @@
+package Greedy;
 /**
  * 
  * @author jingjiejiang
