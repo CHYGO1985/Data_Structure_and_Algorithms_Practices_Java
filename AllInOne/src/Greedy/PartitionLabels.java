@@ -1,4 +1,4 @@
-package PartitionLabels;
+package Greedy;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 // 2) only update the end pos array
 
 // further optimise:
-// start array can be got rid of.
+
 /**
  * 
  * @author jingjiejiang created on Aug 29, 2018

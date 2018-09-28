@@ -1,4 +1,4 @@
-package ScoreAfterFlippingMatrix;
+package Greedy;
 
 /**
  * solved
