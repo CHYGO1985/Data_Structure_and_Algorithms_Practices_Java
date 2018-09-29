@@ -1,3 +1,4 @@
+package Greedy;
 /**
  * 
  * 651. 4 Keys Keyboard
