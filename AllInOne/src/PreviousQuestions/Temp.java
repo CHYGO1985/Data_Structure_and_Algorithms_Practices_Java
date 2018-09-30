@@ -33,9 +33,8 @@ public class Temp {
 				curEnd = points[index][1];
 				count ++;
 			}
-            else if (points[index][1] < curEnd) {
-                curEnd = points[index][1];
-            }
+            
+			curEnd = Math.min(curEnd, points[index][1]);
 		}
 		
 		return count;
