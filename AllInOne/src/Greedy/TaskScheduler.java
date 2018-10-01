@@ -1,3 +1,4 @@
+package Greedy;
 /**
  * 
  * 621. Task Scheduler
@@ -31,7 +32,6 @@ public class TaskScheduler {
 	// round 1: the question is hard to understand, took 30 minutes
     public int leastInterval(char[] tasks, int n) {
         
-        int count = 0;
         if (null == tasks || 0 == tasks.length) return 0;
             
         int[] chars = new int[26];

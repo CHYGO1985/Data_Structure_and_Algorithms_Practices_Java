@@ -1,8 +1,6 @@
 package Greedy;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 public class MinNumOfArrBurstBal {
 
@@ -53,12 +51,7 @@ public class MinNumOfArrBurstBal {
     }
     
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
         //int[][] test = {{10,16},{2,8},{1,6},{7,12}};
-        
-		int[][] test = {{1,1},{2,2},{3,3}};
-		
-		int a = findMinArrowShots(test);
 	}
 
 }
