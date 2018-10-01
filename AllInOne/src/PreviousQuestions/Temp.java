@@ -1,7 +1,5 @@
 package PreviousQuestions;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author jingjiejiang Oct 1st, 2018
@@ -35,16 +33,6 @@ public class Temp {
         }
         
         int fixSum = n * (maxCount - 1) + maxCount;
-        // nums of rest > avail idles
-        if (sum - maxCount > n * (maxCount - 1))
-            // fixSum = sum
-            fixSum += sum - maxCount - n * (maxCount - 1);
-        else {
-            // AAABBB
-        	
-            fixSum += rest -1;
-        }
-        
         //rest - 1: coz the for loop will count maxCount char, so -1 of the 1 got from max count char
         fixSum += (sum - maxCount > n * (maxCount - 1)) ? 
         		sum - maxCount - n * (maxCount - 1) : rest - 1;

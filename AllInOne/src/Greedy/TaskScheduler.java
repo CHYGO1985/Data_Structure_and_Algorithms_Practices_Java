@@ -46,8 +46,7 @@ public class TaskScheduler {
         // not repeat
         if (maxCount == 1) return sum;
         
-        // if there is two or moew maxCount in the array, then need to reduce one
-        int rest = - 1;
+        int rest = 0;
         // check whether there is num of other > (maxCount - 1) e.g. AAABBB,
         for (int i : chars) {
             if (i - (maxCount - 1) > 0)
@@ -55,14 +54,9 @@ public class TaskScheduler {
         }
         
         int fixSum = n * (maxCount - 1) + maxCount;
-        // nums of rest > avail idles
-        if (sum - maxCount > n * (maxCount - 1))
-            // fixSum = sum
-            fixSum += sum - maxCount - n * (maxCount - 1);
-        else {
-            //  AAABBB
-            if (rest > 0) fixSum += rest;
-        }
+        //rest - 1: coz the for loop will count maxCount char, so -1 of the 1 got from max count char
+        fixSum += (sum - maxCount > n * (maxCount - 1)) ? 
+        		sum - maxCount - n * (maxCount - 1) : rest - 1;
         
         return fixSum;
     }
