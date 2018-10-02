@@ -1,9 +1,8 @@
 package PreviousQuestions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * 
@@ -12,24 +11,42 @@ import java.util.List;
  */
 public class Temp {
 	
-	public int[][] reconstructQueue(int[][] people) {
+	public class Interval {
+		int start;
+		int end;
+		Interval() { start = 0; end = 0; }
+		Interval(int s, int e) { start = s; end = e; }
+	}
+	
+	// sort
+	// user priorityqueue to record all ends to classroom, replace with the min first if new meeting comes
+	public int minMeetingRooms(Interval[] intervals) {
+
+		int roomCnt = 0;
+		if (null == intervals || 0 == intervals.length) return roomCnt;
 		
-		if (people == null || people.length == 0) return new int[0][0];
-		
-		Arrays.sort(people, new Comparator<int[]>() {
+		Arrays.sort(intervals, new Comparator<Interval>() {
 			@Override
-			public int compare(int[] a, int[] b) {
-				return a[0] == b[0] ? a[1] - b[1] : b[0] - a[0];
+			public int compare(Interval a, Interval b) {
+				return a.start == b.start ? a.end - b.end : a.start - b.start;
 			}
 		});
 		
-		List<int[]> list = new ArrayList<>(people.length);
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
 		
-		for (int[] person : people) {
-			list.add(person[1], person);
+		for (Interval interval : intervals) {
+			if (queue.isEmpty()) {
+				queue.offer(interval.end);
+			}
+			else {
+				if (interval.start >= queue.peek()) queue.poll();
+				// start >= peek or < peek. we all will need to add the end to queue
+				queue.offer(interval.end);
+			}
+			roomCnt = Math.max(roomCnt, queue.size());
 		}
-		
-		return list.toArray(new int[people.length][people[0].length]);
+	    
+		return roomCnt;
     }
 	
 	public static void main(String[] args) {

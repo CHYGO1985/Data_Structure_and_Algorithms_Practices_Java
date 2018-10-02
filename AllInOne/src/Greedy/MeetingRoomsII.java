@@ -1,9 +1,7 @@
 package Greedy;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -24,41 +22,37 @@ public class MeetingRoomsII {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public static List<Interval> sort(Interval[] intervals) {
-		List<Interval> list = Arrays.asList(intervals);
-        
-        Collections.sort(list, new Comparator<Interval>() {
-        	@Override
-        	public int compare(Interval a, Interval b) {
-        		return (a.start != b.start) ? (a.start - b.start) : (a.end - b.end);
-        	}
-		});
-        
-        return list;
-	}
-	
-	public static int minMeetingRooms(Interval[] intervals) {
-		PriorityQueue<Integer> queue = new PriorityQueue<>();
-		List<Interval> list = sort(intervals);
-		int min = 0;
-		for (int i = 0; i < list.size(); i ++) {
-			Interval cur = list.get(i);
-			if(queue.size() == 0) {
-				queue.offer(cur.end);
-				min = 1;
-				continue;
-			}
-				
-			int curMinEnd = queue.peek();
-			if (cur.start >= curMinEnd) {
-				queue.poll();
-			}
-			queue.offer(cur.end);
-			
-			min = Math.max(min, queue.size());
-		}
+	// sort
+	// user priorityqueue to record all ends to classroom, replace with the min first if new meeting comes
+	public int minMeetingRooms(Interval[] intervals) {
+
+		int roomCnt = 0;
+		if (null == intervals || 0 == intervals.length) return roomCnt;
 		
-		return min;
+		Arrays.sort(intervals, new Comparator<Interval>() {
+			@Override
+			public int compare(Interval a, Interval b) {
+				return a.start == b.start ? a.end - b.end : a.start - b.start;
+			}
+		});
+		
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
+		
+		for (Interval interval : intervals) {
+			if (queue.isEmpty()) {
+				queue.offer(interval.end);
+			}
+			else {
+				if (interval.start >= queue.peek()) {
+					queue.poll();
+				}
+				// start >= peek or < peek. we all will need to add the end to queue
+				queue.offer(interval.end);
+			}
+			roomCnt = Math.max(roomCnt, queue.size());
+		}
+	    
+		return roomCnt;
     }
 
 	public static void main(String[] args) {
