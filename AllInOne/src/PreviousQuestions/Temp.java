@@ -19,7 +19,9 @@ public class Temp {
 	// 1. sort
 	// 2. iterate through to get the most overlapping one
 	// 3. only compare with the current range, if next.start >= cur.end, update the range
-	// 4. if next.end <= cur.end. update cur.end as next.end (get rid of the bigger one)
+	// 4. else 
+	// 1) if next.end <= cur.end. update cur.end as next.end (get rid of the bigger one)
+	// 2) next.end < cur.end, keep cur.end (if it overlap with cur, it will overlap with next, so get rid of next)
 	public class Interval {
 		int start;
 		int end;
