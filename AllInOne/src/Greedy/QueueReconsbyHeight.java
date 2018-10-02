@@ -1,3 +1,5 @@
+package Greedy;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -28,20 +30,22 @@ public class QueueReconsbyHeight {
         // so put b, a (desending order)
         
         
-        if (people.length == 0 || people[0].length == 0) {
-            return people;
-        }
-        
-        Arrays.sort(people,new Comparator<int[]>(){
-           public int compare(int[] o1, int[] o2){
-               return o1[0]!=o2[0]?-o1[0]+o2[0]:o1[1]-o2[1];
-           }
-        });
-        List<int[]> res = new LinkedList<>();
-        for(int[] cur : people){
-            res.add(cur[1],cur);       
-        }
-        return res.toArray(new int[people.length][]);
+		if (people == null || people.length == 0) return new int[0][0];
+		
+		Arrays.sort(people, new Comparator<int[]>() {
+			@Override
+			public int compare(int[] a, int[] b) {
+				return a[0] == b[0] ? a[1] - b[1] : b[0] - a[0];
+			}
+		});
+		
+		List<int[]> list = new ArrayList<>(people.length);
+		
+		for (int[] person : people) {
+			list.add(person[1], person);
+		}
+		
+		return list.toArray(new int[people.length][people[0].length]);
         
     }
 

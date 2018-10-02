@@ -1,13 +1,9 @@
 package PreviousQuestions;
 
-import java.awt.event.MouseWheelEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
-import Greedy.NonOverlappingIntervals.Interval;
 
 /**
  * 
@@ -16,44 +12,24 @@ import Greedy.NonOverlappingIntervals.Interval;
  */
 public class Temp {
 	
-	// 1. sort
-	// 2. iterate through to get the most overlapping one
-	// 3. only compare with the current range, if next.start >= cur.end, update the range
-	// 4. else 
-	// 1) if next.end <= cur.end. update cur.end as next.end (get rid of the bigger one)
-	// 2) next.end < cur.end, keep cur.end (if it overlap with cur, it will overlap with next, so get rid of next)
-	public class Interval {
-		int start;
-		int end;
-		Interval() { start = 0; end = 0; }
-		Interval(int s, int e) { start = s; end = e; }
-	}
-	
-	public int eraseOverlapIntervals(Interval[] intervals) {
+	public int[][] reconstructQueue(int[][] people) {
 		
-if (intervals == null || intervals.length == 0) return 0;
+		if (people == null || people.length == 0) return new int[0][0];
 		
-		int cnt = 0, curEnd = Integer.MIN_VALUE;
-		
-		Arrays.sort(intervals, new Comparator<Interval>() {
+		Arrays.sort(people, new Comparator<int[]>() {
 			@Override
-			public int compare(Interval a, Interval b) {
-				return a.start == b.start ? a.start - b.start : a.end - b.end; 
+			public int compare(int[] a, int[] b) {
+				return a[0] == b[0] ? a[1] - b[1] : b[0] - a[0];
 			}
 		});
 		
-		for (Interval interval : intervals) {
-			if (interval.start >= curEnd) {
-				curEnd = interval.end;
-			} else { // interval.start < curEnd
-				if (interval.end <= curEnd) {
-					curEnd = interval.end;
-				}
-				cnt ++;
-			}
+		List<int[]> list = new ArrayList<>(people.length);
+		
+		for (int[] person : people) {
+			list.add(person[1], person);
 		}
 		
-		return cnt;
+		return list.toArray(new int[people.length][people[0].length]);
     }
 	
 	public static void main(String[] args) {
