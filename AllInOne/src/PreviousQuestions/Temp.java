@@ -1,8 +1,7 @@
 package PreviousQuestions;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -11,44 +10,35 @@ import java.util.PriorityQueue;
  */
 public class Temp {
 	
-	public class Interval {
-		int start;
-		int end;
-		Interval() { start = 0; end = 0; }
-		Interval(int s, int e) { start = s; end = e; }
-	}
-	
-	// sort
-	// user priorityqueue to record all ends to classroom, replace with the min first if new meeting comes
-	public int minMeetingRooms(Interval[] intervals) {
-
-		int roomCnt = 0;
-		if (null == intervals || 0 == intervals.length) return roomCnt;
+	// count frequency, 
+	// count consec 3 nums, the rest add to append collection
+	// if num in collection is needed afterwards, count of append -1, add next num to append
+	public boolean isPossible(int[] nums) {
 		
-		Arrays.sort(intervals, new Comparator<Interval>() {
-			@Override
-			public int compare(Interval a, Interval b) {
-				return a.start == b.start ? a.end - b.end : a.start - b.start;
-			}
-		});
+		Map<Integer, Integer> freq = new HashMap<>();
+		Map<Integer, Integer> append = new HashMap<>();
 		
-		PriorityQueue<Integer> queue = new PriorityQueue<>();
-		
-		for (Interval interval : intervals) {
-			if (queue.isEmpty()) {
-				queue.offer(interval.end);
-			}
-			else {
-				if (interval.start >= queue.peek()) {
-					queue.poll();
-				}
-				// start >= peek or < peek. we all will need to add the end to queue
-				queue.offer(interval.end);
-			}
-			roomCnt = Math.max(roomCnt, queue.size());
+		for (int num : nums) {
+			freq.put(num, freq.getOrDefault(num, 0) + 1);
 		}
-	    
-		return roomCnt;
+		
+		for (int num: nums) {
+			if (freq.get(num) == 0) continue;
+			else if (append.getOrDefault(num, 0) > 0) {
+				append.put(num, append.get(num) - 1);
+				append.put(num + 1, append.getOrDefault(num + 1, 0) + 1);
+			}
+			else if (freq.getOrDefault(num + 1, 0) > 0 && freq.getOrDefault(num + 2, 0) > 0) {
+				freq.put(num + 1, freq.get(num + 1) - 1);
+				freq.put(num + 2, freq.get(num + 2) - 1);
+				append.put(num + 3, append.getOrDefault(num + 3, 0) + 1);
+			}
+			else return false;
+			
+			freq.put(num, freq.get(num) - 1);
+		}
+			
+		return true;
     }
 	
 	public static void main(String[] args) {
