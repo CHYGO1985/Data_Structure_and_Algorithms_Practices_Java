@@ -39,7 +39,9 @@ public class Temp {
 				queue.offer(interval.end);
 			}
 			else {
-				if (interval.start >= queue.peek()) queue.poll();
+				if (interval.start >= queue.peek()) {
+					queue.poll();
+				}
 				// start >= peek or < peek. we all will need to add the end to queue
 				queue.offer(interval.end);
 			}
