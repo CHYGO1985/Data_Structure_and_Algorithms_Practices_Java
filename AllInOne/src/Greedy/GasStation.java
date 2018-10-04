@@ -15,7 +15,7 @@ public class GasStation {
         int sum = 0;
         
         for (int i = 0; i < gas.length; i ++) {
-        	count += gas[i] - cost[i];
+        	count += gas[i] - cost[i]; // temporary sum
         	sum += gas[i] - cost[i];
         	
         	if (count < 0) {

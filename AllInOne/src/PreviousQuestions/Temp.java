@@ -2,33 +2,54 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Oct 2nd, 2018
+ * @author jingjiejiang Oct 4, 2018
  *
  */
 public class Temp {
 	
-	// A B C
-	// if (B - A) * (C - B) < 0, continue
-	// else if < <, then get max(B, C) = C
-	// else > >, then get min (B, C) = C
-	public int wiggleMaxLength(int[] nums) {
-		
-		if (null == nums || 0 == nums.length) return 0;
-		if (nums.length <= 2) return nums.length;
-		
-		int sum = 2, start = nums[0], mid = nums[1];
-		
-		for (int idx = 2; idx < nums.length; idx ++) {
-			int left = mid - start, right = nums[idx] - mid;
-			if (left * right < 0) {
-				sum ++;
-				start = mid;
-			}
-			mid = nums[idx];
+	// iterate through, find if sum of gas >= cost 
+	// and find the last pos that cur sum of gas > cur sum of cost
+//	public int canCompleteCircuit(int[] gas, int[] cost) {
+//        
+//		int pos = -1, sumGas = 0, sumCost = 0, curGasSum = 0, curCostSum = 0;
+//		for (int idx = 0; idx < gas.length; idx ++) {
+//			sumGas += gas[idx];
+//			sumCost += cost[idx];
+//            curGasSum += gas[idx];
+//            curCostSum += cost[idx];
+//            
+//			if (gas[idx] >= cost[idx] && pos == -1) {
+//				curGasSum = gas[idx]; 
+//				curCostSum = cost[idx];
+//				pos = idx;
+//			}
+//			
+//			if (curGasSum < curCostSum) pos = -1;
+//			
+//		}
+//		
+//		return sumGas >= sumCost ? pos : -1;
+//	}
+	
+	//optimise
+	public int canCompleteCircuit(int[] gas, int[] cost) {
+  
+		int pos = -1, sum = 0, tmpSum = 0;
+		for (int idx = 0; idx < gas.length; idx ++) {
+			sum += gas[idx] - cost[idx];
+			tmpSum += gas[idx] - cost[idx];
+      
+		if (gas[idx] >= cost[idx] && pos == -1) {
+			tmpSum = gas[idx] - cost[idx];
+			pos = idx;
 		}
 		
-		return sum;
-    }
+		if (tmpSum < 0) pos = -1;
+		
+	}
+	
+	return sum >= 0 ? pos : -1;
+}
 	
 	public static void main(String[] args) {
 		
