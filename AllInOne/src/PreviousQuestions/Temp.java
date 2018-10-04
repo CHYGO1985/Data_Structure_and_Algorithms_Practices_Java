@@ -1,8 +1,5 @@
 package PreviousQuestions;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 
  * @author jingjiejiang Oct 2nd, 2018
@@ -10,35 +7,27 @@ import java.util.Map;
  */
 public class Temp {
 	
-	// count frequency, 
-	// count consec 3 nums, the rest add to append collection
-	// if num in collection is needed afterwards, count of append -1, add next num to append
-	public boolean isPossible(int[] nums) {
+	// A B C
+	// if (B - A) * (C - B) < 0, continue
+	// else if < <, then get max(B, C) = C
+	// else > >, then get min (B, C) = C
+	public int wiggleMaxLength(int[] nums) {
 		
-		Map<Integer, Integer> freq = new HashMap<>();
-		Map<Integer, Integer> append = new HashMap<>();
+		if (null == nums || 0 == nums.length) return 0;
+		if (nums.length <= 2) return nums.length;
 		
-		for (int num : nums) {
-			freq.put(num, freq.getOrDefault(num, 0) + 1);
+		int sum = 2, start = nums[0], mid = nums[1];
+		
+		for (int idx = 2; idx < nums.length; idx ++) {
+			int left = mid - start, right = nums[idx] - mid;
+			if (left * right < 0) {
+				sum ++;
+				start = mid;
+			}
+			mid = nums[idx];
 		}
 		
-		for (int num: nums) {
-			if (freq.get(num) == 0) continue;
-			else if (append.getOrDefault(num, 0) > 0) {
-				append.put(num, append.get(num) - 1);
-				append.put(num + 1, append.getOrDefault(num + 1, 0) + 1);
-			}
-			else if (freq.getOrDefault(num + 1, 0) > 0 && freq.getOrDefault(num + 2, 0) > 0) {
-				freq.put(num + 1, freq.get(num + 1) - 1);
-				freq.put(num + 2, freq.get(num + 2) - 1);
-				append.put(num + 3, append.getOrDefault(num + 3, 0) + 1);
-			}
-			else return false;
-			
-			freq.put(num, freq.get(num) - 1);
-		}
-			
-		return true;
+		return sum;
     }
 	
 	public static void main(String[] args) {

@@ -1,3 +1,4 @@
+package Greedy;
 /**
  * 
  * 376. Wiggle Subsequence
@@ -41,6 +42,7 @@ public class WiggleSubsequence {
         
         for (int i = 1; i < nums.length; i ++) {
             if (nums[i] == nums[i - 1]) continue;
+            // sign == 0 is the initial status
             if (sign == 0) {
                 sign = (nums[i] - nums[i - 1]) > 0 ? 1 : -1;
                 sum ++;
