@@ -22,19 +22,28 @@ public class JumpGame {
         // things learned: array problem, can think from end to start
         
         // method 2
-        if (null == nums || 0 == nums.length) {
-            return false;
-        }
+//        if (null == nums || 0 == nums.length) {
+//            return false;
+//        }
+//        
+//        int lastCon = nums.length - 1;
+//        
+//        for (int i = nums.length - 2; i >= 0; i --) {
+//            if (nums[i] >= lastCon - i) {
+//                lastCon = i;
+//            }
+//        }
+//        
+//        return 0 == lastCon? true : false;
         
-        int lastCon = nums.length - 1;
-        
-        for (int i = nums.length - 2; i >= 0; i --) {
-            if (nums[i] >= lastCon - i) {
-                lastCon = i;
-            }
-        }
-        
-        return 0 == lastCon? true : false;
+        // method 3 (mine)
+        int far = 0, idx = 0;
+		while (idx < nums.length && idx <= far) {
+			far = Math.max(far, idx + nums[idx]);
+            idx ++;
+		}
+		
+		return far >= nums.length - 1;
     }
 	
 	public static void main(String[] args) {
