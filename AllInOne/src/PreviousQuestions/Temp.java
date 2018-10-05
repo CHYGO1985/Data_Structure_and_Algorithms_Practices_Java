@@ -7,16 +7,23 @@ package PreviousQuestions;
  */
 public class Temp {
 	
-	public boolean canJump(int[] nums) {
-		// far = -1;
-		// iterate through, while (i < len && i <= far)
-		// update far == max(i + nums[i], far)
-		// return far >= nums.len - 1
-		int far = 0, idx = 0;
-		while (idx < nums.length && idx <= far) {
-			far = Math.max(far, idx + nums[idx]);
+	// iterate through, for each step nextRange = max(i + nums[i], curRange);
+	// at pos = 0, 
+	// if (i == curRange), then curRange = nextRange, cnt ++;
+	// until i <= nums.length - 1
+	public int jump(int[] nums) {
+		
+		if (nums == null) return 0;
+		
+		int curRange = 0, nextRange = 0, count = 0;
+		for (int idx = 0; idx < nums.length - 1; idx ++) {
+			nextRange = Math.max(nextRange, idx + nums[idx]);
+			if (idx == curRange) {
+				count ++;
+				curRange = nextRange;
+			}
 		}
 		
-		return far >= nums.length - 1;
+        return count;
     }
 }
