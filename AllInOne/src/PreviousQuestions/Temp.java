@@ -1,7 +1,5 @@
 package PreviousQuestions;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author jingjiejiang Oct 7, 2018
@@ -9,37 +7,25 @@ import java.util.Arrays;
  */
 public class Temp {
 	
-	public static String removeKdigits(String num, int k) {
-	
-		if (num == null || num.length() == 0 || num.length() == k) return "0";
+	public int minPatches(int[] nums, int n) {
 		
-		char[] res = new char[num.length()];
-		int idxRes = 0, resLen = num.length() - k;
-	
-		for (int strIdx = 0; strIdx < num.length(); strIdx ++) {
-			char curChar = num.charAt(strIdx);
-			while (idxRes > 0 && curChar < res[idxRes - 1] && k > 0) {
-				k --;
-				idxRes --;
+		long max = 0;
+		int cnt = 0, idx = 0;
+		while (max < n) {
+			if (idx >= nums.length || max < nums[idx] - 1) {
+				max += max + 1; // patch for next num of the max
+				cnt ++;
 			}
-			if (idxRes < res.length) res[idxRes ++] = curChar;
+			else {
+				max += nums[idx ++];
+			}
 		}
 		
-		int nonZeroIdx = 0;
-		// must be res.length - 1, "000" = "0"
-		for (; nonZeroIdx < resLen - 1; nonZeroIdx ++) {
-			if (res[nonZeroIdx] != '0') break;
-		}
-		
-		return String.valueOf(Arrays.copyOfRange(res, nonZeroIdx, res.length));
+		return cnt;
+        
     }
 	
 	public static void main(String[] args) {
-//		String num = "100000";
-//		String num = "10200";
-//		String num = "456123";
-//		String num = "1432219";
-		String num = "9999999999991";
-		System.out.println(removeKdigits(num, 8));
+		
 	}
 }
