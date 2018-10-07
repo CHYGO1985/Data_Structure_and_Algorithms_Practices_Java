@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * 
- * @author jingjiejiang Oct 6, 2018
+ * @author jingjiejiang Oct 7, 2018
  *
  */
 public class Temp {
@@ -27,7 +27,7 @@ public class Temp {
 		
 		int nonZeroIdx = 0;
 		// must be res.length - 1, "000" = "0"
-		for (; nonZeroIdx < res.length - 1; nonZeroIdx ++) {
+		for (; nonZeroIdx < resLen - 1; nonZeroIdx ++) {
 			if (res[nonZeroIdx] != '0') break;
 		}
 		
