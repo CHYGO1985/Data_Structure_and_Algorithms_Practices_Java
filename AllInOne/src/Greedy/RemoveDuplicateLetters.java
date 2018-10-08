@@ -46,7 +46,7 @@ public class RemoveDuplicateLetters {
 //	}
 
 	public static void main(String[] args) {
-		String string = "cbacdcbc";
+		String string = "bacebca";
 		System.out.println(removeDuplicateLetters(string));
 	}
 
