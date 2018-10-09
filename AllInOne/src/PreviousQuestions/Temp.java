@@ -1,23 +1,44 @@
 package PreviousQuestions;
 
+import java.util.Arrays;
+
 /**
  * 
- * @author jingjiejiang Oct 8, 2018
+ * @author jingjiejiang Oct 9, 2018
  *
  */
 public class Temp {
 	
-	public String removeDuplicateLetters(String s) {
-		int[] cnt = new int[26];
-        int pos = 0; // the position for the smallest s[i]
-        for (int i = 0; i < s.length(); i++) cnt[s.charAt(i) - 'a']++;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) < s.charAt(pos)) pos = i;
-            // if there is single one in the string, add it to final result first
-            if (--cnt[s.charAt(i) - 'a'] == 0) break;
+	// find the min
+	// from min to left, and from min right, get the the final array
+	public int candy(int[] ratings) {
+	   
+		if (ratings == null || ratings.length == 0) return 0;
+		int[] carries = new int[ratings.length];
+		Arrays.fill(carries, 1);
+        int sum = 0;
+        int index = 0;
+        
+        for (; index < ratings.length - 1; index ++) {
+        	if (ratings[index] < ratings[index + 1]) {
+        		carries[index + 1] = carries[index] + 1;
+        	}
+        	else if (ratings[index] > ratings[index + 1]) {
+        		int start = index;
+        		do {
+        			index ++;
+        		}
+        		while (index < ratings.length - 1 && ratings[index] > ratings[index + 1]);
+        		for (int end = index - 1; end >= start; end --) {
+        			if (carries[end] <= carries[end + 1]) carries[end] = carries[end + 1] + 1;
+        		}
+        		index --;
+        	}
         }
-        //why "" + s.charAt(pos): convert to string, get rid of the smallest
-        return s.length() == 0 ? "" : s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replaceAll("" + s.charAt(pos), ""));
+        
+        for (int carry: carries) sum += carry;
+        
+        return sum;
     }
 	
 	public static void main(String[] args) {
