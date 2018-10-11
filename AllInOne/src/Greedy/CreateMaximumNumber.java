@@ -65,8 +65,8 @@ public class CreateMaximumNumber {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums1 = new int[]{3, 4, 6, 5};
-		int[] nums2 = new int[]{9, 1, 2, 5, 8, 3};
+		int[] nums1 = new int[]{2,5,6,4,4,0};
+		int[] nums2 = new int[]{7,3,8,0,6,5,7,6,2};
 //		int[] nums1 = new int[]{3, 9};
 //		int[] nums2 = new int[]{8, 9};
 //		int[] nums1 = new int[]{8, 6, 9};

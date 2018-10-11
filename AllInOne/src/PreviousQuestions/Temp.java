@@ -1,8 +1,10 @@
 package PreviousQuestions;
 
+import java.net.Inet4Address;
+
 /**
  * 
- * @author jingjiejiang Oct 10, 2018
+ * @author jingjiejiang Oct 11, 2018
  *
  */
 public class Temp {
@@ -10,37 +12,54 @@ public class Temp {
 	// find the min
 	// from min to left, and from min right, get the the final array
 	public static int[] maxNumber(int[] nums1, int[] nums2, int k) {
-		// for two array, get i max num from nums1 and k - i max num from nums2
-		// merge them
-		// compare the res with previous, get the max at the end
-		int[] max = new int[k];
-		for (int i = Math.max(0, k - nums2.length); i <= nums1.length && i <= k; i ++) {
-			max = getMax(max, merge(maxNum(nums1, i), maxNum(nums2, k - i), 0, 0));
+		
+		int len1 = nums1.length;
+		int len2 = nums2.length;
+		int[] res = new int[k];
+		for (int i = Math.max(0, k - len2); i <= k && i <= len1; i ++) {
+			int[] curNum = merge(findMax(nums1, i), findMax(nums2, k - i), k);
+			if (compare(res, curNum, 0, 0) == false) {
+				res = curNum;
+			}
 		}
 		
-		return max;
+		return res;
     }
-	
-	public static int[] getMax(int[] nums1, int[] nums2) {
-		for (int idx = 0; idx < nums1.length; idx ++) {
-			if (nums1[idx] == nums2[idx]) continue;
-			return nums1[idx] > nums2[idx] ? nums1 : nums2;
+		
+	public static int[] merge (int[] num1, int[] num2, int targetLen) {
+		
+		int[] res = new int[targetLen];
+		int idx1 = 0, idx2 = 0, resIdx = 0;
+		while (resIdx < targetLen) {
+			res[resIdx ++] = compare(num1, num2, idx1, idx2) == true ?
+					num1[idx1 ++] : num2[idx2 ++]; 
 		}
-		return nums1;
+		
+		return res;
 	}
 	
-	// if equal, should compare the next ele of nums1 and nums2, if still equal, continue
-	public static int[] merge(int[] nums1, int[] nums2, int idx1, int idx2) {
+	// choose the smaller one or shorter one 
+	public static boolean compare(int[] num1, int[] num2, int startPos1, int startPos2) {
 		
-		int[] res = new int[nums1.length + nums2.length];
-		int idx = 0;
-		while (idx1 < nums1.length && idx2 < nums2.length) {
-			res[idx ++] = nums1[idx1] < nums2[idx2] ? nums2[idx2 ++] : nums1[idx1 ++];
+		while (startPos1 < num1.length && startPos2 < num2.length
+				&& num1[startPos1] == num2[startPos2]) {
+			startPos1 ++;
+			startPos2 ++;
 		}
+    	return (startPos2 == num2.length)  || (startPos1 < num1.length && num1[startPos1] > num2[startPos2]);
+	}
+	
+	// mock a stack (use stack to keep the relative order)
+	public static int[] findMax(int[] nums, int targetlen) {
 		
-		while (idx1 < nums1.length) res[idx ++] = nums1[idx1 ++];
-		while (idx2 < nums2.length) res[idx ++] = nums2[idx2 ++];
+		int[] res = new int[targetlen];
+		int resIdx = 0;
 		
+		for (int i = 0; i < nums.length; i ++) {
+			// targetlen - i + resIdx > k make sure that there are enought digits left
+			while (nums.length - i + resIdx > targetlen && resIdx > 0 && res[resIdx - 1] < nums[i]) resIdx --;
+			if (resIdx < targetlen) res[resIdx ++] = nums[i];
+		}
 		return res;
 	}
 	
