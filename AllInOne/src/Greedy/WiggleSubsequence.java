@@ -28,35 +28,36 @@ package Greedy;
  * @author jingjiejiang
  * @history 
  * 1. Sep 18, 2017
+ * 2. Oct 13, 2018
  */
 public class WiggleSubsequence {
 
 	public int wiggleMaxLength(int[] nums) {
         
-        if (null == nums || 0 == nums.length) return 0;
-        
-        // record current sign : + / -
-        int sign = 0;
-        // record longest subseq
-        int sum = 1;
-        
-        for (int i = 1; i < nums.length; i ++) {
-            if (nums[i] == nums[i - 1]) continue;
-            // sign == 0 is the initial status
-            if (sign == 0) {
-                sign = (nums[i] - nums[i - 1]) > 0 ? 1 : -1;
-                sum ++;
-            }
-            else {
-                // next value * previous sign should == -1 
-                //  1 (1) 2 (-1) 1 (1 - 2) * 1 == -1
-                if ((nums[i] - nums[i - 1]) * sign < 0){
-                    sum ++;
-                    sign *= -1;
-                }
-            }
-        }
-        
-        return sum;
+		// iterate through nums
+		// record previous sign  1 or -1
+		// record the longest length
+		// record preNum for comparing
+		// 1) for each current num: check cur sign * pre sign = -1
+		// 2) y: longest len ++
+		// 3) n: preNum = cur
+		if (nums == null || nums.length == 0) return 0;
+		
+		int preSign = 0, preNum = nums[0], res = 1;
+		for (int idx = 1; idx < nums.length; idx ++) {
+			int curSign = nums[idx] - preNum;
+			if (preSign == 0) {
+				res += (curSign) != 0 ? 1 : 0;
+			}
+			else {
+				if (preSign * curSign < 0) {
+					res ++;
+				}
+			}
+			preSign = curSign == 0 ? preSign : curSign;
+			preNum = nums[idx];
+		}
+		
+		return res;
     }
 }
