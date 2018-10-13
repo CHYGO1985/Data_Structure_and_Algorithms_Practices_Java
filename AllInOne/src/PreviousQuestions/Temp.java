@@ -2,26 +2,37 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Oct 12, 2018
+ * @author jingjiejiang Oct 13, 2018
  *
  */
 public class Temp {
 	
 	// use an array to record previous max for each num
 	// iterate through, for each num of N, check 3 to num, get the max max = max(max. dp[num])
-	public int maxA(int N) {
-		
-		int[] dp = new int[N + 1];
-		dp[0] = 0;
-		
-		for (int idx = 0; idx < dp.length; idx ++) {
-			dp[idx] = idx;
-			for (int checkPoint = 3; checkPoint < idx; checkPoint ++) {
-				dp[idx] = Math.max(dp[idx], dp[idx - checkPoint] * (checkPoint - 1));
-			}
-		}
+	public int canCompleteCircuit(int[] gas, int[] cost) {
         
-		return dp[N];
+	   int pos = -1;  
+	   long preSum = 0;
+	   for (int idx = 0; idx < gas.length; idx ++) {
+		   int curLeft = gas[idx] - cost[idx];
+		   
+		   //do nothing if preSum + curLeft >= 0
+		   if (pos >= 0) {
+			   preSum += curLeft;
+			   if (preSum < 0) {
+				   pos = -1;
+				   preSum = 0;
+			   }
+		   }
+		   else {
+			   if (curLeft >= 0) {
+				   preSum = curLeft;
+				   pos = idx;
+			   }
+		   }
+	   }
+	   
+	   return pos;
     }
 	
 	public static void main(String[] args) {
