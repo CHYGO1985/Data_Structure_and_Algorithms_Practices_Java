@@ -26,10 +26,8 @@ public class Temp {
 			if (preSign == 0) {
 				res += (curSign) != 0 ? 1 : 0;
 			}
-			else {
-				if (preSign * curSign < 0) {
-					res ++;
-				}
+			else if (preSign * curSign < 0) {
+				res ++;
 			}
 			// *** missed curSing == 0
 			preSign = curSign == 0 ? preSign : curSign;
