@@ -35,7 +35,6 @@ public class Temp {
 		}
 		
 		return res;
-		
     }
 	
 	public static void main(String[] args) {
