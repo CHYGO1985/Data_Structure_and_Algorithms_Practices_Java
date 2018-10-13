@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-
+/**
+ * 
+ * @author jingjiejiang
+ * Oct 13, 2018
+ */
 public class QueueReconsbyHeight {
 	
 	public int[][] reconstructQueue(int[][] people) {
