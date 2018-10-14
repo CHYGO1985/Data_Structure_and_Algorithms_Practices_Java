@@ -7,20 +7,17 @@ package PreviousQuestions;
  */
 public class Temp {
 	
-	public int minPatches(int[] nums, int n) {
+	public boolean canJump(int[] nums) {
+		
+		if (nums == null) return true;
+		
+		int idx = 0;
 		long max = 0;
-		int cnt = 0, idx = 0;
-		while (max < n) {
-			if (idx >= nums.length || max < nums[idx] - 1) {
-				max += max + 1;
-				cnt ++;
-			}
-			else {
-				max += nums[idx ++];
-			}
+		while (idx < nums.length && idx <= max) {
+			max = Math.max(max, idx + nums[idx ++]);
 		}
 		
-		return cnt;
+		return max >= nums.length - 1;
     }
 	
 	public static void main(String[] args) {
