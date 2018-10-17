@@ -2,11 +2,10 @@ package PreviousQuestions;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.PriorityQueue;
 
 /**
  * 
- * @author jingjiejiang Oct 15, 2018
+ * @author jingjiejiang Oct 17, 2018
  *
  */
 public class Temp {
@@ -18,39 +17,36 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int minMeetingRooms(Interval[] intervals) {
-		// sort the array as ascend order
-		// put in priority queue
-		// if new.start < queue.peek.end, queue.pool and queue.offer(new)
-		// else queue.offer(new)
-		// each round cnt = max(cnt, queue.size)
-		int roomCnt = 0;
-		if (intervals == null || intervals.length == 0) return 0;
+	public int findMinArrowShots(int[][] points) {
+		// sort 
+		// arrow = 1, get first ele as pre
+		// for ( 1 --> points.len) compare cur with pre
+		// if (cur.start < pre.end)
+		// also need to check cur.end <= pre.end ? pre.end = cur.end
+		// else (cur.start >= pre.end)
+		// pre = cur and arrow ++
+		if (points == null || points.length == 0) return 0;
 		
-		Arrays.sort(intervals, new Comparator<Interval>() {
+		Arrays.sort(points, new Comparator<int[]>() {
 			@Override
-			public int compare(Interval a, Interval b) {
-				return a.start == b.start ? a.end - b.end : a.start - b.start;
+			public int compare(int[] a, int[] b) {
+				return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]; 
 			}
 		});
 		
-		PriorityQueue<Integer> queue = new PriorityQueue<>(); 
-		
-		for (Interval interval : intervals) {
-			if (queue.size() == 0) {
-				queue.offer(interval.end);
+		int arrows = 1;
+		int[] pre = points[0];
+		for (int idx = 1; idx < points.length; idx ++) {
+			if (points[idx][0] <= pre[1]) {
+				pre[1] = Math.min(points[idx][1], pre[1]);
 			}
-			else {
-				if (interval.start >= queue.peek()) {
-					queue.poll();
-				}
-				queue.offer(interval.end);
+			else { // points[idx][0] >= pre[1]
+				arrows ++;
+				pre = points[idx];
 			}
-			
-			roomCnt = Math.max(roomCnt, queue.size());
 		}
 		
-		return roomCnt;
+		return arrows;
     }
 	
 	public static void main(String[] args) {
