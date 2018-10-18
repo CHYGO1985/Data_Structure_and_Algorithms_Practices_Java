@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 /**
  * 
- * @author jingjiejiang Oct 17, 2018
+ * @author jingjiejiang Oct 18, 2018
  *
  */
 public class Temp {
@@ -17,36 +17,40 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int findMinArrowShots(int[][] points) {
-		// sort 
-		// arrow = 1, get first ele as pre
-		// for ( 1 --> points.len) compare cur with pre
-		// if (cur.start < pre.end)
-		// also need to check cur.end <= pre.end ? pre.end = cur.end
-		// else (cur.start >= pre.end)
-		// pre = cur and arrow ++
-		if (points == null || points.length == 0) return 0;
+	public int eraseOverlapIntervals(Interval[] intervals) {
 		
-		Arrays.sort(points, new Comparator<int[]>() {
+		// sort
+		// record pre and removeCnt
+		// for (1 -> intervals.len)
+		// if (cur.start < pre.end) 
+		// removeCnt ++
+		// also check if cur.end < pre.end then pre = cur (remove pre)
+		// else cur.start >= ppre.end
+		// pre = cur;
+		
+		if (intervals == null || intervals.length <= 1) return 0;
+		Arrays.sort(intervals, new Comparator<Interval>() {
 			@Override
-			public int compare(int[] a, int[] b) {
-				return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]; 
+			public int compare(Interval a, Interval b) {
+				return a.start == b.start ? a.end - b.end : a.start - b.start;
 			}
 		});
 		
-		int arrows = 1;
-		int[] pre = points[0];
-		for (int idx = 1; idx < points.length; idx ++) {
-			if (points[idx][0] <= pre[1]) {
-				pre[1] = Math.min(points[idx][1], pre[1]);
+		int removeCnt = 0;
+		Interval pre = intervals[0];
+		for (int idx = 1; idx < intervals.length; idx ++) {
+			if (intervals[idx].start < pre.end) {
+				removeCnt ++;
+				if (intervals[idx].end < pre.end) {
+					pre = intervals[idx];
+				}
 			}
-			else { // points[idx][0] >= pre[1]
-				arrows ++;
-				pre = points[idx];
+			else { // intervals[idx].start >= pre.end
+				pre = intervals[idx];
 			}
 		}
 		
-		return arrows;
+		return removeCnt;
     }
 	
 	public static void main(String[] args) {
