@@ -1,13 +1,8 @@
 package PreviousQuestions;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * 
- * @author jingjiejiang Oct 18, 2018
+ * @author jingjiejiang Oct 19, 2018
  *
  */
 public class Temp {
@@ -19,28 +14,51 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int[][] reconstructQueue(int[][] people) {
-		// sort the array as h in descend order and k in ascend order
-		// insert the people in to a list with pos at k
-		// conver list to array
-		if (people == null || people.length == 0 || people[0].length == 0)
-			return people; 
-        
-		Arrays.sort(people, new Comparator<int[]>() {
-			@Override
-			public int compare(int[] a, int[] b) {
-				return a[0] == b[0] ? a[1] - b[1] : b[0] - a[0];
+	public String reorganizeString(String S) {
+        char[] ori = S.toCharArray();
+		int[] count = new int[26];
+		int max = 0;
+		int maxPos = 0;
+		
+		for (int index = 0; index < ori.length; index ++) {
+			
+			int charVal = ori[index] - 'a';
+			count[charVal] += 1;
+			if (count[charVal] > max) {
+				max = count[charVal];
+				maxPos = charVal;
 			}
-		});
-		
-		List<int[]> list = new LinkedList<>();
-		
-		for (int[] person : people) {
-			list.add(person[1], person);
 		}
 		
-		return list.toArray(new int[people.length][2]);
+		if (max - (ori.length - max) > 1) {
+			return "";
+		}
+		
+		char[] newStr = new char[ori.length];
+				
+		// odd position
+		stringMaker(newStr, count, maxPos, 0);
+		
+		// even pos
+		stringMaker(newStr, count, maxPos, 1);
+		
+		return String.valueOf(newStr);
     }
+    
+    public static void stringMaker(char[] newStr, int[] count, int maxPos, int startPos) {
+		
+    	int strIdx = startPos;
+    	int cnt = 0;
+    	
+    	for (int idx = maxPos; cnt < count.length; idx = (idx + 1) % count.length, cnt ++) {
+    		
+			while (count[idx] > 0 && strIdx < newStr.length) {
+				newStr[strIdx] = (char)(idx + 'a');
+				strIdx += 2;
+				count[idx] --;
+			}
+    	}
+	}
 	
 	public static void main(String[] args) {
 	}

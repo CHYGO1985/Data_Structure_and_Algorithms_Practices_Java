@@ -7,18 +7,15 @@ package Greedy;
  */
 public class ReorganizeString {
 	
-	public static String reorganizeString(String S) {
-		char[] ori = S.toCharArray();
+	public String reorganizeString(String S) {
+        char[] ori = S.toCharArray();
 		int[] count = new int[26];
 		int max = 0;
 		int maxPos = 0;
-		// the kind of letters in the string
-		int charNums = 0;
 		
 		for (int index = 0; index < ori.length; index ++) {
 			
 			int charVal = ori[index] - 'a';
-			if (count[charVal] == 0) charNums ++; 
 			count[charVal] += 1;
 			if (count[charVal] > max) {
 				max = count[charVal];
@@ -33,26 +30,27 @@ public class ReorganizeString {
 		char[] newStr = new char[ori.length];
 				
 		// odd position
-		stringMaker(newStr, count, charNums, maxPos, 0);
+		stringMaker(newStr, count, maxPos, 0);
 		
 		// even pos
-		stringMaker(newStr, count, charNums, maxPos, 1);
+		stringMaker(newStr, count, maxPos, 1);
 		
 		return String.valueOf(newStr);
     }
-	
-	public static void stringMaker(char[] newStr, int[] count, int charNums, int maxPos, int startPos) {
-		int pos = startPos;
-		int i = maxPos;
+    
+    public static void stringMaker(char[] newStr, int[] count, int maxPos, int startPos) {
 		
-		for (; charNums > 0 && pos < newStr.length; i = (i + 1) % count.length) {
-			while (count[i] != 0 && pos < newStr.length) {
-				newStr[pos] = (char)('a' + i);
-				count[i] --;
-				if (count[i] == 0) charNums --;
-				pos += 2;
+    	int strIdx = startPos;
+    	int cnt = 0;
+    	
+    	for (int idx = maxPos; cnt < count.length; idx = (idx + 1) % count.length, cnt ++) {
+    		
+			while (count[idx] > 0 && strIdx < newStr.length) {
+				newStr[strIdx] = (char)(idx + 'a');
+				strIdx += 2;
+				count[idx] --;
 			}
-		}
+    	}
 	}
 
 	public static void main(String[] args) {
