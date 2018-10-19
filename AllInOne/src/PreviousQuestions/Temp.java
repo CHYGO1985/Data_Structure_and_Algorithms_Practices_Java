@@ -2,6 +2,8 @@ package PreviousQuestions;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 
@@ -17,40 +19,27 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int eraseOverlapIntervals(Interval[] intervals) {
-		
-		// sort
-		// record pre and removeCnt
-		// for (1 -> intervals.len)
-		// if (cur.start < pre.end) 
-		// removeCnt ++
-		// also check if cur.end < pre.end then pre = cur (remove pre)
-		// else cur.start >= ppre.end
-		// pre = cur;
-		
-		if (intervals == null || intervals.length <= 1) return 0;
-		Arrays.sort(intervals, new Comparator<Interval>() {
+	public int[][] reconstructQueue(int[][] people) {
+		// sort the array as h in descend order and k in ascend order
+		// insert the people in to a list with pos at k
+		// conver list to array
+		if (people == null || people.length == 0 || people[0].length == 0)
+			return people; 
+        
+		Arrays.sort(people, new Comparator<int[]>() {
 			@Override
-			public int compare(Interval a, Interval b) {
-				return a.start == b.start ? a.end - b.end : a.start - b.start;
+			public int compare(int[] a, int[] b) {
+				return a[0] == b[0] ? a[1] - b[1] : b[0] - a[0];
 			}
 		});
 		
-		int removeCnt = 0;
-		Interval pre = intervals[0];
-		for (int idx = 1; idx < intervals.length; idx ++) {
-			if (intervals[idx].start < pre.end) {
-				removeCnt ++;
-				if (intervals[idx].end < pre.end) {
-					pre = intervals[idx];
-				}
-			}
-			else { // intervals[idx].start >= pre.end
-				pre = intervals[idx];
-			}
+		List<int[]> list = new LinkedList<>();
+		
+		for (int[] person : people) {
+			list.add(person[1], person);
 		}
 		
-		return removeCnt;
+		return list.toArray(new int[people.length][2]);
     }
 	
 	public static void main(String[] args) {
