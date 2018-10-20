@@ -21,7 +21,7 @@ package Greedy;
  * 
  * 4) if <=. we need to consider the case like AAABBB, nums of B > (A - 1)
  * so, except from, we need one more for B A _ _ A _ _ A B
- * which is frame + (appear num of X - (A - 1))  
+ * which is frame + ((appear num of X) - (A - 1))  
  * 
  * @author jingjiejiang
  * @history
@@ -49,8 +49,8 @@ public class TaskScheduler {
         int rest = 0;
         // check whether there is num of other > (maxCount - 1) e.g. AAABBB,
         for (int i : chars) {
-            if (i - (maxCount - 1) > 0)
-                rest += i - (maxCount - 1);
+        	int surpassNum = i - (maxCount - 1);
+        	rest += surpassNum > 0 ? surpassNum : 0;
         }
         
         int fixSum = n * (maxCount - 1) + maxCount;
