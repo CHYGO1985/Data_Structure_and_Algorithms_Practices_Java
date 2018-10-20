@@ -10,7 +10,7 @@ package Greedy;
  * e.g. 3A, 3B, 2C,2D,2E n = 2	
  * so the basic frame will be A _ _ A _ _ A
  * 
- * num of intervals = num of A - 1
+ * num of (not individual but the total intervals between As) intervals = num of A - 1
  * 
  * 2) based on the assumption, we need to decide how many chars are there
  * out of A _ _ A _ _ A

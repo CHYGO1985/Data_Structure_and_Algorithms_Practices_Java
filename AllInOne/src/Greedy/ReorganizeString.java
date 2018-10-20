@@ -7,7 +7,7 @@ package Greedy;
  */
 public class ReorganizeString {
 	
-	public String reorganizeString(String S) {
+	public static String reorganizeString(String S) {
         char[] ori = S.toCharArray();
 		int[] count = new int[26];
 		int max = 0;
