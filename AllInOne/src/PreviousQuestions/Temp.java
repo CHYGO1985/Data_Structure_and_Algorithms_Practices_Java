@@ -23,7 +23,7 @@ public class Temp {
 		// use pontencialMap to record potential sub num for a 3 digits raw
 		// for (num : nums)
 		// if (map.get(num) == 0) continue
-		// else if (potentialMap.getOrDefault() > 0) append num + 1
+		// else if (potentialMap.getOrDefault() > 0) append num + 1, append(num).cnt - 1
 		// else if (num + 1, num + 2 exist in map) (num + 1).cnt --, (num + 2).cnt --, append.num + 3
 		// else return false
 		// num.cnt ---
