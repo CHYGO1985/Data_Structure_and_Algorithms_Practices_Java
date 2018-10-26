@@ -18,7 +18,17 @@ public class Temp {
 	
 	public int[] maxNumber(int[] nums1, int[] nums2, int k) {
         // init res array
-		return null;
+		int len1 = nums1.length;
+		int len2 = nums2.length;
+		int[] res = new int[k];
+		for (int i = Math.max(0, k - len2); i <= k && i <= len1; i ++) {
+			int[] curNum = merge(findMax(nums1, i), findMax(nums2, k - i), k);
+			if (compare(res, curNum, 0, 0) == false) {
+				res = curNum;
+			}
+		}
+		
+		return res;
 		
     }
 	
