@@ -15,7 +15,7 @@ public class Temp {
 	}
 	
 	public int canCompleteCircuit(int[] gas, int[] cost) {
-        return 0;
+        return ;
     }
 	
 	public static void main(String[] args) {
