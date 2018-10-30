@@ -14,14 +14,18 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public boolean canJump(int[] nums) {
-        int farthest = 0;
-        for (int idx = 0; idx < nums.length - 1; idx ++) {
-            if (idx <= farthest) {
-                farthest = Math.max(farthest, idx + nums[idx]);
-            }
-        }
-        return farthest < nums.length - 1 ? false : true;     
+	public int jump(int[] nums) {
+        long curEnd = 0, curFarthest = 0;
+		int cnt = 0;
+		for (int idx = 0; idx < nums.length - 1; idx ++) {
+			curFarthest = Math.max(curFarthest, idx + nums[idx]);
+			if (idx == curEnd) {
+				curEnd = curFarthest;
+				cnt ++;
+			}
+		}
+		
+		return cnt;
     }
 	
 	public static void main(String[] args) {
