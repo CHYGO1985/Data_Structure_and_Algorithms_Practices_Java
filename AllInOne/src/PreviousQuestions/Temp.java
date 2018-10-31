@@ -14,54 +14,54 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public String reorganizeString(String S) {
-		
-		char[] ori = S.toCharArray();
-		int[] count = new int[26];
-		int max = 0;
-		int maxPos = 0;
-		
-		for (int index = 0; index < ori.length; index ++) {
-			
-			int charVal = ori[index] - 'a';
-			count[charVal] += 1;
-			if (count[charVal] > max) {
-				max = count[charVal];
-				maxPos = charVal;
-			}
-		}
-		
-		if (max - (ori.length - max) > 1) {
-			return "";
-		}
-		
-		char[] newStr = new char[ori.length];
-				
-		// odd position
-		stringMaker(newStr, count, maxPos, 0);
-		
-		// even pos
-		stringMaker(newStr, count, maxPos, 1);
-		
-		return String.valueOf(newStr);
-	}
-	
-	 public static void stringMaker(char[] newStr, int[] count, int maxPos, int startPos) {
-		 
-		 // start from maxPos to maxPos - 1 (a - z) and idx (startPos -> len)
-		 // while (count[cntIdx] > 0 && idx < newStre.len)
-		 // { newStr[i] = (char)(cntIdx + 'a'); count[cntIdx] --; idx += 2 }
-		 int cnt = 0;
-		 int strIdx = startPos;
-		 
-		 for (int cntIdx = maxPos; cnt < count.length && strIdx < newStr.length; cnt ++, cntIdx = (cntIdx + 1) % count.length) {
-			 while(count[cntIdx] > 0 && strIdx < newStr.length) {
-				 newStr[strIdx] = (char)('a' + cntIdx);
-				 strIdx += 2;
-				 count[cntIdx] --;
-			 }
-		 }
-	 }
+	public int leastInterval(char[] tasks, int n) {
+        // get the most frenquent task's count
+		// if 2max - sum >= 1
+		//   return max + n*(max - 1)
+		// else
+		//   sum += freq == max ? freq - (max - 1)
+		//   if (rest taks - n * (max - 1) > 0)
+		//   sum += the val 
+		if (null == tasks || 0 == tasks.length) return 0;
+        
+        int[] chars = new int[26];
+        int maxCount = 0;
+        int sum = tasks.length;
+        
+        for (char temp : tasks) {
+            chars[temp - 'A'] += 1;
+            maxCount = Math.max(maxCount, chars[temp - 'A']);
+        }
+        
+        int base = maxCount + n * (maxCount - 1);
+//        if (2 * maxCount - sum >= 1) {
+//        	return base;
+//        }
+//        else {
+//        	int gapSum = 0;
+//        	for (int idx = 0; idx < chars.length; idx ++) {
+//        		int gap = chars[idx] - (maxCount - 1);
+//        	    gapSum += gap > 0 ? gap : 0;
+//        	}
+//        	
+//        	base += (sum - maxCount > n * (maxCount - 1)) ? 
+//            sum - maxCount - n * (maxCount - 1) : gapSum - 1;
+//        }
+        
+        // ** optimise
+        if (2 * maxCount - sum < 1) {
+        	int gapSum = 0;
+        	for (int idx = 0; idx < chars.length; idx ++) {
+        		int gap = chars[idx] - (maxCount - 1);
+        	    gapSum += gap > 0 ? gap : 0;
+        	}
+        	
+        	base += (sum - maxCount > n * (maxCount - 1)) ? 
+            sum - maxCount - n * (maxCount - 1) : gapSum - 1;
+        }
+        
+        return base;
+    }
 	
 	public static void main(String[] args) {
 		int[] arr = new int[]{1,2,3,3};

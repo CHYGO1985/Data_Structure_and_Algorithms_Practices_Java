@@ -30,10 +30,48 @@ package Greedy;
 public class TaskScheduler {
 
 	// round 1: the question is hard to understand, took 30 minutes
+//    public int leastInterval(char[] tasks, int n) {
+//        
+//        if (null == tasks || 0 == tasks.length) return 0;
+//            
+//        int[] chars = new int[26];
+//        int maxCount = 0;
+//        int sum = tasks.length;
+//        
+//        for (char temp : tasks) {
+//            chars[temp - 'A'] += 1;
+//            maxCount = Math.max(maxCount, chars[temp - 'A']);
+//        }
+//        
+//        // not repeat
+//        if (maxCount == 1) return sum;
+//        
+//        int rest = 0;
+//        // check whether there is num of other > (maxCount - 1) e.g. AAABBB,
+//        for (int i : chars) {
+//        	int surpassNum = i - (maxCount - 1);
+//        	rest += surpassNum > 0 ? surpassNum : 0;
+//        }
+//        
+//        int fixSum = n * (maxCount - 1) + maxCount;
+//        //rest - 1: coz the for loop will count maxCount char, so -1 of the 1 got from max count char
+//        fixSum += (sum - maxCount > n * (maxCount - 1)) ? 
+//        		sum - maxCount - n * (maxCount - 1) : rest - 1;
+//        
+//        return fixSum;
+//    }
+//    
+    // My way to do it is to slit: 2 * max - length >= 1 / < 1
     public int leastInterval(char[] tasks, int n) {
+        // get the most frenquent task's count
+		// if 2max - sum >= 1
+		//   return max + n*(max - 1)
+		// else
+		//   sum += freq == max ? freq - (max - 1)
+		//   if (rest taks - n * (max - 1) > 0)
+		//   sum += the val 
+		if (null == tasks || 0 == tasks.length) return 0;
         
-        if (null == tasks || 0 == tasks.length) return 0;
-            
         int[] chars = new int[26];
         int maxCount = 0;
         int sum = tasks.length;
@@ -43,21 +81,33 @@ public class TaskScheduler {
             maxCount = Math.max(maxCount, chars[temp - 'A']);
         }
         
-        // not repeat
-        if (maxCount == 1) return sum;
+        int base = maxCount + n * (maxCount - 1);
+//        if (2 * maxCount - sum >= 1) {
+//        	return base;
+//        }
+//        else {
+//        	int gapSum = 0;
+//        	for (int idx = 0; idx < chars.length; idx ++) {
+//        		int gap = chars[idx] - (maxCount - 1);
+//        	    gapSum += gap > 0 ? gap : 0;
+//        	}
+//        	
+//        	base += (sum - maxCount > n * (maxCount - 1)) ? 
+//            sum - maxCount - n * (maxCount - 1) : gapSum - 1;
+//        }
         
-        int rest = 0;
-        // check whether there is num of other > (maxCount - 1) e.g. AAABBB,
-        for (int i : chars) {
-        	int surpassNum = i - (maxCount - 1);
-        	rest += surpassNum > 0 ? surpassNum : 0;
+        // ** optimise
+        if (2 * maxCount - sum < 1) {
+        	int gapSum = 0;
+        	for (int idx = 0; idx < chars.length; idx ++) {
+        		int gap = chars[idx] - (maxCount - 1);
+        	    gapSum += gap > 0 ? gap : 0;
+        	}
+        	
+        	base += (sum - maxCount > n * (maxCount - 1)) ? 
+            sum - maxCount - n * (maxCount - 1) : gapSum - 1;
         }
         
-        int fixSum = n * (maxCount - 1) + maxCount;
-        //rest - 1: coz the for loop will count maxCount char, so -1 of the 1 got from max count char
-        fixSum += (sum - maxCount > n * (maxCount - 1)) ? 
-        		sum - maxCount - n * (maxCount - 1) : rest - 1;
-        
-        return fixSum;
+        return base;
     }
 }
