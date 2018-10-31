@@ -40,17 +40,19 @@ public class ReorganizeString {
     
     public static void stringMaker(char[] newStr, int[] count, int maxPos, int startPos) {
 		
-    	int strIdx = startPos;
-    	int cnt = 0;
-    	
-    	for (int idx = maxPos; cnt < count.length; idx = (idx + 1) % count.length, cnt ++) {
-    		
-			while (count[idx] > 0 && strIdx < newStr.length) {
-				newStr[strIdx] = (char)(idx + 'a');
-				strIdx += 2;
-				count[idx] --;
-			}
-    	}
+    	// start from maxPos to maxPos - 1 (a - z) and idx (startPos -> len)
+		 // while (count[cntIdx] > 0 && idx < newStre.len)
+		 // { newStr[i] = (char)(cntIdx + 'a'); count[cntIdx] --; idx += 2 }
+		 int cnt = 0;
+		 int strIdx = startPos;
+		 
+		 for (int cntIdx = maxPos; cnt < count.length && strIdx < newStr.length; cnt ++, cntIdx = (cntIdx + 1) % count.length) {
+			 while(count[cntIdx] > 0 && strIdx < newStr.length) {
+				 newStr[strIdx] = (char)('a' + cntIdx);
+				 strIdx += 2;
+				 count[cntIdx] --;
+			 }
+		 }
 	}
 
 	public static void main(String[] args) {
