@@ -1,5 +1,7 @@
 package PreviousQuestions;
 
+import java.awt.CardLayout;
+
 /**
  * 
  * @author jingjiejiang Oct 31, 2018
@@ -14,53 +16,31 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int leastInterval(char[] tasks, int n) {
-        // get the most frenquent task's count
-		// if 2max - sum >= 1
-		//   return max + n*(max - 1)
-		// else
-		//   sum += freq == max ? freq - (max - 1)
-		//   if (rest taks - n * (max - 1) > 0)
-		//   sum += the val 
-		if (null == tasks || 0 == tasks.length) return 0;
-        
-        int[] chars = new int[26];
-        int maxCount = 0;
-        int sum = tasks.length;
-        
-        for (char temp : tasks) {
-            chars[temp - 'A'] += 1;
-            maxCount = Math.max(maxCount, chars[temp - 'A']);
-        }
-        
-        int base = maxCount + n * (maxCount - 1);
-//        if (2 * maxCount - sum >= 1) {
-//        	return base;
-//        }
-//        else {
-//        	int gapSum = 0;
-//        	for (int idx = 0; idx < chars.length; idx ++) {
-//        		int gap = chars[idx] - (maxCount - 1);
-//        	    gapSum += gap > 0 ? gap : 0;
-//        	}
-//        	
-//        	base += (sum - maxCount > n * (maxCount - 1)) ? 
-//            sum - maxCount - n * (maxCount - 1) : gapSum - 1;
-//        }
-        
-        // ** optimise
-        if (2 * maxCount - sum < 1) {
-        	int gapSum = 0;
-        	for (int idx = 0; idx < chars.length; idx ++) {
-        		int gap = chars[idx] - (maxCount - 1);
-        	    gapSum += gap > 0 ? gap : 0;
-        	}
-        	
-        	base += (sum - maxCount > n * (maxCount - 1)) ? 
-            sum - maxCount - n * (maxCount - 1) : gapSum - 1;
-        }
-        
-        return base;
+	public static String removeKdigits(String num, int k) {
+        // arr = num.len - k
+		// int top = 0;
+		// for (0 --> len)
+		//  while (top > 0 && num[i] < arr[top - 1] && num.len - idx + 1 + (top - 1) > arr.len)
+		//    top --
+		//    k --
+		// if (top < arr.len) arr[top ++] = num[i]
+		// get rid of heading 0 in arr
+		char[] arr = new char[num.length() - k];
+		int top = 0;
+		for (int idx = 0; idx < num.length(); idx ++) {
+			char curChar = num.charAt(idx);
+			while (top > 0 && curChar < arr[top - 1] && num.length() - idx + top > arr.length) {
+				top --;
+			}
+			if (top < arr.length) arr[top ++] = curChar;
+		}
+		
+		int start = 0;
+		while (start < arr.length && arr[start] == '0') {
+			start ++;
+		}
+		
+		return start == arr.length ? "0" : new String(arr, start, arr.length - start);
     }
 	
 	public static void main(String[] args) {
