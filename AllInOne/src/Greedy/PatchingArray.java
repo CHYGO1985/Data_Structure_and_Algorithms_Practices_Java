@@ -48,7 +48,7 @@ public class PatchingArray {
 				sum += sum + 1;
 				cnt ++;
 			}
-			sum += nums[idx];
+			if (idx < nums.length) sum += nums[idx];
 		}
         
 		return cnt;
