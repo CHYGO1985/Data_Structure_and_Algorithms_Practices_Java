@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Nov 7, 2018
+ * @author jingjiejiang Nov 8, 2018
  *
  */
 public class Temp {
@@ -14,24 +14,29 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int minPatches(int[] nums, int n) {
-		int cnt = 0;
-        long sum = 0;
-        for (int num : nums) {
-            while (sum < num - 1 && sum < n) {
-                sum += sum + 1;
-                cnt ++;
-            }
-            
-            sum += num;
+	public int wiggleMaxLength(int[] nums) {
+	    
+		if (nums.length <= 1) return nums.length;
+		
+		int idx = 1;
+		// skip equal nums 1 1 1 2
+		while (nums[idx] == nums[idx - 1]) {
+            idx ++;
+            // *** commit error here
+            if (idx >= nums.length) return 1;
         }
-        
-        while (sum < n) {
-            sum += sum + 1;
-            cnt ++;
-        }
-        
-        return cnt;
+		int preSign = nums[idx] - nums[idx - 1];
+		int cnt = preSign == 0 ? 1 : 2;
+		
+		for (idx += 1; idx < nums.length; idx ++) {
+			int curSign = nums[idx] - nums[idx - 1];
+			if (curSign * preSign < 0) {
+				preSign = curSign;
+				cnt ++;
+			}
+		}
+		
+		return cnt;
     }
 	
 	public static void main(String[] args) {
