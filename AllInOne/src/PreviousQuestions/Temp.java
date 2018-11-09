@@ -15,7 +15,20 @@ public class Temp {
 	}
 	
 	public int canCompleteCircuit(int[] gas, int[] cost) {
-		return 0;
+		long sum = 0, curSum = 0;
+        int pos = 0;
+        
+        for (int idx = 0; idx < gas.length; idx ++) {
+            int curLeft = gas[idx] - cost[idx];
+            sum += curLeft;
+            curSum += curLeft;
+            if (curSum < 0) {
+                pos = idx + 1;
+                curSum = 0;
+            }
+        }
+        
+        return sum >= 0 ? pos : -1;
 	}
 	
 	public static void main(String[] args) {
