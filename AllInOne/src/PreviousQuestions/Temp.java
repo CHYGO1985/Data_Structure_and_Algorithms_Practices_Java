@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Nov 9, 2018
+ * @author jingjiejiang Nov 12, 2018
  *
  */
 public class Temp {
@@ -14,22 +14,23 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int canCompleteCircuit(int[] gas, int[] cost) {
-		long sum = 0, curSum = 0;
-        int pos = 0;
+	public int minPatches(int[] nums, int n) {
+		long sum = 0;
+        int cnt = 0;
         
-        for (int idx = 0; idx < gas.length; idx ++) {
-            int curLeft = gas[idx] - cost[idx];
-            sum += curLeft;
-            curSum += curLeft;
-            if (curSum < 0) {
-                pos = idx + 1;
-                curSum = 0;
+        for (int idx = 0; idx < nums.length || sum < n; idx ++) {
+        	int limit = idx < nums.length ? nums[idx] - 1 : n; 
+				
+            while (sum < limit && sum < n) {
+                sum += sum + 1;
+                cnt ++;
             }
+        
+            if (idx < nums.length) sum += nums[idx];
         }
         
-        return sum >= 0 ? pos : -1;
-	}
+        return cnt;
+    }
 	
 	public static void main(String[] args) {
 		int[] arr = new int[]{1,2,3,2,2,1};
