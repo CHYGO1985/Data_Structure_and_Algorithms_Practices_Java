@@ -1,10 +1,8 @@
 package PreviousQuestions;
 
-import java.util.function.IntPredicate;
-
 /**
  * 
- * @author jingjiejiang Nov 13, 2018
+ * @author jingjiejiang Nov 14, 2018
  *
  */
 public class Temp {
