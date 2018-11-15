@@ -124,8 +124,8 @@ public class CreateMaximumNumber {
 //		int[] nums1 = new int[]{8, 6, 9};
 //		int[] nums2 = new int[]{1, 7, 5};
 //		int[] nums1 = new int[]{6, 7};
-//		int[] nums2 = new int[]{6,0,4}
-		;
+//		int[] nums2 = new int[]{6,0,4};
+		
 		int[] res = maxNumber(nums1, nums2, 5);
 		for (int val : res) {
 			System.out.println(val);
