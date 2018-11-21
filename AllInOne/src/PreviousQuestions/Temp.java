@@ -1,7 +1,7 @@
 package PreviousQuestions;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,22 +41,21 @@ public class Temp {
         //        add to prilist, break;
         //      if j >= list.size, then add new to prilist
         
-        List<Interval> prioList = new LinkedList<>();
-        Collections.sort(prioList, new Comparator<Interval>() {
-			@Override
-			public int compare(Interval o1, Interval o2) {
-				return o1.start == o2.start? o1.end - o2.end : o1.start - o2.start;
-			}
-		});
-        
-        for (int i = 0; i < schedule.size(); i ++) {
-        	for (int j = 0; j < schedule.get(i).size(); i ++) {
-        		for (int m = 0; m < prioList.size())
-        	}
+        List<Interval> result = new ArrayList<>();
+        List<Interval> timeLine = new ArrayList<>();
+        schedule.forEach(e -> timeLine.addAll(e));
+        Collections.sort(timeLine, ((a, b) -> a.start - b.start));
+
+        Interval temp = timeLine.get(0);
+        for(Interval each : timeLine) {
+            if(temp.end < each.start) {
+                result.add(new Interval(temp.end, each.start));
+                temp = each;
+            }else{
+                temp = temp.end < each.end ? each : temp;
+            }
         }
-        
-        
-        return list;
+        return result;
     }
 	
 	public static void main(String[] args) {
