@@ -1,13 +1,12 @@
 package PreviousQuestions;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * 
- * @author jingjiejiang Nov 22, 2018
+ * @author jingjiejiang Nov 23, 2018
  *
  */
 public class Temp {
@@ -20,11 +19,6 @@ public class Temp {
 	}
 	
 	public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
-        Interval interval = new Interval();
-        interval.start = 0;
-        interval.end = 1;
-        List<Interval> list = new LinkedList<>();
-        list.add(interval);
         // init a prioritylist, sort the element in the list as 
         // a.start != b.start ? a.start - b.start : a.end - b.end
         // for (0 --> schedule.size)
@@ -40,22 +34,24 @@ public class Temp {
         //       else if (new.end <= cur.start)
         //        add to prilist, break;
         //      if j >= list.size, then add new to prilist
+        List<Interval> schedList = new LinkedList<>();
+        List<Interval> resList = new LinkedList<>();
         
-        List<Interval> result = new ArrayList<>();
-        List<Interval> timeLine = new ArrayList<>();
-        schedule.forEach(e -> timeLine.addAll(e));
-        Collections.sort(timeLine, ((a, b) -> a.start - b.start));
-
-        Interval temp = timeLine.get(0);
-        for(Interval each : timeLine) {
-            if(temp.end < each.start) {
-                result.add(new Interval(temp.end, each.start));
-                temp = each;
-            }else{
-                temp = temp.end < each.end ? each : temp;
-            }
+        schedule.forEach(slot -> schedList.addAll(slot));
+        
+        Collections.sort(schedList, (a, b) -> a.start - b.start);
+        
+        Interval temp = schedList.get(0);
+        for (Interval slot : schedList) {
+        	if (slot.start > temp.end) {
+        		resList.add(new Interval(temp.end, slot.start));
+        		temp = slot;
+        	} else {
+        		temp = temp.end < slot.end ? slot : temp;	
+        	}
         }
-        return result;
+        
+        return resList;
     }
 	
 	public static void main(String[] args) {
