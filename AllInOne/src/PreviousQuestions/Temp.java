@@ -19,39 +19,25 @@ public class Temp {
 	}
 	
 	public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
-        // init a prioritylist, sort the element in the list as 
-        // a.start != b.start ? a.start - b.start : a.end - b.end
-        // for (0 --> schedule.size)
-        //   for (slot : schedule.get(i))
-        //     new = slot
-        //     int j = 0;
-        //     for (0 -> prilist.size)
-        //       cur = prilist.get(j)
-        //       if (new.start < cur.end && new.start >= cur.start)
-        //         merge new into cur
-        //       else if (new.start >= cur.end)
-        //         continue
-        //       else if (new.end <= cur.start)
-        //        add to prilist, break;
-        //      if j >= list.size, then add new to prilist
-        List<Interval> schedList = new LinkedList<>();
-        List<Interval> resList = new LinkedList<>();
-        
-        schedule.forEach(slot -> schedList.addAll(slot));
-        
-        Collections.sort(schedList, (a, b) -> a.start - b.start);
-        
-        Interval temp = schedList.get(0);
-        for (Interval slot : schedList) {
-        	if (slot.start > temp.end) {
-        		resList.add(new Interval(temp.end, slot.start));
-        		temp = slot;
-        	} else {
-        		temp = temp.end < slot.end ? slot : temp;	
-        	}
-        }
-        
-        return resList;
+		
+		List<Interval> resList = new LinkedList<>();
+		List<Interval> schdleList = new LinkedList<>();
+		
+		schedule.forEach((slots) -> schdleList.addAll(slots));
+		Collections.sort(schdleList, (s1, s2) -> s1.start - s2.start);
+		
+		Interval cur = schdleList.get(0);
+		for (Interval slot : schdleList) {
+			if (cur.end < slot.start) {
+				resList.add(new Interval(cur.end, slot.start));
+				cur = slot;
+			}
+			else {
+				cur = cur.end < slot.end ? slot : cur;
+			}
+		}
+		
+		return resList;
     }
 	
 	public static void main(String[] args) {
