@@ -1,12 +1,10 @@
 package PreviousQuestions;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import Greedy.Candy;
 
 /**
  * 
- * @author jingjiejiang Nov 25, 2018
+ * @author jingjiejiang Nov 27, 2018
  *
  */
 public class Temp {
@@ -18,32 +16,42 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
-		
-		List<Interval> resList = new LinkedList<>();
-		List<Interval> schdleList = new LinkedList<>();
-		
-		schedule.forEach((slots) -> schdleList.addAll(slots));
-		Collections.sort(schdleList, (s1, s2) -> s1.start - s2.start);
-		
-		Interval cur = schdleList.get(0);
-		for (Interval slot : schdleList) {
-			if (cur.end < slot.start) {
-				resList.add(new Interval(cur.end, slot.start));
-				cur = slot;
-			}
-			else {
-				cur = cur.end < slot.end ? slot : cur;
-			}
-		}
-		
-		return resList;
+	public static int candy(int[] ratings) {
+        
+		int[] candies = new int[ratings.length];
+        int res = 0;
+        
+        for (int idx = 0; idx < ratings.length - 1; idx ++) {
+        	
+        	if (ratings[idx] < ratings[idx + 1]) {
+        		candies[idx + 1] = candies[idx] + 1;
+        	} 
+        	else {
+        		int start = idx + 1;
+        		int temp = idx + 1;
+        		while (temp < ratings.length - 1 && ratings[temp] >= ratings[temp + 1]) 
+        			temp ++;
+        		// get temp as end of descending pos
+        		int end = temp;
+        		while (temp >= start) {
+        			if (ratings[temp] < ratings[temp - 1])candies[temp - 1] = Math.max(candies[temp] + 1, candies[temp - 1]);
+        			temp --;
+        		}
+        		idx = end - 1;
+        	}
+        }
+        
+        for (int candy : candies) {
+        	res += candy;
+        }
+        return res + ratings.length; 
     }
 	
 	public static void main(String[] args) {
-		int[] arr = new int[]{1,2,3,2,2,1};
+		int[] arr = new int[]{2,1,1};
 		int[] nums1 = new int[] {3, 4, 6, 5};
 		int[] nums2 = new int[] {9, 1, 2, 5, 8, 3};
+		System.out.print(candy(arr));
 //		maxNumber(nums1, nums2, 5);
 //		String s = "cbacdcbc";
 //		candy(arr);

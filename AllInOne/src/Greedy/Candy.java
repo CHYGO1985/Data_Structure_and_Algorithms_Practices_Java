@@ -43,34 +43,33 @@ public class Candy {
 	// 1234, 4321 
 	public static int candy(int[] ratings) {
 		
-		if (ratings == null || ratings.length == 0) return 0;
-		int[] carries = new int[ratings.length];
-		Arrays.fill(carries, 1);
-        int sum = 0;
-        int index = 0;
+		int[] candies = new int[ratings.length];
+        int res = 0;
         
-        for (; index < ratings.length - 1; index ++) {
-        	// ascend case
-        	if (ratings[index] < ratings[index + 1]) {
-        		carries[index + 1] = carries[index] + 1;
-        	}
-        	// decend case: two things, find the ending : from end to start, build carries (consider the last bit that already has value)
-        	else if (ratings[index] > ratings[index + 1]) {
-        		int start = index;
-        		do {
-        			index ++;
+        for (int idx = 0; idx < ratings.length - 1; idx ++) {
+        	
+        	if (ratings[idx] < ratings[idx + 1]) {
+        		candies[idx + 1] = candies[idx] + 1;
+        	} 
+        	else {
+        		int start = idx + 1;
+        		int temp = idx + 1;
+        		while (temp < ratings.length - 1 && ratings[temp] >= ratings[temp + 1]) 
+        			temp ++;
+        		// get temp as end of descending pos
+        		int end = temp;
+        		while (temp >= start) {
+        			if (ratings[temp] < ratings[temp - 1]) candies[temp - 1] = Math.max(candies[temp] + 1, candies[temp - 1]);
+        			temp --;
         		}
-        		while (index < ratings.length - 1 && ratings[index] >= ratings[index + 1]);
-        		for (int end = index; end > start; end --) {
-        			if (ratings[end - 1] > ratings[end] && carries[end - 1] <= carries[end]) carries[end - 1] = carries[end] + 1;
-        		}
-        		index --;
+        		idx = end - 1;
         	}
         }
         
-        for (int carry: carries) sum += carry;
-        
-        return sum;
+        for (int candy : candies) {
+        	res += candy;
+        }
+        return res + ratings.length; 
     }
 
 	public static void main(String[] args) {
