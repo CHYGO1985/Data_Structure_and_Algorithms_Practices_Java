@@ -21,7 +21,7 @@ public class Temp {
 
 		for (int idx = 0; idx < ratings.length - 1; idx ++) {
 			if (ratings[idx] < ratings[idx + 1]) {
-				candies[idx + 1] += candies[idx] + 1;
+				candies[idx + 1] = candies[idx] + 1;
 			} else {
 				int start = idx + 1;
 				int shift = idx + 1;
@@ -29,7 +29,7 @@ public class Temp {
 					shift ++;
 				}
 				int end = shift;
-				while (shift > start) {
+				while (shift >= start) {
 					if (ratings[shift] < ratings[shift - 1]) {
 						candies[shift - 1] = Math.max(candies[shift - 1], candies[shift] + 1);
 					}
