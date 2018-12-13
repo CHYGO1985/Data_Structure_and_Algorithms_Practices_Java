@@ -1,12 +1,8 @@
 package PreviousQuestions;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * 
- * @author jingjiejiang Dec 10, 2018
+ * @author jingjiejiang Dec 13, 2018
  *
  */
 public class Temp {
@@ -18,26 +14,36 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
+	public int candy(int[] ratings) {
         
-	    List<Interval> schdList = new LinkedList<>();
-	    List<Interval> freeTimeList = new LinkedList<>();
-	    
-	    schedule.forEach(slots -> schdList.addAll(slots));
-	    Collections.sort(schdList, (s1, s2) -> s1.start - s2.start);
-	    
-	    Interval cur = schdList.get(0);
-	    for (Interval slot : schdList) {
-	    	if (cur.end < slot.start) {
-	    		freeTimeList.add(new Interval(cur.end, slot.start));
-	    		cur = slot;
-	    	}
-	    	else {
-				cur = cur.end < slot.end ? slot : cur;
+		int[] candies = new int[ratings.length];
+		int res = candies.length;
+
+		for (int idx = 0; idx < ratings.length - 1; idx ++) {
+			if (ratings[idx] < ratings[idx + 1]) {
+				candies[idx + 1] += candies[idx] + 1;
+			} else {
+				int start = idx + 1;
+				int shift = idx + 1;
+				while (shift < ratings.length - 1 && ratings[shift] >= ratings[shift + 1]) {
+					shift ++;
+				}
+				int end = shift;
+				while (shift > start) {
+					if (ratings[shift] < ratings[shift - 1]) {
+						candies[shift - 1] = Math.max(candies[shift - 1], candies[shift] + 1);
+					}
+					shift --;
+				}
+				idx = end - 1;
 			}
-	    }
-	    
-	    return freeTimeList;
+		}
+		
+		for (int candy : candies) {
+			res += candy;
+		}
+		
+		return res;
     }
 	
 	public static void main(String[] args) {
