@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Dec 15, 2018
+ * @author jingjiejiang Dec 16, 2018
  *
  */
 public class Temp {
@@ -14,36 +14,26 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int candy(int[] ratings) {
-        
-		int[] candies = new int[ratings.length];
-		int res = candies.length;
-
-		for (int idx = 0; idx < ratings.length - 1; idx ++) {
-			if (ratings[idx] < ratings[idx + 1]) {
-				candies[idx + 1] = candies[idx] + 1;
-			} else {
-				int start = idx + 1;
-				int shift = idx + 1;
-				while (shift < ratings.length - 1 && ratings[shift] >= ratings[shift + 1]) {
-					shift ++;
-				}
-				int end = shift;
-				while (shift >= start) {
-					if (ratings[shift] < ratings[shift - 1]) {
-						candies[shift - 1] = Math.max(candies[shift - 1], candies[shift] + 1);
-					}
-					shift --;
-				}
-				idx = end - 1;
+	public int minPatches(int[] nums, int n) {
+    
+		int count = 0;
+		long sum = 0;
+		
+		for (int idx = 0; idx < nums.length; idx ++) {
+			long limit = Math.min(nums[idx] - 1, n);
+			while (sum + nums[idx] < limit) {
+				sum += sum + 1;
+				count ++;
 			}
+			sum += nums[idx];
 		}
 		
-		for (int candy : candies) {
-			res += candy;
+		while (sum < n) {
+			sum += sum + 1;
+			count ++;
 		}
 		
-		return res;
+		return count;
     }
 	
 	public static void main(String[] args) {
