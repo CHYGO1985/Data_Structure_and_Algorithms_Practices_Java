@@ -4,7 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * 
- * @author jingjiejiang Dec 16, 2018
+ * @author jingjiejiang Dec 18, 2018
  *
  */
 public class Temp {
@@ -17,19 +17,20 @@ public class Temp {
 	}
 	
 	public int minPatches(int[] nums, int n) {
-		int idx = 0;
 		long sum = 0;
 		int count = 0;
+		int idx = 0;
 		
 		while (sum < n) {
-			if (idx >= nums.length || sum < nums[idx] - 1) {
+			int limit = idx >= nums.length ? n : Math.min(nums[idx] - 1, n); 
+			if (sum < limit) {
 				sum += sum + 1;
 				count ++;
-			}
-			else {
-				sum += nums[idx ++];
+			} else {
+				sum += idx >= nums.length ? sum + 1 : nums[idx ++];
 			}
 		}
+		
 		
 		return count;
     }
