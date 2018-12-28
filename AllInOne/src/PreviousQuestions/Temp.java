@@ -1,7 +1,5 @@
 package PreviousQuestions;
 
-import java.util.concurrent.CountDownLatch;
-
 /**
  * 
  * @author jingjiejiang Dec 27, 2018
@@ -17,22 +15,21 @@ public class Temp {
 	}
 	
 	public int minPatches(int[] nums, int n) {
-		long sum = 0;
 		int count = 0;
-		int idx = 0;
-		
-		while (sum < n) {
-			int limit = idx >= nums.length ? n : Math.min(nums[idx] - 1, n); 
-			if (sum < limit) {
-				sum += sum + 1;
-				count ++;
-			} else {
-				sum += idx >= nums.length ? sum + 1 : nums[idx ++];
-			}
-		}
-		
-		
-		return count;
+        long sum = 0;
+        int idx = 0;
+        
+        while (sum < n){
+        	int limit = idx < nums.length ? Math.min(nums[idx] - 1, n) : n;
+        	if (sum < limit) {
+        		sum += sum + 1;
+        		count ++;
+        	} else {
+        		sum += idx < nums.length ? nums[idx ++] : sum + 1;
+        	}
+        }
+        
+        return count;
     }
 	
 	public static void main(String[] args) {
