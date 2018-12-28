@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Dec 27, 2018
+ * @author jingjiejiang Dec 28, 2018
  *
  */
 public class Temp {
@@ -20,13 +20,21 @@ public class Temp {
         int idx = 0;
         
         while (sum < n){
-        	int limit = idx < nums.length ? Math.min(nums[idx] - 1, n) : n;
-        	if (sum < limit) {
+//        	int limit = idx < nums.length ? Math.min(nums[idx] - 1, n) : n;
+//        	if (sum < limit) {
+//        		sum += sum + 1;
+//        		count ++;
+//        	} else {
+//        		sum += idx < nums.length ? nums[idx ++] : sum + 1;
+//        	}
+        	
+        	if (idx >= nums.length || sum < nums[idx] - 1) {
         		sum += sum + 1;
         		count ++;
         	} else {
-        		sum += idx < nums.length ? nums[idx ++] : sum + 1;
+        		sum += nums[idx ++];
         	}
+        	
         }
         
         return count;
