@@ -31,7 +31,7 @@ public class Temp {
 			while (top > 0  && res[top - 1] < nums[idx] && top + nums.length - idx > target ) {
 				top --;
 			}
-			res[top ++] = nums[idx ++];
+			if(top < res.length) res[top ++] = nums[idx ++];
 		}
 	}
 	
