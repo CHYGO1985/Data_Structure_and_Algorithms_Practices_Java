@@ -14,31 +14,27 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public int minPatches(int[] nums, int n) {
-		int count = 0;
-        long sum = 0;
-        int idx = 0;
-        
-        while (sum < n){
-//        	int limit = idx < nums.length ? Math.min(nums[idx] - 1, n) : n;
-//        	if (sum < limit) {
-//        		sum += sum + 1;
-//        		count ++;
-//        	} else {
-//        		sum += idx < nums.length ? nums[idx ++] : sum + 1;
-//        	}
-        	
-        	if (idx >= nums.length || sum < nums[idx] - 1) {
-        		sum += sum + 1;
-        		count ++;
-        	} else {
-        		sum += nums[idx ++];
-        	}
-        	
-        }
-        
-        return count;
+	public int[] maxNumber(int[] nums1, int[] nums2, int k) {
+		// from 1 to nums1.len >= k? k : nums1.len
+		// get max from nums1 and nums2
+		// merge nums1 and nums2 to A
+		// compare A with pre max, keep the max one
     }
+	
+	public int[] getMaxNum(int[] nums, int target) {
+	
+		int[] res = new int[target];
+		int top = 0;
+		int idx = 0;
+		
+		while (idx < nums.length) {
+			while (top > 0  && res[top - 1] < nums[idx] && top + nums.length - idx > target ) {
+				top --;
+			}
+			res[top ++] = nums[idx ++];
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		int[] arr = new int[]{1,3,4,5,2};
