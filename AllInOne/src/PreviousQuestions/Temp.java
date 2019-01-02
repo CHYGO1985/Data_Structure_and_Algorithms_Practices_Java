@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Jan 01, 2019
+ * @author jingjiejiang Jan 02, 2019
  *
  */
 public class Temp {
@@ -22,7 +22,7 @@ public class Temp {
 		int limit = Math.min(nums1.length, k);
 		int[] max = new int[k];
 		
-		for (int len = Math.max(0, k - nums2.length); len < limit; len ++) {
+		for (int len = Math.max(0, k - nums2.length); len <= limit; len ++) {
 			
 			int[] res1 = getMaxNum(nums1, len);
 			int[] res2 = getMaxNum(nums2, k - len);
@@ -68,7 +68,8 @@ public class Temp {
 			while (top > 0  && res[top - 1] < nums[idx] && top + nums.length - idx > target ) {
 				top --;
 			}
-			if(top < res.length) res[top ++] = nums[idx ++];
+			if(top < res.length) res[top ++] = nums[idx];
+			idx ++;
 		}
 		
 		return res;
