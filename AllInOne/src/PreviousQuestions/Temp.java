@@ -18,9 +18,9 @@ public class Temp {
 	
 	public boolean isMatch(String s, String p) {
 		
-		if (s.length() == 0) {
-			return (p.length() == 0 || p.equals("*"))? true : false;
-		}
+//		if (s.length() == 0) {
+//			return (p.length() == 0 || p.equals("*"))? true : false;
+//		}
 		
 		boolean[][] dp = new boolean[p.length() + 1][s.length() + 1];
 		dp[0][0] = true;
