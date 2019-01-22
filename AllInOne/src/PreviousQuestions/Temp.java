@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Jan 22, 2019
+ * @author jingjiejiang Jan 23, 2019
  *
  */
 public class Temp {
@@ -16,33 +16,29 @@ public class Temp {
 	
 	public boolean isMatch(String s, String p) {
 		
-//		if (s.length() == 0) {
-//			return (p.length() == 0 || p.equals("*"))? true : false;
-//		}
+		boolean[][] matches = new boolean[p.length() + 1][s.length() + 1];
+		matches[0][0] = true;
+		for (int row = 1; row < matches.length; row ++) {
+			matches[row][0] = p.charAt(row - 1) == '*' ? 
+					matches[row - 1][0] : false;
+		}
 		
-		boolean[][] dp = new boolean[p.length() + 1][s.length() + 1];
-		dp[0][0] = true;
-        for (int row = 1; row < dp.length; row ++) {
-            if (p.charAt(row - 1) == '*') dp[row][0] = dp[row - 1][0];
-        }
-		
-		for (int row = 1; row < dp.length; row ++) {
-			
+		for (int row = 1; row < matches.length; row ++) {
 			char rowChar = p.charAt(row - 1);
-			for (int col = 1; col < dp[0].length; col ++) {
-				char colChar = s.charAt(col - 1); 
-				if (rowChar == '?' || rowChar == colChar) {
-					dp[row][col] = dp[row - 1][col - 1];
+			for (int col = 1; col < matches[0].length; col ++) {
+				char colChar = s.charAt(col - 1);
+				if (rowChar == colChar || rowChar == '?') {
+					matches[row][col] = matches[row - 1][col - 1];
 				} else if (rowChar == '*') {
-					dp[row][col] = dp[row][col - 1] || dp[row - 1][col - 1] 
-							|| dp[row - 1][col];
-				} else { // rowChar != colChar
-					dp[row][col] = false;
+					matches[row][col] = matches[row - 1][col] || matches[row - 1][col - 1]
+							|| matches[row][col - 1];
+				} else {
+					matches[row][col] = false;
 				}
 			}
 		}
 		
-		return dp[dp.length - 1][dp[0].length - 1];
+		return matches[p.length()][s.length()];
     }
 	
 	public static void main(String[] args) {
