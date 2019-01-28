@@ -7,18 +7,19 @@ package Array;
  */
 public class sortArrayByParityII {
 	public int[] sortArrayByParityII(int[] A) {
-		int start = 0, end = A.length - 1;
-        boolean conIsTrue = (start % 2 == 0 && A[start] % 2 == 0)
-    			|| (start % 2 != 0 && A[start] % 2 != 0);
-        while (start < end) {
+		int even = 0, odd = even + 1;
+
+		while (even < A.length && odd < A.length) {
         	
-        	while (start < A.length && conIsTrue) start ++;
-        	while (end >= 0 && conIsTrue) end --;
+        	while (even < A.length && A[even] % 2 == 0) even += 2;
+        	while (odd < A.length && A[odd] % 2 != 0) odd += 2;
         	
-        	if (start < end) {
-        		int tmp = A[start];
-        		A[start ++] = A[end];
-        		A[end --] = tmp;
+        	if (even < A.length && odd < A.length) {
+        		int tmp = A[even];
+        		A[even] = A[odd];
+        		A[odd] = tmp;
+        		even += 2;
+        		odd += 2;
         	}
         }
         
