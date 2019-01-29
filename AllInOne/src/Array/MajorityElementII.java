@@ -1,3 +1,4 @@
+package Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class MajorityElementII {
 
-public List<Integer> majorityElement(int[] nums) {
+	public List<Integer> majorityElement(int[] nums) {
         
         ArrayList<Integer> res = new ArrayList<Integer>();
         if (nums.length==0) return res;
