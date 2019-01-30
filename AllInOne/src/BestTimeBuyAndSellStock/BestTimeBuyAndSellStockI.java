@@ -2,7 +2,7 @@ package BestTimeBuyAndSellStock;
 
 /**
  * 
- * @author jingjiejiang created on Sep 2, 2018
+ * @author jingjiejiang created on Jan 30, 2019
  *
  */
 public class BestTimeBuyAndSellStockI {
