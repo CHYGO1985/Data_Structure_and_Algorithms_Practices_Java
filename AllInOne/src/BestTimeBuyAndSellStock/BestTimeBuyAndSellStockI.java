@@ -25,22 +25,37 @@ public class BestTimeBuyAndSellStockI {
 //    }
 	
 	// optimise with less spaces
-	public static int maxProfit(int[] prices) {
-		
-		if (prices == null || prices.length <= 1) return 0;
-		
-        int[][] profit = new int[2][2];
-        profit[0][0] = 0;
-        profit[0][1] = Integer.MIN_VALUE;
+//	public static int maxProfit(int[] prices) {
+//		
+//		if (prices == null || prices.length <= 1) return 0;
+//		
+//        int[][] profit = new int[2][2];
+//        profit[0][0] = 0;
+//        profit[0][1] = Integer.MIN_VALUE;
+//        
+//        for (int i = 0; i < prices.length; i++) {
+//			profit[(i + 1) % 2][0] = Math.max(profit[i % 2][0], profit[i % 2][1] + prices[i]);
+//			// here is the actuall control of just one transaction, just - prices[i]
+//			profit[(i + 1) % 2][1] = Math.max(profit[i % 2][1], - prices[i]);
+//		}
+//        
+//        return profit[prices.length % 2][0];		
+//	}
+	
+	public int maxProfit(int[] prices) {
         
-        for (int i = 0; i < prices.length; i++) {
-			profit[(i + 1) % 2][0] = Math.max(profit[i % 2][0], profit[i % 2][1] + prices[i]);
-			// here is the actuall control of just one transaction, just - prices[i]
-			profit[(i + 1) % 2][1] = Math.max(profit[i % 2][1], - prices[i]);
-		}
+		// 0: 0 stock in hand; 1: 1 stock in hand
+        int[][] profits = new int[2][2];
+        profits[0][0] = 0;
+        profits[0][1] = Integer.MIN_VALUE;
         
-        return profit[prices.length % 2][0];		
-	}
+        for (int idx = 0; idx < prices.length; idx ++) {
+        	profits[(idx + 1) % 2][0] = Math.max(profits[idx % 2][0], profits[idx % 2][1] + prices[idx]);
+        	profits[(idx + 1) % 2][1] = Math.max(profits[idx % 2][1], - prices[idx]);
+        }
+        
+        return profits[prices.length % 2][0];
+    }
 
 	// variable: buy/sell on day X
 	// con: only one trans
