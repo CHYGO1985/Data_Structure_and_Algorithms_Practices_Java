@@ -33,6 +33,13 @@ public class KClosestPointsToOrigin {
 		}
 	}
 	
+	// Java 8 quick solution
+	// https://leetcode.com/problems/k-closest-points-to-origin/discuss/220235/Java-Three-solutions-to-this-classical-K-th-problem.
+//	public int[][] kClosest(int[][] points, int K) {
+//	    Arrays.sort(points, (p1, p2) -> p1[0] * p1[0] + p1[1] * p1[1] - p2[0] * p2[0] - p2[1] * p2[1]);
+//	    return Arrays.copyOfRange(points, 0, K);
+//	}
+	
 	private int compare(int[][] points, int left, int right) {
 		return points[left][0] * points[left][0] + points[left][1] * points[left][1]
 				- points[right][0] * points[right][0] - points[right][1] * points[right][1];
