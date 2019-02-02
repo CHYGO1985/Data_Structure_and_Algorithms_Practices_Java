@@ -5,7 +5,7 @@ import java.util.Queue;
 
 /**
  * 
- * @author jingjiejiang Fen 2, 2019
+ * @author jingjiejiang Feb 2, 2019
  *
  */
 public class MovingAverage {
