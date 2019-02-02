@@ -39,7 +39,7 @@ public class BestTimeBuyAndSellStockI {
 //        return profits[prices.length % 2][0];
 //    }
 	
-	public int maxProfit(int[] prices) {
+	public static int maxProfit(int[] prices) {
         
 		int[][] profits = new int[2][2];
 		profits[0][0] = 0;

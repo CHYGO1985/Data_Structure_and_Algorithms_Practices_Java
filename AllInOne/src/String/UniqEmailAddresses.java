@@ -20,12 +20,4 @@ public class UniqEmailAddresses {
         
         return mails.size();
     }
-	
-	public static void main(String[] args) {
-//		int[] arr = new int[]{1,3,4,5,2};
-//		int[] nums1 = new int[] {3, 4, 6, 5};
-//		int[] nums2 = new int[] {9, 1, 2, 5, 8, 3};
-		System.out.println( 0 - (Integer.MIN_VALUE + 2));
-	}
-}
 }

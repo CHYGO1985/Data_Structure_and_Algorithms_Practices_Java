@@ -1,7 +1,5 @@
 package BestTimeBuyAndSellStock;
 
-import com.sun.tools.javac.tree.DCTree.DCIndex;
-
 /**
  * 
  * @author jingjiejiang created on Sep 3, 2018
@@ -23,7 +21,7 @@ public class BestTimeBuyAndSellStockII {
 //        return res[prices.length % 2][0];
 //    }
 	
-	public int maxProfit(int[] prices) {
+	public static int maxProfit(int[] prices) {
 		
 		int[][] profits = new int[2][2];
 		profits[0][0] = 0;
