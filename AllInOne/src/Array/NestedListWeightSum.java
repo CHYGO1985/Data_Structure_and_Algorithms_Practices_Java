@@ -2,8 +2,11 @@ package Array;
 
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
+/**
+ * 
+ * @author jingjiejiang Feb 2, 2019 solved
+ *
+ */
 interface NestedInteger {
 	public boolean isInteger();
 	public Integer getInteger();
