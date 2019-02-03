@@ -31,6 +31,7 @@ package LinkList;
  * @author jingjiejiang
  * @history
  * 1. Oct 22, 2017
+ * 2. Feb 3, 2019
  */
 public class ReverseLinkedList {
 	
