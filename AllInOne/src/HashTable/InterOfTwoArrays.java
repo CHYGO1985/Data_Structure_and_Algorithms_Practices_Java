@@ -1,4 +1,4 @@
-package Hash_Table;
+package HashTable;
 
 import java.util.HashSet;
 import java.util.Set;
