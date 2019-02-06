@@ -1,3 +1,4 @@
+package HashTable;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
