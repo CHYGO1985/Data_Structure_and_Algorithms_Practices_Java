@@ -1,13 +1,18 @@
 package HashTable;
+
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * 
+ * @author jingjiejiang Feb 6, 2019
+ *
+ */
 public class FirstUniqueCharacterInAString {
 
-	 public static int firstUniqChar(String s) {
+	public static int firstUniqChar(String s) {
 	        // * idea: finding matches --> hash table
 	        // 1. it is not possible to find a non-repeating char without iterate through all the chars in a string
 	        // --> store repeat information: hash table
@@ -48,15 +53,14 @@ public class FirstUniqueCharacterInAString {
 	        } 
 	        
 	        if (map.size() != 0) {
+	        	// get the first ele in the linkedhashmap that index is 0
 	            result = map.entrySet().iterator().next().getValue();
 	        }
 	        
 	        return result;
 	    }
-	 
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
-
 }
