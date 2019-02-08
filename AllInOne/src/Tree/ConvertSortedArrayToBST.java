@@ -1,3 +1,6 @@
+package Tree;
+
+import java.util.Arrays;
 
 /**
  * 
@@ -15,6 +18,7 @@
  * @author jingjiejiang
  * @history
  * 1. Oct 16, 2017
+ * 2. Feb 8, 2019 more concise code
  */
 public class ConvertSortedArrayToBST {
 	
@@ -29,6 +33,7 @@ public class ConvertSortedArrayToBST {
 		}
 	}	
 
+	/*
 	public TreeNode sortedArrayToBST(int[] nums) {
         // recursive
         
@@ -51,6 +56,22 @@ public class ConvertSortedArrayToBST {
         // go for root.right, range (mid + 1, end)
         root.right = buildBST(mid + 1, end, nums);
         
+        return root;
+    }
+	*/
+	
+	public TreeNode sortedArrayToBST(int[] nums) {
+        
+        if (nums.length == 0) return null;
+        
+        int mid = nums.length / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, mid));
+        if (mid + 1 < nums.length) {
+            root.right = sortedArrayToBST(
+                Arrays.copyOfRange(nums, mid + 1, nums.length));
+        }
+            
         return root;
     }
 }
