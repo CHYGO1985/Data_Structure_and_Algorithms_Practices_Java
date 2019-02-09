@@ -23,12 +23,11 @@ public class LowestComAncesOfBST {
 		
 		TreeNode left = lowestCommonAncestor(root.left, p, q);
 		TreeNode right = lowestCommonAncestor(root.right, p, q);
-		
-		if (root.val == p.val || root.val == q.val) {
+
+		if ((root.val == p.val || root.val == q.val) || (left != null && right != null)) {
 			return root;
 		} else {
-			return (left != null && right != null) ? root : 
-				(left == null ? right : left);
+			return left == null ? right : left;
 		}
 	}
 }
