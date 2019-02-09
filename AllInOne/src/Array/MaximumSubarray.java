@@ -1,11 +1,17 @@
+package Array;
 
+/**
+ * 
+ * @author jingjiejiang Feb 9, 2019
+ *
+ */
 public class MaximumSubarray {
 	
+	/*
 	public int maxSubArray(int[] nums) {
         // method 1: dp (check current sum very step)
         // ref: http://bangbingsyb.blogspot.com/2014/11/leetcode-maximum-subarray.html
         // result: 17ms, beat 33%, fastest is 14ms
-        /*
         if (null == nums || 0 == nums.length) {
             return Integer.MIN_VALUE;
         }
@@ -19,7 +25,6 @@ public class MaximumSubarray {
         }
         
         return max;
-        */
         
         if (null == nums || 0 == nums.length) {
             return Integer.MIN_VALUE;
@@ -65,10 +70,20 @@ public class MaximumSubarray {
         
         return Math.max(sum, Math.max(leftMax, rightMax));
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	*/
+	public int maxSubArray(int[] nums) {
+        
+        if (nums.length == 0) return 0;
+        
+        int sum = 0;
+        int max = nums[0];
+        
+        for (int idx = 0; idx < nums.length; idx ++) {
+            sum += nums[idx];
+            max = Math.max(sum, max);
+            if (sum < 0) sum = 0;
+        }
+        
+        return max;
+    }
 }
