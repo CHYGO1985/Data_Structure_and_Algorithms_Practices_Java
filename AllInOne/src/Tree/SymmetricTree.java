@@ -1,3 +1,4 @@
+package Tree;
 /**
  * 
  * 101. Symmetric Tree
@@ -9,6 +10,7 @@
  * @author jingjiejiang
  * @history
  * 1. Oct 17, 2017
+ * 2. Feb 9, 2019
  */
 public class SymmetricTree {
 	
@@ -19,6 +21,7 @@ public class SymmetricTree {
 		TreeNode(int x) { val = x; }
     }
 
+	/*
 	public boolean isSymmetric(TreeNode root) {
         
         if (null == root)
@@ -40,4 +43,22 @@ public class SymmetricTree {
         
         return checkSymmetric(root1.left, root2.right) & checkSymmetric(root1.right, root2.left);
     }
+	*/
+	
+	public boolean isSymmetric(TreeNode root) {
+        
+		if (root == null) return true;
+		
+		return checkSym(root.left, root.right);
+    }
+    
+    private boolean checkSym(TreeNode left, TreeNode right) {
+        
+        if (left == null && right == null) return true;
+        else if ((left == null && right != null) || (left != null && right == null)) return false;
+        else if (left.val != right.val) return false;
+        
+        return checkSym(left.left, right.right) && checkSym(left.right, right.left);
+    }
+	
 }
