@@ -1,3 +1,4 @@
+package Tree;
 
 /**
  * 
@@ -9,6 +10,7 @@
  * @author jingjiejiang
  * @history
  * 1. Oct 18, 2017
+ * 2. Feb 10, 2019
  */
 public class SubtreeOfAnotherTree {
 	
@@ -23,6 +25,7 @@ public class SubtreeOfAnotherTree {
 		}
 	}
 
+	/*
 	public boolean isSubtree(TreeNode s, TreeNode t) {
         
         if (s == null || t == null) 
@@ -55,4 +58,31 @@ public class SubtreeOfAnotherTree {
         return root1.val == root2.val & checkSubTree(root1.left, root2.left)
             & checkSubTree(root1.right, root2.right);
     }
+	*/
+	
+	public boolean isSubtree(TreeNode s, TreeNode t) {
+
+        if (s == null && t == null) return true;
+		if ((s == null && t != null) || (t == null && s != null)) {
+			return false;
+		}
+        
+        if (s.val == t.val) {
+        	if (checkSubtree(s.left, t.left) && checkSubtree(s.right, t.right)) {
+        		return true;
+        	}
+        }
+        
+        return isSubtree(s.left, t) || isSubtree(s.right, t);
+    }
+    
+    private boolean checkSubtree(TreeNode s, TreeNode t) {
+		
+		if (s == null && t == null) return true;
+		if ((s == null && t != null) || (t == null && s != null) || s.val != t.val) {
+			return false;
+		}
+		
+		return checkSubtree(s.left, t.left) && isSubtree(s.right, t.right);
+	}
 }
