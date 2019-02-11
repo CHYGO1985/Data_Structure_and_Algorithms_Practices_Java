@@ -14,7 +14,7 @@ package Graph;
  */
 public class MaxAreaOfIsland {
 	
-private int[][] dirs = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+	private int[][] dirs = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
     public int maxAreaOfIsland(int[][] grid) {
         
