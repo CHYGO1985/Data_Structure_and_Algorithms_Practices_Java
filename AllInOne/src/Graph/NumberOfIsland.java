@@ -1,111 +1,42 @@
 package Graph;
 
+/**
+ * 
+ * @author jingjiejiang Feb 11, 2019
+ *
+ */
 public class NumberOfIsland {
 	
-	// DFS search for islands
-    public static void searchIsland(char[][] grid, boolean[][] isVisited, int row, int col) {
+	private int[][] dirs = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+    public int numIslands(char[][] grid) {
         
-        if (true == isVisited[row][col] || '0' == grid[row][col]) {
-            
-            return ;
+        int count = 0;
+        if (grid == null || grid.length == 0) return count;
+        
+        for (int row = 0; row < grid.length; row ++) {
+            for (int col = 0; col < grid[0].length; col ++) {
+                count += dfs(grid, row, col);
+            }
         }
-        else {
-            
-            isVisited[row][col] = true;
-            
-            // search up direction, i - 1, j
-            if (row - 1 >= 0) {
-                
-                searchIsland(grid, isVisited, row - 1, col);
-            }
-            
-            // search left direction i, j - 1
-            if (col - 1 >= 0) {
-                
-                searchIsland(grid, isVisited, row, col - 1);
-            }
-            
-            // search down direction, i + 1, j
-            if (row + 1 < grid.length) {
-                
-                searchIsland(grid, isVisited, row + 1, col);
-            }
-            
-            // search rigth direction, i, j + 1
-            if (col + 1 < grid[0].length) {
-                
-                searchIsland(grid, isVisited, row, col + 1);
-            }
-            
-            return ;  
-        }
+        
+        return count;
     }
     
-    public static int numIslands(char[][] grid) {
-        // idea: DFS
-        // 1) every cell: up, down, left and right
-        // 2) if cur point is "1" && "unvisited", go to next recursive loop, else "visited" or "0", return directly
-        // 3) how to count? (the last avail "1") --> original idea is to return points, at the end figure out I do need to 
-        // return anything, cause for every dfs, the connected island cells will be marked as visited
-        // 4) trick: the dfs method can only return an int num to store both row and col num, need to use bit manipulation
-        // result: 5ms. beat 32%, fastest is 2ms
+    private int dfs(char[][] grid, int row, int col) {
         
-        
-        // use a boolean[][] to represent the visiting status of a cell
-        
-        if (null == grid) {
+        if (row < 0 || row >= grid.length || col < 0 
+            || col >= grid[0].length || grid[row][col] == '0'
+            || grid[row][col] == '#') {
             return 0;
         }
         
-        if (0 == grid.length || 0 == grid[0].length) {
-            return 0;
+        grid[row][col] = '#';
+        for (int[] dir : dirs) {
+            dfs(grid, row + dir[0], col + dir[1]);
         }
         
-        int length = grid.length;
-        int wide = grid[0].length;
+        return 1;
         
-        int island = 0;
-        
-        boolean[][] isVisited = new boolean[length][wide];
-        
-        // init all as unvisted
-        for (int i = 0; i < length; i++) { 
-            for (int j = 0; j < wide; j ++) {
-                isVisited[i][j] = false;
-            }
-        }
-        
-        // from cell to cell in grids search islands, skip visited and '0'
-        for (int i = 0; i < length; i ++) {
-            for (int j = 0; j < wide; j ++) {
-                
-                if ('1' == grid[i][j] && false == isVisited[i][j]) {
-                    
-                    searchIsland(grid, isVisited, i, j);
-                    island ++;
-                }
-            }
-        }
-        
-        return island;
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String aString = "11110"; 
-		char[] a = aString.toCharArray();
-		aString = "11010";
-		char[] b = aString.toCharArray();
-		aString = "11000";
-		char[] c = aString.toCharArray();
-		aString = "00000";
-		char[] d = aString.toCharArray();
-		
-		char[][] grid = {a, b, c, d};
-		
-		int i = numIslands(grid);
-		
-		System.out.print(i);
-	}
-
 }
