@@ -17,12 +17,12 @@ public class LinkedListCycle {
         
 		if (head == null || head.next == null) return false;
 		
-		ListNode fast = head.next.next;
+		ListNode fast = head;
 		while (head != null && fast != null && fast.next != null) {
-			if (fast == head) return true;
 			
 			head = head.next;
 			fast = fast.next.next;
+			if (fast == head) return true;
 		}
 		
 		return false;
