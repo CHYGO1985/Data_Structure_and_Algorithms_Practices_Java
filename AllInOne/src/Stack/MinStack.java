@@ -1,7 +1,5 @@
 package Stack;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
@@ -57,21 +55,6 @@ public class MinStack {
     	
     	if (numsStack.isEmpty() == true) return -1;
         
-    	int minNum = ascQueue.poll();
-    	Stack<Integer> tmpStack = new Stack<Integer>();
-    	while (numsStack.isEmpty() == false) {
-    		int tmpNum = numsStack.pop();
-    		if (minNum == tmpNum) {
-    			break;
-    		} else {
-    			tmpStack.push(tmpNum);
-    		}
-    	}
-    	
-    	while (tmpStack.isEmpty() == false) {
-    		numsStack.push(tmpStack.pop());
-    	}
-    	
-    	return minNum;
+    	return ascQueue.peek();
     }
 }
