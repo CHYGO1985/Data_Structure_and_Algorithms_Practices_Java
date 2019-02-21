@@ -1,0 +1,77 @@
+package Stack;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
+
+/**
+ * 
+ * @author jingjiejiang Feb 21, 2018
+ *
+ */
+public class MinStack {
+	
+	private Stack<Integer> numsStack;
+	private Queue<Integer> ascQueue;
+	
+	/** initialize your data structure here. */
+    public MinStack() {
+        numsStack = new Stack<>();
+        ascQueue = new PriorityQueue<>();
+    }
+    
+    public void push(int x) {
+        numsStack.push(x);
+        ascQueue.offer(x);
+    }
+    
+    public void pop() {
+    	
+    	if (numsStack.isEmpty() == true) return ;
+        
+    	int popNum = numsStack.pop();
+    	Stack<Integer> tmpStack = new Stack<Integer>();
+    	while (ascQueue.isEmpty() == false) {
+    		int tmpNum = ascQueue.poll();
+    		if (popNum == tmpNum) {
+    			break;
+    		} else {
+    			tmpStack.push(tmpNum);
+    		}
+    	}
+    	
+    	while (tmpStack.isEmpty() == false) {
+    		ascQueue.offer(tmpStack.pop());
+    	}
+    }
+    
+    public int top() {
+    	
+    	if (numsStack.isEmpty() == true) return -1;
+        return numsStack.peek();
+    }
+    
+    public int getMin() {
+    	
+    	if (numsStack.isEmpty() == true) return -1;
+        
+    	int minNum = ascQueue.poll();
+    	Stack<Integer> tmpStack = new Stack<Integer>();
+    	while (numsStack.isEmpty() == false) {
+    		int tmpNum = numsStack.pop();
+    		if (minNum == tmpNum) {
+    			break;
+    		} else {
+    			tmpStack.push(tmpNum);
+    		}
+    	}
+    	
+    	while (tmpStack.isEmpty() == false) {
+    		numsStack.push(tmpStack.pop());
+    	}
+    	
+    	return minNum;
+    }
+}
