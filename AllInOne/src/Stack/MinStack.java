@@ -7,7 +7,9 @@ import java.util.Stack;
 /**
  * 
  * @author jingjiejiang Feb 21, 2018
- *
+ * 
+ * add the infor of next min num
+ * https://leetcode.com/problems/min-stack/discuss/49014/Java-accepted-solution-using-one-stack
  */
 public class MinStack {
 	
