@@ -1,3 +1,4 @@
+package LinkList;
 /*
  * Question
  Remove all elements from a linked list of integers that have value val.
@@ -15,6 +16,7 @@ Return: 1 --> 2 --> 3 --> 4 --> 5
  * @author jingjiejiang
  * @history
  * 1. Oct 22, 2017
+ * 2. Feb 22, 2019
  */
 public class RemoveLinkedListElements {
 	
@@ -25,26 +27,23 @@ public class RemoveLinkedListElements {
 	}
 	
 	public ListNode removeElements(ListNode head, int val) {
-        // skip leading nodes that has val
-        while (head != null && head.val == val) 
-            head = head.next;
         
-        // get a new head, if all nodes matches val, then newHead = null
+        if (head == null) return null;
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+        
         ListNode newHead = head;
         
-        ListNode curAvail = newHead;
-        ListNode shift = newHead;
-        
-        while (shift != null) {
+        while (head != null) {
             
-            shift = shift.next;
-            
-            while(shift != null && shift.val == val)
-                shift = shift.next;
+            while (head.next != null && head.next.val == val) {
+                head.next = head.next.next;
                 
-            curAvail.next = shift;
-            curAvail = shift;
-        } 
+            }
+            
+            head = head.next;
+        }
         
         return newHead;
     }
