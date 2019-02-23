@@ -16,7 +16,7 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-public static int calPoints(String[] ops) {
+	public static int calPoints(String[] ops) {
         
 		Stack<Integer> stack = new Stack<>();
 		int sum = 0;
