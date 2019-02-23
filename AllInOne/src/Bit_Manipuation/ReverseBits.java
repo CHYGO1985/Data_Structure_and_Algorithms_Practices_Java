@@ -60,7 +60,7 @@ public class ReverseBits {
             reverse += temp;
             System.out.println(i + " ***** " + Integer.toBinaryString(reverse));
         }
-        
+        return reverse;
 //        int temp = n;
 //        for (int i = 0; i < 32; i ++) {
 //        	temp >>>= 1;
@@ -75,8 +75,6 @@ public class ReverseBits {
 //            temp = (temp >>> 31) << i;
 //            System.out.println("XXXX " + Integer.toBinaryString(temp));
 //        }
-        
-        return reverse;
     }
 	
 	public static void main(String[] args) {
