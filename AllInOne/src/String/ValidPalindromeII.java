@@ -1,3 +1,4 @@
+package String;
 
 /**
  * 680. Valid Palindrome II
@@ -55,12 +56,12 @@ public class ValidPalindromeII {
     */
 	
 	// 7 lines solution
-	public boolean validPalindrome(String s) {
+	public static boolean validPalindrome(String s) {
         
-        return isValid(s, -1, s.length(), 0);
+        return isValid(s.toLowerCase(), -1, s.length(), 0);
     }
     
-    private boolean isValid(String s, int left, int right, int count) {
+    private static boolean isValid(String s, int left, int right, int count) {
         
         while ( ++ left <= -- right) 
         	if (s.charAt(left) != s.charAt(right)) {
@@ -69,5 +70,9 @@ public class ValidPalindromeII {
             }
         
         return true;
+    }
+    
+    public static void main(String[] args) {
+    	System.out.println(validPalindrome("A man, a plan, a canal: Panama"));
     }
 }
