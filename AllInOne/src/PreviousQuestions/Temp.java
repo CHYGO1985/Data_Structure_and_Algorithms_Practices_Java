@@ -1,7 +1,5 @@
 package PreviousQuestions;
 
-import java.util.Stack;
-
 /**
  * 
  * @author jingjiejiang Feb 16, 2019
@@ -16,41 +14,25 @@ public class Temp {
 		Interval(int s, int e) { start = s; end = e; }
 	}
 	
-	public static int calPoints(String[] ops) {
-        
-		Stack<Integer> stack = new Stack<>();
-		int sum = 0;
+	public int maxProfit(int[] prices) {
+        // order, count, 0:sell/1:buy
+		int[][][] profit = new int[2][3][2];
+		profit[0][0][0] = 0;
+		profit[0][0][1] = profit[0][1][1] = profit[0][2][1] = Integer.MIN_VALUE;
 		
-		for (int idx = 0; idx < ops.length; idx ++) {
+		for (int idx = 0; idx < prices.length; idx ++) {
+			profit[(idx + 1) % 2][1][0] = Math.max(profit[idx % 2][1][0], profit[idx % 2][1][1] + prices[idx]);
+			// only can buy when last time has been sold
+			profit[(idx + 1) % 2][1][1] = Math.max(profit[idx % 2][1][1], profit[idx % 2][0][0] - prices[idx]);
+			profit[(idx + 1) % 2][2][0] = Math.max(profit[idx % 2][2][0], profit[idx % 2][2][1] + prices[idx]);
+			profit[(idx + 1) % 2][2][1] = Math.max(profit[idx % 2][2][1], profit[idx % 2][1][0] - prices[idx]);
 			
-			char curChar = ops[idx].charAt(0);
-		
-			switch (curChar) {
-			case 'D':
-				int curVal = stack.peek() * 2;
-				sum += curVal;
-				stack.push(curVal);
-				break;
-			case 'C':
-				sum -= stack.pop();
-				break;
-			case '+':
-				int tmp = stack.pop() + stack.peek();
-				sum += tmp;
-				stack.push(tmp);
-				break;
-			default: // numbers
-				int val = Integer.valueOf(ops[idx]);
-				sum += val;
-				stack.push(val);
-				break;
-			}
 		}
 		
-		return sum;
-	}
+		return Math.max(0, Math.max(profit[prices.length % 2][1][0], profit[prices.length % 2][2][0]));
+    }
 	
 	public static void main(String[] args) {
-		calPoints(new String[]{"5","-2","4","C","D","9","+","+"});
+//		calPoints(new String[]{"5","-2","4","C","D","9","+","+"});
 	}
 }
