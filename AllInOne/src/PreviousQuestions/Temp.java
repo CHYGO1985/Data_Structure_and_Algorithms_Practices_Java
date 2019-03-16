@@ -2,7 +2,7 @@ package PreviousQuestions;
 
 /**
  * 
- * @author jingjiejiang Mar 14, 2019
+ * @author jingjiejiang Mar 16, 2019
  *
  */
 public class Temp {
@@ -16,20 +16,18 @@ public class Temp {
 	
 	public int maxProfit(int[] prices) {
         // order, count, 0:sell/1:buy
-		int[][][] profit = new int[2][3][2];
-		profit[0][0][0] = 0;
-		profit[0][0][1] = profit[0][1][1] = profit[0][2][1] = Integer.MIN_VALUE;
+		int[][][] profits = new int[2][3][2];
+		profits[0][0][0] = 0;
+		profits[0][0][1] = profits[0][1][1] = profits[0][2][1] = Integer.MIN_VALUE;
 		
 		for (int idx = 0; idx < prices.length; idx ++) {
-			profit[(idx + 1) % 2][1][0] = Math.max(profit[idx % 2][1][0], profit[idx % 2][1][1] + prices[idx]);
-			// only can buy when last time has been sold
-			profit[(idx + 1) % 2][1][1] = Math.max(profit[idx % 2][1][1], profit[idx % 2][0][0] - prices[idx]);
-			profit[(idx + 1) % 2][2][0] = Math.max(profit[idx % 2][2][0], profit[idx % 2][2][1] + prices[idx]);
-			profit[(idx + 1) % 2][2][1] = Math.max(profit[idx % 2][2][1], profit[idx % 2][1][0] - prices[idx]);
-			
+			profits[(idx + 1) % 2][1][0] = Math.max(profits[idx % 2][1][0], profits[idx % 2][1][1] + prices[idx]);
+			profits[(idx + 1) % 2][1][1] = Math.max(profits[idx % 2][1][1], profits[idx % 2][0][0] - prices[idx]);
+			profits[(idx + 1) % 2][2][0] = Math.max(profits[idx % 2][2][0], profits[idx % 2][2][1] + prices[idx]);
+			profits[(idx + 1) % 2][2][1] = Math.max(profits[idx % 2][2][1], profits[idx % 2][1][0] - prices[idx]);
 		}
 		
-		return Math.max(0, Math.max(profit[prices.length % 2][1][0], profit[prices.length % 2][2][0]));
+		return Math.max(0, Math.max(profits[prices.length % 2][1][0], profits[prices.length % 2][2][0]));
     }
 	
 	public static void main(String[] args) {
