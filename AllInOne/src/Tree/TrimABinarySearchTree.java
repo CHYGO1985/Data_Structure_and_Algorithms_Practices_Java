@@ -53,9 +53,9 @@ public class TrimABinarySearchTree {
         if (root == null) return null;
         
         if (root.val < L) {
-        	trimBST(root.right, L, R);
+        	return trimBST(root.right, L, R);
         } else if (root.val > R) {
-        	trimBST(root.left, L, R);
+        	return trimBST(root.left, L, R);
         }
         
         root.left = trimBST(root.left, L, R);
