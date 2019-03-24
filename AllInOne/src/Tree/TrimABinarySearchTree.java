@@ -25,6 +25,7 @@ public class TrimABinarySearchTree {
 		}
 	}
 
+	/*
 	public TreeNode trimBST(TreeNode root, int L, int R) {
         
         return trim(root, L, R);
@@ -45,5 +46,21 @@ public class TrimABinarySearchTree {
         
         return (root.val >= L && root.val <= R) ? root : (root.left == null ? root.right : root.left);
     }
-
+	*/
+	
+	public TreeNode TrimBST(TreeNode root, int L, int R) {
+        
+		if (root == null) return null;
+        
+        if (root.val < L) {
+        	return TrimBST(root.right, L, R);
+        } else if (root.val > R) {
+        	return TrimBST(root.left, L, R);
+        }
+        
+        root.left = TrimBST(root.left, L, R);
+        root.right = TrimBST(root.right, L, R);
+        
+        return root;
+    }
 }
