@@ -1,6 +1,5 @@
 import javax.swing.text.AbstractDocument.LeafElement;
 
-
 public class AddTwoNumbers {
 	
 	public static class ListNode {

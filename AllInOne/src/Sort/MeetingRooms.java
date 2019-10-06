@@ -1,10 +1,12 @@
 package Sort;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
+/**
+ * 
+ * @author jingjiejiang Feb 4 ,2019
+ *
+ */
 public class MeetingRooms {
 	
 	public class Interval {
@@ -13,29 +15,22 @@ public class MeetingRooms {
 		Interval() { start = 0; end = 0; }
 		Interval(int s, int e) { start = s; end = e; }
 	}
-	
-	public static boolean canAttendMeetings(Interval[] intervals) {
-        List<Interval> list = Arrays.asList(intervals);
-        boolean res = true;
-        
-        Collections.sort(list, new Comparator<Interval>() {
-        	@Override
-        	public int compare(Interval a, Interval b) {
-        		return (a.start != b.start) ? (a.start - b.start) : (a.end - b.end);
-        	}
-		});
-        
-        for(int i = 1; i < list.size(); i ++) {
-        	Interval preInter = list.get(i - 1);
-        	int curStart = list.get(i).start;
-        	if (curStart < preInter.end) res = false;
-        }
-        
-        return res;
-    }
 
-	public static void main(String[] args) {
+	public boolean canAttendMeetings(Interval[] intervals) {
 		
-	}
-
+		boolean canAttendAll = true;
+		
+		Arrays.sort(intervals, (inter1, inter2) -> {
+			return inter1.start == inter2.start? inter1.end - inter2.end
+					: inter1.start - inter2.start;
+		});
+		
+		for (int idx = 1; idx < intervals.length; idx ++) {
+			if (intervals[idx].start < intervals[idx - 1].end) {
+				canAttendAll = false;
+			}
+		}
+		
+		return canAttendAll;
+    }
 }
