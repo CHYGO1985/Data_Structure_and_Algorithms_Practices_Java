@@ -42,7 +42,7 @@ import sun.text.normalizer.Trie;
     // }
 // }
 
-//ref: https://leetcode.com/problems/search-suggestions-system/discuss/440527/Java-TreeSet-Short-Solution-!!!
+//ref: //leetcode.com/problems/search-suggestions-system/discuss/440527/Java-TreeSet-Short-Solution-!!!
 class Solution {
     public List<List<String>> suggestedProducts(String[] products, String searchWord) {
 
