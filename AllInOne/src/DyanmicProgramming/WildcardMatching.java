@@ -36,5 +36,7 @@ public class WildcardMatching {
                 }
             }
         }
+
+        return dp[p.length()][s.length()];
     }
 }
