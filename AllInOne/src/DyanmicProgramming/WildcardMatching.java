@@ -8,6 +8,7 @@ package DyanmicProgramming;
  */
 public class WildcardMatching {
 
+    // DP:two demensional
 	public boolean isMatch(String s, String p) {
         
         if (s == null) return false;
@@ -36,6 +37,4 @@ public class WildcardMatching {
             }
         }
         
-        return dp[p.length()][s.length()];
-    }
 }
