@@ -43,5 +43,7 @@ public class LongestPalindromicSubstring {
     //     return s.substring(maxPalinStartPos, maxPalinStartPos + maxPalinLen);
     //   }
 
-
+    public String longestPalindrome(String s) {
+        
+    }
 }
