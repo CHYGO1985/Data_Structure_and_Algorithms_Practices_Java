@@ -13,6 +13,7 @@ class Solution {
     for (int i = n - 2; i >= 0; i--) piles[i] += piles[i+1];
     
     if (n <= 2) return piles[0];
+    // (n+1)/2+1: assume size = 5 [2 7 9 4 4], then max m should be 4
     int[][] dp = new int[n][(n+1)/2+1];
 
     for (int i = n-1; i >= 0; i--) {
