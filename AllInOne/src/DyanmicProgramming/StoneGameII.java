@@ -19,7 +19,7 @@ class Solution {
     for (int i = n-1; i >= 0; i--) {
 
         int sum = piles[i];
-        // coz the choice is 2m
+        // coz the choice is 2m, not need to +1 here
         int m = (n-i+1)/2;
         dp[i][m] = sum;
         
