@@ -21,8 +21,10 @@ class Solution {
         int sum = piles[i];
         // coz the choice is 2m, not need to +1 here
         int m = (n-i+1)/2;
+        // dp[i][m] is the sum for the rest of the piles start from i
         dp[i][m] = sum;
         
+        // as dp[i][m]'s value is known, so we check (m-1 ~ 0)
         while (--m > 0) {
             dp[i][m] = 0;
             for (int x = 1; x <= m * 2 && i+x < n; x++) {
