@@ -1,12 +1,14 @@
 /**
  * 
- * 123. Best Time to Buy and Sell Stock III
+ * 123. Best Time to Buy and Sell Stock III 
  * 
  * @author jingjiejiang
  * @history Sep 16, 2020
  * 
  */
 class Solution {
+
+  // revised DP solution
   public int maxProfit(int[] prices) {
 
     int[][][] dp = new int[2][3][2];
