@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 /**
  * 
+ * 300. Longest Increasing Subsequence
+ * 
  * @author jingjiejiang
  * @hitory Aug 29, 2020
  */
@@ -9,7 +11,6 @@ class Solution {
 
   // method1: binary search method
   // public int lengthOfLIS(int[] nums) {
-  //      // method 1: dp
   //      int[] dp = new int[nums.length];
   //      int len = 0;
 
