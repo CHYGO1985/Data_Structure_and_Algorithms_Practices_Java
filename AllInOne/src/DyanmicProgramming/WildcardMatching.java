@@ -19,6 +19,7 @@ public class WildcardMatching {
         dp[0][0] = true;
         
         for (int row = 1; row <= p.length(); row ++) {
+            // this rule
             dp[row][0] = p.charAt(row - 1) == '*'? dp[row - 1][0] : false; 
         }
         
