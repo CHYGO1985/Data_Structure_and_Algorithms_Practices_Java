@@ -27,7 +27,8 @@ class Solution {
         // as dp[i][m]'s value is known, so we check (m-1 ~ 0)
         while (--m > 0) {
             dp[i][m] = 0;
-            for (int x = 1; x <= m * 2 && i+x < n; x++) {
+            for (int x = 1; x <= m * 2 && i + x < n; x++) {
+               // Math.min is an important step
                 int mx = Math.min((n-i-x+1)/2, Math.max(x, m));
                 dp[i][m] = Math.max(dp[i][m], sum - dp[i+x][mx]);
             }
