@@ -4,6 +4,9 @@
  * 
  * @CHYGO1985
  * @history Oct 3, 2020
+ * 
+ * ref: https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/discuss/531822/Java-Post-Order-Traverse-with-Comment-Clean-code
+ * 
  */
 /**
  * Definition for a binary tree node.
