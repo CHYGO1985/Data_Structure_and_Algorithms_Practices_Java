@@ -16,7 +16,7 @@ class Solution {
         if (digits == null || digits.length == 0) return "";
 
         Arrays.sort(digits);
-        // 0: num%3 = 0; 1: num%1 = 1, num%2 = 2
+        // 0: num%3 = 0; 1: num%3 = 1, num%3 = 2
         String[] dp = new String[]{"", "", ""};
         int[] len = new int[3];
 
