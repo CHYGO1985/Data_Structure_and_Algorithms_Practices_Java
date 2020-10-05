@@ -48,13 +48,6 @@ class Solution {
 
         if (dp[0].isEmpty()) return "";
 
-        // check if "00000"
-        int count = 0;
-        for (char curChar : dp[0].toCharArray()) {
-            if (curChar == '0') count ++;
-            else break;
-        }
-
-        return count == dp[0].length() ? "0" : dp[0];
+        return '0' == dp[0].charAt(0) ? "0" : dp[0];
     }
 }
