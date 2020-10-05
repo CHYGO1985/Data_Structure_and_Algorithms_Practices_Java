@@ -1,3 +1,5 @@
+import Tree.DistributeCoinsInBinaryTree.TreeNode;
+
 /**
  * 
  * 1373. Maximum Sum BST in Binary Tree
@@ -40,7 +42,7 @@ class Solution {
 
         // 0: val 1: min 2: max
         // val = null(invalid BST);
-        if (root == null) return new Integer[]{0, Integer.MIN_VALUE, Integer.MAX_VALUE};
+        if (root == null) return new Integer[]{0, Integer.MAX_VALUE, Integer.MIN_VALUE};
 
         Integer[] leftSum = sum(root.left);
         Integer[] rightSum = sum(root.right);
@@ -52,8 +54,8 @@ class Solution {
         int sum = leftSum[0] + rightSum[0] + root.val;
         max = Math.max(max, sum);
         // 
-        int min = Math.min(leftSum[0], rightSum[0]);
-        int max = Math.max(leftSum[0], rightSum[0]);
+        int min = Math.min(root.val, leftSum[1]);
+        int max = Math.max(root.val, rightSum[2]);
 
         return new Integer[]{sum, min, max};
     }
