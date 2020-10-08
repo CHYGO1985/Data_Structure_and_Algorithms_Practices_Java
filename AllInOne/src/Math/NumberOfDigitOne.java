@@ -5,9 +5,11 @@
  * @CHYGO1985
  * @history Oct 8, 2020
  * 
+ * ref: https://leetcode.com/problems/number-of-digit-one/solution/
+ * 
  */
 class Solution {
-    public int countDigitOne(int n) {
+    public int countDigitOne(int n) {233. Number of Digit One
         
         int count = 0;
         
