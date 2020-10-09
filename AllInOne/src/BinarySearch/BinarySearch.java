@@ -33,7 +33,6 @@ class Solution {
     //     return -1;
     // }
 
-
     // optimize 
     public int search(int[] nums, int target) {
     
