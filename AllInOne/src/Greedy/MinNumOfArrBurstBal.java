@@ -47,24 +47,27 @@ public class MinNumOfArrBurstBal {
 	class Solution {
 		public int findMinArrowShots(int[][] points) {
 			
-			if (points == null || points.length == 0) return 0;
-
-			Arrays.sort(points, (a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
-
-			int arrows = 1;
-			int[] pre = points[0];
-
-			for (int idx = 1; idx < points.length; idx ++) {
-
-				if (points[idx][0] <= pre[1]) {
-					pre[1] = Math.min(points[idx][1], pre[1]);
-				} else {
-					arrows ++;
-					pre = points[idx];
+			public int findMinArrowShots(int[][] points) {
+        
+				if (points == null || points.length == 0) return 0;
+		
+				Arrays.sort(points, (a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));
+		
+				int arrows = 1;
+				int[] pre = points[0];
+		
+				for (int idx = 1; idx < points.length; idx ++) {
+		
+					if (points[idx][0] <= pre[1]) {
+						pre[1] = Math.min(points[idx][1], pre[1]);
+					} else {
+						arrows ++;
+						pre = points[idx];
+					}
 				}
+		
+				return arrows;
 			}
-
-			return arrows;
 		}
 	}
 }
