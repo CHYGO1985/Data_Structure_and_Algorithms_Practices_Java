@@ -37,21 +37,18 @@ public class HouseRobber {
     //     return dp[0];
     // }
 
+    // DP from left to right also work
     public int rob(int[] nums) {
 		
-        if (nums == null || nums.length == 0) return 0;
+        int numSize = nums.length;
+        int[] dp = new int[numSize + 2];
+        Arrays.fill(dp, 0);
 
-        int dpIdx2 = 0;
-        int dpIdx1 = 0;
-        int dpIdx0 = 0; 
+        for (int idx = 2; idx < numSize + 2; idx ++) {
 
-        for (int idx = nums.length - 1; idx >= 0; idx --) {
-
-            dpIdx0 = Math.max(dpIdx1, nums[idx] + dpIdx2);
-            dpIdx2 = dpIdx1;
-            dpIdx1 = dpIdx0;
+            dp[idx] = Math.max(dp[idx - 1], nums[idx - 2] + dp[idx - 2]);
         }
-        
-        return dpIdx0;
+
+        return dp[numSize + 1];
     }
 }
