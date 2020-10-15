@@ -58,31 +58,30 @@ public class MeetingRoomsII {
 
 	public int minMeetingRooms(int[][] intervals) {
         
-        if (intervals == null || intervals.length == 0) return 0;
+      if (intervals == null || intervals.length == 0) return 0;
 			
-		int[] starts = new int[intervals.length];
-		int[] ends = new int[intervals.length];
+      int[] starts = new int[intervals.length];
+      int[] ends = new int[intervals.length];
 
-		for (int idx = 0; idx < intervals.length; idx ++) {
-			starts[idx] = intervals[idx][0];
-			ends[idx] = intervals[idx][1];
-		}	
+      for (int idx = 0; idx < intervals.length; idx ++) {
+        starts[idx] = intervals[idx][0];
+        ends[idx] = intervals[idx][1];
+      }	
 
-		Arrays.sort(starts);
-		Arrays.sort(ends);
+      Arrays.sort(starts);
+      Arrays.sort(ends);
 
-		int rooms = 0;
-		int endIdx = 0;
+      int rooms = 0;
+      int endIdx = 0;
 
-		for (int idx = 0; idx < intervals.length; idx ++) {
-			if (starts[idx] < ends[endIdx]) {
-				rooms ++;
-			} else {
-				endIdx ++;
-			}
-		}
+      for (int idx = 0; idx < intervals.length; idx ++) {
+        if (starts[idx] < ends[endIdx]) {
+          rooms ++;
+        } else {
+          endIdx ++;
+        }
+      }
 
-		return rooms;
+      return rooms;
     }
-
 }
