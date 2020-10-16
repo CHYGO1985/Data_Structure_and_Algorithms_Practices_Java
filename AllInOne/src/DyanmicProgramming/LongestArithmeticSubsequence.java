@@ -12,23 +12,43 @@ import java.util.HashMap;
  * 
  */
 class Solution {
-    public int longestArithSeqLength(int[] A) {
+    // DP with hashmap array
+    // public int longestArithSeqLength(int[] A) {
 
-        int count = 2;
-        int len = A.length;
-        HashMap<Integer, Integer>[] dp = new HashMap[len];
+    //     int count = 2;
+    //     int len = A.length;
+    //     HashMap<Integer, Integer>[] dp = new HashMap[len];
+
+    //     for (int idx = 0; idx < A.length; idx ++) {
+
+    //         dp[idx] = new HashMap<>();
+    //          for (int shift = 0; shift < idx; shift ++) {
+                 
+    //             int dif = A[idx] - A[shift];
+    //             dp[idx].put(dif, dp[shift].getOrDefault(dif, 1) + 1);
+    //             count = Math.max(count, dp[idx].get(dif)); 
+    //          }
+    //     }
+
+    //     return count;
+    // }
+
+    public int longestArithSeqLength(int[] A) {
+        
+        int[][] dp = new int[A.length][1001];
+        int count = 1;
 
         for (int idx = 0; idx < A.length; idx ++) {
-
-            dp[idx] = new HashMap<>();
-             for (int shift = 0; shift < idx; shift ++) {
+             for (int idx2 = 0; idx2 < idx; idx2 ++) {
                  
-                int dif = A[idx] - A[shift];
-                dp[idx].put(idx, dp[shift].getOrDefault(dif, 1) + 1);
-                count = Math.max(count, dp[idx].get(dif)); 
+                // int dpIdx = A[idx2] - A[idx] + 4;
+                 
+                int dpIdx = A[idx] - A[idx2] + 500;
+                dp[idx][dpIdx] = dp[idx2][dpIdx] + 1;
+                count = Math.max(count, dp[idx][dpIdx]); 
              }
         }
 
-        return count;
+        return count + 1;
     }
 }
