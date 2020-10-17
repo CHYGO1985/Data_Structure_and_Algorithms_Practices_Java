@@ -53,7 +53,7 @@ class Solution {
 
         int sum = leftSum[0] + rightSum[0] + root.val;
         max = Math.max(max, sum);
-        // 
+        // in case for min: left is null, for max, right is null
         int min = Math.min(root.val, leftSum[1]);
         int max = Math.max(root.val, rightSum[2]);
 
