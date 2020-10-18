@@ -5,15 +5,22 @@
  * @author jingjiejiang
  * @history Sep 17, 2020
  *
+ * ref: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54113/A-Concise-DP-Solution-in-Java
+ * 
  */
 class Solution {
     public int maxProfit(int k, int[] prices) {
-     
+	 
         if (prices == null || prices.length == 0) return 0;
 
-        if (k > prices.length / 2) return maxVal(prices);
-
-        int[][][] profit = new int[2][k + 1][2];
+		// if  k > len/2, can do as many trans as we want
+		if (k > prices.length / 2) return maxVal(prices);
+		
+		// first [2]: pre and cur day profits
+		// second [2]: 0: sell || 1: buy
+		int[][][] profit = new int[2][k + 1][2];
+		
+		// init values at first time
 		profit[0][0][0] = 0;
 		for (int i = 0; i < k + 1; i ++) {
 			profit[0][i][1] = Integer.MIN_VALUE;
@@ -40,9 +47,10 @@ class Solution {
 
         int res = 0;
 
+		// for example: 4 3 2 1 5 6 7, 7 - 1 is the same as (5-1) + (6-5) + (7-6)
         for(int idx = 1; idx < prices.length; idx ++) {
 
-            if(idx > 0 && prices[idx] > prices[idx - 1]){
+            if (prices[idx] > prices[idx - 1]){
                 res += prices[idx] - prices[idx - 1];
             }
         }
