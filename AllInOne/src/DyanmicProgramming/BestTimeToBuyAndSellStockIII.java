@@ -46,6 +46,7 @@ class Solution {
       leftProfits[idx] = Math.max(leftProfits[idx - 1], prices[idx] - leftMin);
       leftMin = Math.min(leftMin, prices[idx]);
 
+      // start from len - idx + 1 because: as len - 1 is the init val from right to left, only can buy but not sell
       rightProfitx[len - idx - 1] = Math.max(rightProfitx[len - idx - 1 + 1], rightMax - prices[len - idx - 1]);
       rightMax = Math.max(rightMax, prices[len - idx - 1]);
     }

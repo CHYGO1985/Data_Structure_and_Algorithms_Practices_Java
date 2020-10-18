@@ -5,6 +5,8 @@
  * @CHYGO1985
  * @history Oct 18, 2020
  * 
+ * ref: https://leetcode.com/problems/shortest-common-supersequence/discuss/312757/JavaPython-3-O(mn)-clean-DP-code-w-picture-comments-and-analysis.
+ * 
  */
 class Solution {
     public String shortestCommonSupersequence(String str1, String str2) {
