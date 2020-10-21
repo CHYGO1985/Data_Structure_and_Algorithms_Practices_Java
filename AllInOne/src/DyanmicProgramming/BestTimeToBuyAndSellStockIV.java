@@ -20,7 +20,7 @@ class Solution {
 		// second [2]: 0: sell || 1: buy
 		int[][][] profit = new int[2][k + 1][2];
 		
-		// init values at first time
+		// init values before day 1
 		profit[0][0][0] = 0;
 		for (int i = 0; i < k + 1; i ++) {
 			profit[0][i][1] = Integer.MIN_VALUE;
