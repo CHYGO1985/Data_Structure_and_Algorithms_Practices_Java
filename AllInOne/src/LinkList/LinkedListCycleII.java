@@ -2,7 +2,10 @@ package LinkList;
 
 /**
  * 
+ * 142. Linked List Cycle II
+ * 
  * @author jingjiejiang Feb 18, 2019
+ * @history Oct 28, 2020
  *
  */
 public class LinkedListCycleII {
@@ -55,7 +58,9 @@ public class LinkedListCycleII {
 		do {
 			slow = slow.next;
 			fast = fast.next.next;
-		} while (slow != fast);
+		} while (slow != fast && fast != null && fast.next != null);
+        
+        if (fast == null || fast.next == null) return null;
 
 		// from the first encounter point to the second, then iti
 		ListNode newStart = dummy.next;
