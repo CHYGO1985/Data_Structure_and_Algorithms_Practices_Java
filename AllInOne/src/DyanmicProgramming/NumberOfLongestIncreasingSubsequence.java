@@ -1,9 +1,13 @@
+import java.util.Arrays;
+
 /**
  * 
  * 673. Number of Longest Increasing Subsequence
  * 
  * @author jingjiejiang
  * @history Oct 30, 2020 
+ * 
+ * [3, 2, 1]
  * 
  */
 class Solution {
@@ -13,33 +17,41 @@ class Solution {
 
     // dp array to store inc seq lenths
     int[] dp = new int[nums.length];
-    dp[0] = 1;
-    int max = 1, count = 1;
+    // init all ele as 1, (in case for 2 3 4 1). 1's len is 1
+    Arrays.fill(dp, 1);
+    int max = 1, count = 1, maxCount = 1;
     
-    for (int idx = 1; idx < nums.length; idx ++) {
+    for (int right = 1; right < nums.length; right ++) {
+      for (int shift = 0; shift < right; shift ++) {
 
-      // take 1 4 5 3 9 as example, when nums[idx] > nums[idx - 1]
-      // still need to check previous elements
-      if (nums[idx] > nums[idx - 1]) {
-        dp[idx] = dp[idx - 1] + 1;
-        if (dp[idx] > max) {
-          max = dp[idx];
-          count = 1;
-        } else if (dp[idx] == max) {
-          count ++;
+        // take 1 4 5 3 9 as example, when nums[idx] > nums[idx - 1]
+        // still need to check previous elements
+        if (nums[shift] < nums[right]) {
+          dp[right] = dp[shift] + 1;
+          if (dp[right] > max) { // the new length > max, update it the count as 1
+            max = dp[right];
+            count = 1;
+          } else if (dp[right] == max) {
+            count ++;
+          } 
+        } else if (nums[shift] == nums[right]) {
+          dp[right] = dp[shift];
+          if (dp[right] == max) {
+            count ++;
+          }
+        } else { // nums[shift] > nums[right]
+          if (count == 1) count ++; // if the 
         }
 
-        continue;
-      } 
-      
-      // nums[idx] <= nums[idx - 1]
-      for (int shift = 0; shift < idx; shift ++) {
-        if (nums[shift] < nums[idx]) {
-        dp[idx] = Math.max(dp[idx], dp[shift] + 1);
-        }
+        // do not need to do anything when nums[shift] > nums[right]
+        maxCount = Math.max(maxCount, count);
       }
     }
 
     return count; 
   }
 }
+
+// 2 2 2 2
+// 2 2 2 2
+// 1 1 
