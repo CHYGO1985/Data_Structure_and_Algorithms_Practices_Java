@@ -40,7 +40,7 @@ class Solution {
             count ++;
           }
         } else { // nums[shift] > nums[right]
-          if (count == 1) count ++; // if the 
+          if (dp[shift] == 1) count ++; // if the 
         }
 
         // do not need to do anything when nums[shift] > nums[right]
@@ -54,4 +54,5 @@ class Solution {
 
 // 2 2 2 2
 // 2 2 2 2
-// 1 1 
+// 3 2 1
+// 1 1 3
