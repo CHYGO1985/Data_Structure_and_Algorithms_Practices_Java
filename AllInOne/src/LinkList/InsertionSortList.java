@@ -24,6 +24,7 @@ class Solution {
         // init variables
         ListNode dummy = new ListNode(0, head); 
         ListNode unsorted = head.next;
+        // ** very important, otherwise will create circle in the list
         dummy.next.next = null;
 
         while (unsorted != null) {
@@ -38,6 +39,7 @@ class Solution {
               } else { // if shift is the last ele
 
                 ListNode tmp = unsorted.next;
+                // ** very important, otherwise will create circle in the list
                 unsorted.next = null;
                 shift.next = unsorted;
                 unsorted = tmp;
