@@ -27,16 +27,25 @@ class Solution {
 
     while (unsorted != null) {
 
-      ListNode pre = head, shift = head;
+      ListNode pre = dummy.next, shift = pre;
       while (shift != unsorted) {
+
         if (unsorted.val >= shift.val) {
           pre = shift;
           shift = shift.next;
-        } else {
-          // when unsorted is less than the first ele
+        } else { // when unsorted.val < shift.val
+          // when unsorted is less than the first ele in the sorted list
+          ListNode tmp = unsorted.next;
           if (pre == shift) {
             
+            unsorted.next = dummy.next;
+            dummy.next = unsorted;
+            
+          } else {
+            unsorted.next = shift;
           }
+
+          unsorted = tmp;
         }
       }
     }
