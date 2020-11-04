@@ -21,34 +21,46 @@ class Solution {
       
     if (head == null) return null;
     
-    // init variables
-    ListNode dummy = new ListNode(0, head); 
-    ListNode unsorted = head.next;
+        // init variables
+        ListNode dummy = new ListNode(0, head); 
+        ListNode unsorted = head.next;
+        dummy.next.next = null;
 
-    while (unsorted != null) {
+        while (unsorted != null) {
 
-      ListNode pre = dummy.next, shift = pre;
-      while (shift != unsorted) {
+          ListNode pre = dummy.next, shift = pre;
+          while (shift != unsorted) {
 
-        if (unsorted.val >= shift.val) {
-          pre = shift;
-          shift = shift.next;
-        } else { // when unsorted.val < shift.val
-          // when unsorted is less than the first ele in the sorted list
-          ListNode tmp = unsorted.next;
-          if (pre == shift) {
-            
-            unsorted.next = dummy.next;
-            dummy.next = unsorted;
-            
-          } else {
-            unsorted.next = shift;
+            if (unsorted.val >= shift.val) {
+              if (shift.next != null) {
+                pre = shift;
+                shift = shift.next;
+              } else { // if shift is the last ele
+
+                ListNode tmp = unsorted.next;
+                unsorted.next = null;
+                shift.next = unsorted;
+                unsorted = tmp;
+                break;
+              }
+            } else { // when unsorted.val < shift.val
+
+              ListNode tmp = unsorted.next;
+
+              if (pre == shift) { // when unsorted is less than the first ele in the sorted list
+                unsorted.next = dummy.next;
+                dummy.next = unsorted;
+              } else { // when unsorted is less then shift (in the mid of sorted list)
+                unsorted.next = shift;
+                pre.next = unsorted;
+              }
+
+              unsorted = tmp;
+              break;
+            }
           }
-
-          unsorted = tmp;
         }
-      }
-    }
 
+        return dummy.next;
   }
 }
