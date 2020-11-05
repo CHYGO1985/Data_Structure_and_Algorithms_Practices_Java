@@ -1,7 +1,5 @@
 import java.util.Arrays;
 
-import javax.management.MXBean;
-
 /**
  * 
  * 673. Number of Longest Increasing Subsequence
@@ -9,7 +7,18 @@ import javax.management.MXBean;
  * @author jingjiejiang
  * @history Oct 30, 2020 
  * 
- * [3, 2, 1]
+ * ref: https://leetcode.com/problems/number-of-longest-increasing-subsequence/discuss/107293/JavaC%2B%2B-Simple-dp-solution-with-explanation
+ * I do not know how to update cnt and maxCnt
+ * 
+ * The meaning of cnt array:
+ * nums: [1,3,5,4]
+ * len:  [1,2,3,3]
+ * cnt:  [1,1,1,1]
+ * 
+ * 
+ * nums: [1,3,5,4,7]
+ * len:  [1,2,3,3,4]
+ * cnt:  [1,1,1,1,2]
  * 
  */
 class Solution {
@@ -17,40 +26,33 @@ class Solution {
     
     if (nums == null || nums.length == 0) return 0;
 
-    // dp array to store increasing seq max lenths until i
-    int[] lens = new int[nums.length];
-    int[] cnts = new int[nums.length];
-    // init all ele as 1, (in case for 2 3 4 1). 1's len is 1
-    Arrays.fill(lens, 1);
-    Arrays.fill(cnts, 1);
-    int maxLen = 1, maxCount = 1;
+    int n = nums.length, res = 0, max_len = 0;
+    int[] len = new int[n], cnt = new int[n];
     
-    for (int right = 1; right < nums.length; right ++) {
-      for (int shift = 0; shift < right; shift ++) {
-
-        if (nums[shift] >= nums[right] && maxLen == 1) {
-          
-          cnts[right] = cnts[shift] + 1;
-          maxCount = Math.max(maxCount, cnts[right]);
-        } else { // nums[shift] < nums[right]
-
-          lens[right] = Math.max(lens[right], lens[shift] + 1);
-          
-          if (lens[right] > maxLen) {
-            maxLen = lens[right];
-            maxCount = 1;
-            cnts[right] = 1;
-          } else if (lens[right] == maxLen) {
-            cnts[right] += cnts[shift];
-            maxCount ++;
-          } else { // lens[right] < maxLen
-            continue;
+    for(int i = 0; i < n; i ++){
+        len[i] = cnt[i] = 1;
+        for(int j = 0; j < i; j ++){
+          if(nums[i] > nums[j]) {
+            // for example, 1 3 1 2, when j = 2nd 1, and i = 2,
+            if(len[i] == len[j] + 1) {
+              cnt[i] += cnt[j];
+            } else if(len[i] < len[j] + 1) { // 1 2 3 4, then len will be updated
+                len[i] = len[j] + 1;
+                cnt[i] = cnt[j];
+            }
           }
         }
-      }
+        // for example, 1 3 2 4, when j = 2. i = 4, res += cnt[i] 
+        // also works for 2 2 2 
+        if(max_len == len[i]) {
+          res += cnt[i];
+        } else if(max_len < len[i]) {
+          max_len = len[i];
+          res = cnt[i];
+        }
     }
-
-    return maxCount; 
+    
+    return res;
   }
 }
 
