@@ -46,7 +46,7 @@ class Solution {
         // also works for 2 2 2 
         if(max_len == len[i]) {
           res += cnt[i];
-        } else if(max_len < len[i]) {
+        } else if(max_len < len[i]) { // update maxLen when there is a new number
           max_len = len[i];
           res = cnt[i];
         }
