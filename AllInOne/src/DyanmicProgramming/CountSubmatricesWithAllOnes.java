@@ -1,13 +1,13 @@
 import java.util.Stack;
 
-import sun.text.resources.ext.CollationData_el;
-
 /**
  * 
  * 1504. Count Submatrices With All Ones
  * 
  * @CHYGO1985
  * @history Nov 9, 2020
+ * 
+ * ref: https://leetcode.com/problems/count-submatrices-with-all-ones/discuss/720265/Java-Detailed-Explanation-From-O(MNM)-to-O(MN)-by-using-Stack
  * 
  */
 class Solution {
