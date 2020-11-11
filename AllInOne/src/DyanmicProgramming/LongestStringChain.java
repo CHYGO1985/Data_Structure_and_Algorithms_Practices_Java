@@ -8,6 +8,8 @@ import java.util.Map;
  * @CHYGO1985
  * @history Nov 11, 2020
  * 
+ * ref: https://leetcode.com/problems/longest-string-chain/discuss/294890/C%2B%2BJavaPython-DP-Solution
+ * 
  */
 class Solution {
     public int longestStrChain(String[] words) {
