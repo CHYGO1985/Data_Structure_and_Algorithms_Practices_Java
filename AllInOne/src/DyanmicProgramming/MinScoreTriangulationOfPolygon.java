@@ -3,7 +3,7 @@
  * 1039. Minimum Score Triangulation of Polygon
  * 
  * @author jingjiejiang
- * @history Nov 17, 2020
+ * @history Nov 18, 2020
  * 
  */
 class Solution {
