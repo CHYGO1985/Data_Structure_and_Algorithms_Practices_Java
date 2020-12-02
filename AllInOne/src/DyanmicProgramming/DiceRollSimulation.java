@@ -5,6 +5,8 @@
  * @CHYGO1985
  * @history Nov 30, 2020
  *
+ * ref: https://leetcode.com/problems/dice-roll-simulation/discuss/403756/Java-Share-my-DP-solution
+ * 
  */
 class Solution {
     public int dieSimulator(int n, int[] rollMax) {
