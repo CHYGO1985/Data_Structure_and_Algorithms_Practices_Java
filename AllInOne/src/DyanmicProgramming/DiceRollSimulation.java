@@ -25,8 +25,22 @@ class Solution {
           for (int col = 0; col < 6; col ++) {
             // probability: the current roll = previous num of possible rolls 
             // e.g. 2 rolls, for X1, there are 6 posibilities
-            
+            dp[row][col] = dp[row - 1][6];
+            int invalidDigits = row - rollMax[col];
+
+            if (invalidDigits == 0) {
+                dp[row][col] = (dp[row][col] - 1) % divisor;
+            } else if (invalidDigits > 0) {
+                // we add another round of divisor as we need to cal sum after this
+                dp[row][col] = (dp[row][col] - (dp[invalidDigits - 1][6] - dp[invalidDigits - 1][col])) % divisor + divisor; 
+            } 
+
+            sum = (sum + dp[row][col]) % divisor;
           }
+
+          dp[row][6] = sum;
         }
+
+        return (int)dp[n - 1][6];
     }
 }
