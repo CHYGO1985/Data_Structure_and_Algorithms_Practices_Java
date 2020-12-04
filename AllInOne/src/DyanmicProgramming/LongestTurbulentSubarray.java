@@ -5,6 +5,8 @@
  * @author jingjiejiang
  * @history Dev 3, 2020
  * 
+ * Ref: 2 var DP https://leetcode.com/problems/longest-turbulent-subarray/discuss/221935/Java-O(N)-time-O(1)-space
+ * Ref: 2D arr DP https://leetcode.com/problems/longest-turbulent-subarray/discuss/222511/DP-Thinking-Process-(Java)
  */
 class Solution {
   // two element DP
