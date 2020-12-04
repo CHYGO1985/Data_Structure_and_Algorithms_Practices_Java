@@ -1,5 +1,4 @@
-/**
- * 
+/**`
  * 978. Longest Turbulent Subarray
  * 
  * @author jingjiejiang
