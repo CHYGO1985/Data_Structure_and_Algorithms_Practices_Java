@@ -30,4 +30,30 @@ class Solution {
 
     return res;
   }
+
+  // 2D DP: 
+  // state[i][0]: longest turbulent subarray ending at A[i] and A[i-1] < A[i]
+  // state[i][1]: longest turbulent subarray ending at A[i] and A[i-1] > A[i]
+  // state[i][0] = state[i - 1][1] + 1 or 1
+  // state[i][1] = state[i - 1][0] + 1 or 1
+  public int maxTurbulenceSize(int[] arr) {
+
+    assert arr != null && arr.length > 0;
+
+    int maxLen = 0;
+    int[][] states = new int[arr.length][2];
+
+    for (int idx = 1; idx < arr.length; idx ++) {
+
+      if (arr[idx - 1] > arr[idx]) {
+        states[idx][1] = states[idx - 1][0] + 1;
+        maxLen = Math.max(maxLen, states[idx][1]); 
+      } else if (arr[idx - 1] < arr[idx]) {
+        states[idx][0] = states[idx - 1][1] + 1;
+        maxLen = Math.max(maxLen, states[idx][0]);
+      }
+    }
+
+    return maxLen + 1;
+  }
 }
