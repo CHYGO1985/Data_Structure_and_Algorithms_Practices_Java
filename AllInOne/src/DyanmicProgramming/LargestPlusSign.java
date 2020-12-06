@@ -7,6 +7,8 @@ import java.util.Arrays;
  * @author jingjiejiang
  * @history Dec 6, 2020
  * 
+ * ref: https://leetcode.com/problems/largest-plus-sign/discuss/113314/JavaC%2B%2BPython-O(N2)-solution-using-only-one-grid-matrix
+ * 
  */
 class Solution {
   public int orderOfLargestPlusSign(int N, int[][] mines) {
