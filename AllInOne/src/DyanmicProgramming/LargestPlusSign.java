@@ -5,7 +5,7 @@ import java.util.Arrays;
  * 764. Largest Plus Sign
  * 
  * @author jingjiejiang
- * @history Dec 6, 2020
+ * @history Dec 8, 2020
  * 
  * ref: https://leetcode.com/problems/largest-plus-sign/discuss/113314/JavaC%2B%2BPython-O(N2)-solution-using-only-one-grid-matrix
  * 
