@@ -25,6 +25,7 @@ class Solution {
       // for each sum (until totolSum / 2), check if adding the current stone can reach to sum
       // by check dp[sum][stoneIdx - 1] == true (not use the current one)
       // use the current one (dp[sum - [stongIdx]][stoneIdx - 1] == true)
+      // find the neeast sum to totalsum / 2
       for (int sum = 1; sum <= totalSum /2; sum ++) {
         if (dp[sum][stoneIdx - 1] || 
           (sum >= stones[stoneIdx - 1] && dp[sum - stones[stoneIdx - 1]][stoneIdx - 1])) {
