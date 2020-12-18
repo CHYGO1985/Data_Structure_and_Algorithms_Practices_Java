@@ -3,10 +3,10 @@
  * 1049. Last Stone Weight II
  * 
  * @author jingjiejiang
- * @history Dec 16, 2020
+ * @history Dec 18, 2020
  * 
  * Ref: https://leetcode.com/problems/last-stone-weight-ii/discuss/295167/Java-beat-100-with-nice-explanation
- * 
+ * comment 1 for optimize (2D to 1D)
  */
 class Solution {
   public int lastStoneWeightII(int[] stones) {
