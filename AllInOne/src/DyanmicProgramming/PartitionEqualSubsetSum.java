@@ -7,6 +7,7 @@
  * 
  */
 class Solution {
+    // 2D dp
     public boolean canPartition(int[] nums) {
         
         assert nums != null && nums.length >= 1 && nums.length <= 200;
@@ -37,5 +38,5 @@ class Solution {
         }
 
         return false;
-    }
+    } 
 }
