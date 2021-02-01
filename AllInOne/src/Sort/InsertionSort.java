@@ -15,7 +15,7 @@ public class InsertionSort {
             
             int temp = nums[right];
             int left = 0;
-            for (left = right - 1; left >= 0 && nums[left] > temp ; left --) {
+            for (left = right - 1; left >= 0 && nums[left] > temp; left --) {
                 nums[left + 1] = nums[left];
             }
 
