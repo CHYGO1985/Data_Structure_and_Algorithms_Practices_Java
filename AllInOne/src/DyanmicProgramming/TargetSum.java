@@ -28,6 +28,8 @@ class Solution {
         dp[0] = 1;
 
         for (int num : nums) {
+            // do not need to sort here, work like a map, as if the bigger number appear first, then it 
+            // will be one dp[5] = 1, as dp[5 - 5] = dp[0] = 1; then dp[8 -3] += dp[5] = 1;
             for (int curSum = target; curSum >= num; curSum --) {
                 dp[curSum] += dp[curSum - num];
             }
