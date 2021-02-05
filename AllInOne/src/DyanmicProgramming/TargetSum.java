@@ -19,7 +19,7 @@ class Solution {
 
         for (int num : nums) totalSum += num;
 
-        if (S > totalSum || (totalSum + S) % 2 != 0) return 0;
+        if (S > totalSum || (totalSum - S) % 2 != 0) return 0;
 
         int target = (totalSum - S) / 2;
 
