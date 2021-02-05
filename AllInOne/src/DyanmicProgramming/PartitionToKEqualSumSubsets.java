@@ -5,8 +5,11 @@
  * @author jingjiejiang
  * @history Dec 25, 2020
  * 
+ * ref: https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/108730/JavaC%2B%2BStraightforward-dfs-solution
+ * 
  */
 class Solution {
+    // dfs
     public boolean canPartitionKSubsets(int[] nums, int k) {
         
         assert nums != null && nums.length >= 1 && nums.length <= 16 && k >= 1;
