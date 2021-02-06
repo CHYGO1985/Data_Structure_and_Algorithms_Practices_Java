@@ -8,6 +8,8 @@ import java.util.Set;
 
 /**
  * 
+ * 387. First Unique Character in a String
+ * 
  * @author jingjiejiang Feb 6, 2019
  *
  */
@@ -61,7 +63,7 @@ public class FirstUniqueCharacterInAString {
 		return result;
 	}
 
-	public static int firstUniqChar1(String s) {
+	public static int firstUniqChar2(String s) {
 
 		assert s != null;
 
