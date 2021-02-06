@@ -50,7 +50,7 @@ class Solution {
         while (true) {
             // it does not matter if it is < or <=
             while (start < end && dist(start) <= pivotVal) start ++;
-            // *** here must be start <= end, as we need K elements, so right + 1 = K, e.g, 0 1 2 3, until 2, we have 3 eles, if we got 3, then we have 4 eles
+            // *** here must be start <= end, as we need K elements, so right + 1 = K, e.g, 0 1 2 3, until 2, we have 3 eles, if we got 3, then we have 4 eles, so right idx must move another pos
             while (start <= end && dist(end) >= pivotVal) end --;
 
             // means all sorted
