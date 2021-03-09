@@ -1,5 +1,13 @@
 package Array;
 
+/**
+ * 
+ * 268. Missing Number
+ * 
+ * @author jingjiejiang
+ * @history MAr 3, 2021
+ * 
+ */
 public class MissingNumber {
 	
 	public static int missingNumber(int[] nums) {
@@ -45,6 +53,21 @@ public class MissingNumber {
         }
         return res;        
         */
+    }
+
+    // get total sum and minus the nums
+    public int missingNumber2(int[] nums) {
+        
+        assert nums != null;
+        
+        int maxNum = nums.length;
+        int presumeSum =  maxNum * (maxNum + 1) / 2;
+        
+        for (int idx = 0; idx < maxNum; idx ++) {
+            presumeSum -= nums[idx];
+        }
+        
+        return presumeSum;
     }
 
 	public static void main(String[] args) {
