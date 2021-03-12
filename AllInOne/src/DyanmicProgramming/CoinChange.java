@@ -23,7 +23,7 @@ class Solution {
             }
           }
 
-           // cannot use changes[amount] == amount for test case [1] 1
+           // cannot use changes[amount] == amount for test case [2] 3
           return changes[amount] > amount ? -1 : changes[amount];
     }
 }
