@@ -1,6 +1,7 @@
 /**
  * 
- * 246. Strobogrammatic Number
+ * 
+ * 
  * 
  * @author jingjiejiang
  * @history Mar 9, 2021
