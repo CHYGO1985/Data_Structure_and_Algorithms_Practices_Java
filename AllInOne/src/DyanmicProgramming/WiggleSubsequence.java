@@ -32,4 +32,25 @@ class Solution {
 
         return cnt;
     }
+
+    // DP
+    public int wiggleMaxLength2(int[] nums) {
+        
+        assert nums != null && nums.length >= 1;
+
+        if (nums.length < 2) return nums.length;
+
+        int down = 1, up = 1;
+
+        for (int idx = 1; idx < nums.length; idx ++) {
+
+             if (nums[idx] > nums[idx - 1]) {
+                 up = down + 1;
+             } else if (nums[idx] < nums[idx - 1]) {
+                 down = up + 1;
+             }
+        }
+
+        return Math.max(down, up);
+    }
 }
