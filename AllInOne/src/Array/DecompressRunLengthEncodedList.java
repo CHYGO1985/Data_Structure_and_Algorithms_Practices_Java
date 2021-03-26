@@ -9,7 +9,7 @@ import java.util.Arrays;
  * 
  */
 class Solution {
-  public int[] decompressRLElist(int[] nums) {
+  public int[] decompressRLElist(int[] nums {
       
     assert nums != null && nums.length >= 2 && nums.length % 2 == 0;
 
