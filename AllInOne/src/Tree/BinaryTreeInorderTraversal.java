@@ -34,8 +34,6 @@ class Solution {
         
         Stack<TreeNode> nodesStack = new Stack<>();
 
-        
-
         while (root != null || !nodesStack.isEmpty()) {
 
             while (root != null) {
