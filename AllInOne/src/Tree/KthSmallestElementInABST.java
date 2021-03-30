@@ -38,4 +38,21 @@ class Solution {
         list.add(root.val);
         getInorderList(root.right, list);
     }
+
+    // iterative method
+    public int kthSmallest1(TreeNode root, int k) {
+
+        List<TreeNode> list = new LinkedList<>();
+
+        while (true) {
+            while (root != null) {
+                list.add(root);
+                root = root.left;
+            }
+
+            root = list.remove(list.size() - 1);
+            if (--k == 0) return root.val;
+            root = root.right;
+        } 
+    }
 }
