@@ -34,26 +34,23 @@ class Solution {
         
         Stack<TreeNode> nodesStack = new Stack<>();
 
-        while (root != null) {
-            nodesStack.push(root);
-            root = root.left;
-        }
+        
 
-        while (!nodesStack.isEmpty()) {
+        while (root != null || !nodesStack.isEmpty()) {
+
+            while (root != null) {
+                nodesStack.push(root);
+                root = root.left;
+            }
 
             // pop from stack
             // add to list
             // check if cur node has right, add to stack
             // and add all left node of right to stack
-            TreeNode curNode = nodesStack.pop();
-            resList.add(curNode.val);
+            root = nodesStack.pop();
+            resList.add(root.val);
 
-            TreeNode temp = curNode.right;
-            
-            while (temp != null) {
-                nodesStack.add(temp);
-                temp = temp.left;
-            }
+            root = root.right;
         }
 
         return resList;
