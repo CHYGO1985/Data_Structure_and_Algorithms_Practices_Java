@@ -23,7 +23,19 @@
  * ref: 536. Construct Binary Tree from String
  * 
  */
-class Solution {
+class ConstructBinaryTreeFromString {
+
+    public static class TreeNode {
+		
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+		
+		public TreeNode(int val) {
+			this.val = val;
+		}
+	}
+
     public TreeNode str2tree(String s) {
         
         if (s == null || s.length() == 0) return null;

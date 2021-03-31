@@ -1,5 +1,3 @@
-package Tree;
-
 /**
  * 
  * @author jingjiejiang Feb 9, 2019
