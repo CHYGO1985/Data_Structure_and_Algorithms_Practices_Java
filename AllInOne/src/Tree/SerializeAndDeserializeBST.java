@@ -24,7 +24,7 @@ import jdk.nashorn.api.tree.Tree;
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Codec {
+public class Codec1 {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -75,3 +75,54 @@ public class Codec {
  * @history Oct 10, 2020
  * 
  */
+public class Codec {
+
+    public static class TreeNode {
+		
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+		
+		public TreeNode(int val) {
+			this.val = val;
+		}
+	}
+    
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        
+        if (root == null) return "#!";
+        
+        String nodes = root.val + "!";
+
+        nodes += serialize(root.left);
+        nodes += serialize(root.right);
+
+        return nodes;
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        
+        if (data == null || data.length() == 0) return null;
+
+        String[] vals = data.split("!");
+        List<String> valList = new ArrayList<>(Arrays.asList(vals));
+
+        return buildTree(valList);
+    }
+
+    private TreeNode buildTree(List<String> valList) {
+
+        String curValStr = valList.remove(0);
+
+        if (curValStr.equals("#")) return null;
+
+        TreeNode root = new TreeNode(Integer.valueOf(curValStr));
+
+        root.left = buildTree(valList);
+        root.right = buildTree(valList);
+        
+        return root;
+    }
+}
