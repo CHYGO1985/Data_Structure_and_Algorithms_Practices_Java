@@ -67,7 +67,7 @@ public class DivideTwoIntegers {
         while (divisor >= dividend) {
 
             // in case (int)
-            int powerOfTwo = -1;
+            int powerOfTwo = 1;
             int value = divisor;
 
             while (value >= HALF_INT_MIN && value + value >= dividend) {
@@ -83,7 +83,7 @@ public class DivideTwoIntegers {
         /* If there was originally one negative sign, then
          * the quotient remains negative. Otherwise, switch
          * it to positive. */
-        if (negatives != 1) {
+        if (negatives == 1) {
             return -quotient;
         }
         return quotient;
