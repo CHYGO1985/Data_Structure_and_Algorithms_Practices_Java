@@ -19,6 +19,7 @@ class Solution {
         if (numerator == 0) return "0";
 
         StringBuilder fraction = new StringBuilder();
+        // the use of ^
         if (numerator < 0 ^ denominator < 0) {
             fraction.append("-");
         }
