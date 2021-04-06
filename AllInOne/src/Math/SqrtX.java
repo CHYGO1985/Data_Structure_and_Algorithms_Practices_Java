@@ -25,7 +25,7 @@ public class SqrtX {
             }
         }
 
-        // e.g. left = 3, right = 4, res = 11 => left = right = 4
+        // return left 11 will get 4, not 3
         return right;
     }
 }
