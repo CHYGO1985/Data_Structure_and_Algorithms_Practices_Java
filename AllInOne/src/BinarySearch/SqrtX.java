@@ -12,7 +12,7 @@ package BinarySearch;
  */
 public class SqrtX {
 
-	public int mySqrt(int x) {
+	public int mySqrt1(int x) {
         
 		if (x <= 0) return 0;
         
@@ -31,5 +31,31 @@ public class SqrtX {
 		}
 		
 		return left;
+    }
+
+	public int mySqr2(int x) {
+        
+        // if (x <= 1) return x;
+        // if (x == 3) return 1;
+        
+        int left = 0, right = x;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+            long product = (long) mid * mid;
+
+            if (product > x) {
+                right = mid - 1;
+            } else if (product < x) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+
+        // e.g. left = 3, right = 4, res = 11 => left = right = 4 => product > res => right = 3, left = 4
+        // finally we get right < left (with right * right < x, left * left > x)
+        return right; 
     }
 }
