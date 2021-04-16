@@ -5,6 +5,8 @@
  * @author jingjiejiang
  * @history Apr 16, 2021
  * 
+ * ref: https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/discuss/14701/A-very-simple-Java-solution-with-only-one-binary-search-algorithm
+ * 
  */
 class FirstAndLastPosOfEleInSortedArray {
     public int[] searchRange(int[] nums, int target) {
