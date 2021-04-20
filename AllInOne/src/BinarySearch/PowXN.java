@@ -22,7 +22,7 @@ public class PowXN {
 
         if (factor == 0) return 1.0;
 
-        doubel res = getPow(base, factor / 2);
+        double res = getPow(base, factor / 2);
 
         if (factor % 2 == 0) {
             return res * res;
