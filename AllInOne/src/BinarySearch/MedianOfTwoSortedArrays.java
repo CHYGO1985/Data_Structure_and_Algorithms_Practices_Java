@@ -36,7 +36,7 @@ class Solution {
                                   pivot2 == 0 ? Integer.MIN_VALUE : nums2[pivot2 - 1]);
 
         
-        // if sum is odd, then return pivot1 directly
+        // if sum is odd, then return medianLeft directly
         if ((len1 + len2) % 2 == 1) {
             return medianLeft;
         }
