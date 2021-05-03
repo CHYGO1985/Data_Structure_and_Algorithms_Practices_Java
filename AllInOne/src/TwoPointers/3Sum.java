@@ -41,4 +41,40 @@ public class 3Sum {
 
       return resList;
     }
+
+    public List<List<Integer>> threeSum2(int[] nums) {
+
+      assert nums != null;
+
+      Arrays.sort(nums);
+
+      List<List<Integer>> res = new ArrayList<>();
+
+      for (int idx = 0; idx < nums.length - 2 && nums[idx] <= 0; idx ++) {
+        if (idx == 0 || nums[idx] != nums[idx - 1]) {
+          twoSum(res, nums, idx);
+        }
+      }
+
+      return res;
+    }
+
+    private void twoSum(List<List<Integer>> res, int[] nums, int start) {
+
+      Set<Integer> set = new HashSet<>();
+
+      for (int shift = start + 1; shift < nums.length; shift ++) {
+
+        int compensate = - nums[start] - nums[shift];
+
+        if (set.contains(compensate)) {
+          res.add(Arrays.asList(nums[start], nums[shift], compensate));
+          while (shift + 1 < nums.length && nums[shift] == nums[shift + 1]) {
+            shift ++;
+          }
+        } else {
+          set.add(nums[shift]);
+        }
+      }
+    }
 }
