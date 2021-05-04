@@ -49,20 +49,20 @@ public class ReverseLinkedList {
             return head;
         }
         
-        ListNode curNode = head;
-        //ListNode frontier = head;
+       
+        ListNode stableHead = head;
         ListNode nextNode = null;
         
-        while (curNode.next != null) {
+        while (stableHead.next != null) {
             
-            nextNode = curNode.next;
-            curNode.next = curNode.next.next;
+            nextNode = stableHead.next;
+            stableHead.next = stableHead.next.next;
             nextNode.next = head;
             head = nextNode;
+            
         }
         
         return head;
-        
     }
 	*/
 	
@@ -95,7 +95,5 @@ public class ReverseLinkedList {
         head.next=null;
         return newHead;
         */
-        
-        
     }
 }
