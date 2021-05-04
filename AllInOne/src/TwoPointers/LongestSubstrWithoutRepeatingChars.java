@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 
  * 3. Longest Substring Without Repeating Characters
@@ -25,7 +28,7 @@ public class LongestSubstrWithoutRepeatingChars {
             
             // "tmmzuxt": when we got repeat t, in this case we should not update the left pointer (as it start with m)
             // but it we put ++ in if condition, the left pointer will be moved + 1,  then we got 4 instead of 5
-            map.put(scurChar, right + 1);
+            map.put(curChar, right + 1);
         }
 
         return ans;
