@@ -20,13 +20,14 @@ public class LongestSubstrWithoutRepeatingChars {
 
             }
             
+            // abca: when get a, left is updated to 1, so we need + 1 (right = 3, left = 1)
             ans = Math.max(ans, right - left + 1);
             
-            // "tmmzuxt": when we got repeat t, in this case we should not update the left pointer
+            // "tmmzuxt": when we got repeat t, in this case we should not update the left pointer (as it start with m)
             // but it we put ++ in if condition, the left pointer will be moved + 1,  then we got 4 instead of 5
             map.put(scurChar, right + 1);
         }
-        
+
         return ans;
     }
 }
