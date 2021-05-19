@@ -1,5 +1,3 @@
-import jdk.javadoc.internal.doclets.toolkit.taglets.IndexTaglet;
-
 /**
  * 
  * 84. Largest Rectangle in Histogram
@@ -11,7 +9,8 @@ import jdk.javadoc.internal.doclets.toolkit.taglets.IndexTaglet;
  *
  */
 public class LargestRectangleInHistogram {
-  public int largestRectangleArea(int[] heights) {
+  // stack
+  public int largestRectangleArea1(int[] heights) {
 
     assert heights != null && heights.length >= 1;
 
@@ -44,7 +43,7 @@ public class LargestRectangleInHistogram {
     return res;
   }
 
-  // if do not use dummy -1, it will cause lots of problem
+  // stack: if do not use dummy -1, it will cause lots of problem
   public int largestRectangleArea2(int[] heights) {
     assert heights != null && heights.length >= 1;
 
@@ -81,4 +80,24 @@ public class LargestRectangleInHistogram {
 
     return Math.max(min * heights.length, res);
   } 
+
+  // divide and conquer: 
+  public int largestRectangleArea3(int[] heights) {
+    assert heights != null && heights.length >= 1;
+
+    return calcLargestArea(heights, 0, heights.length - 1);
+  }
+
+  private int calcLargestArea(int[] heights, int start, int end) {
+
+    if (start > end) return 0;
+
+    int minIdx = start;
+    for (int idx = start; idx <= end; idx ++) {
+      if (heights[idx] < heights[minIdx]) minIdx = idx;
+    }
+
+    return Math.max(heights[minIdx] * (end - start + 1),
+      Math.max(calcLargestArea(heights, start, minIdx - 1), calcLargestArea(heights, minIdx + 1, end)));
+  }
 }
