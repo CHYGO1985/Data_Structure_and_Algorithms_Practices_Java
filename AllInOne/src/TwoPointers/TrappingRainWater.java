@@ -7,9 +7,12 @@ import java.util.Stack;
  * @author jingjiejiang
  * @history Apr 29, 2021
  * 
+ * ref: https://leetcode.com/problems/trapping-rain-water/solution/
+ * 
  */
 public class TrappingRainWater {
-    
+
+    // two pointers
     public int trap1(int[] height) {
 
         assert height != null;
@@ -38,6 +41,7 @@ public class TrappingRainWater {
         return sum;
     }
 
+    // stack method
     public int trap(int[] height) {
         
         if (height == null) return 0;
