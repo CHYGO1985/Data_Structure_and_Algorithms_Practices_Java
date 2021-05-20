@@ -5,6 +5,8 @@
  * @author jingjiejiang
  * @history May 19, 2021
  * 
+ * ref: https://leetcode.com/problems/longest-consecutive-sequence/solution/
+ * 
  */
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
@@ -24,7 +26,7 @@ public class LongestConsecutiveSequence {
             // check if num is in an already counted streak
             if (!numSet.contains(num - 1)) {
 
-                int curNum = 1;
+                int curNum = num;
                 int curStreak = 1;
 
                 while (numSet.contains(curNum + 1)) {
