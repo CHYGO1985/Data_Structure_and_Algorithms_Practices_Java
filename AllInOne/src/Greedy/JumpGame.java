@@ -1,25 +1,20 @@
 package Greedy;
 /**
  * 
+ * 55. Jump Game
+ * 
  * @author jingjiejiang
  * @history last edited Aug 27, 2018
+ * 
+ * ref: https://leetcode.com/problems/jump-game/solution/
+ * 
  */
 public class JumpGame {
 
+    // Greedy: theroute to get greedy is that for brutal force we need to mark every other point that we can reach 
+    // from cur point
+    // but then we can further optimize that only mark the furthest one, that is Greedy 
 	public static boolean canJump(int[] nums) {
-        // idea: method 1: DFS search method
-        // for every element, search from 1 to max jump
-        // 1) if reach the last ele, return true, finish the loop
-        // 2) else if all the jump have been searched, then go to previous element
-        
-        // method 2: from i - 1 to start, to see whether the previous ele contains jump that can connect to last ele
-        // use condition A: : junmp >= cur index - last connect index
-        // 1) i - 1, if junmp >= cur index - last connect index, then last connect = i - 1, else = i
-        // 2) i - 2, if A is true, then last connext = i - 2, else keep the original value
-        // 3) i - 3 ...
-        // until fist, if last conenct index != fist index, then return false
-        // result: 7ms, beat 89%
-        // things learned: array problem, can think from end to start
         
         // method 2
 //        if (null == nums || 0 == nums.length) {
@@ -44,6 +39,35 @@ public class JumpGame {
 		}
 		
 		return far >= nums.length - 1;
+    }
+
+
+    // DP
+    enum Index {
+        GOOD, BAD, NNKNOW
+    }
+
+    public boolean canJump2(int[] nums) {
+
+        Index[] memo = new Index[nums.length];
+        for (int idx = 0; idx < memo.length; idx ++) {
+            mem[idx] = Index.NNKNOW;
+        }
+
+        memo[memo.length - 1] = Index.GOOD;
+
+        for (int idx = nums.length - 2; idx >= 0; idx --) {
+
+            int furthestJump = Math.min(idx + nums[idx], nums.length - 1);
+            for (int shift = idx + 1; shift <= furthestJump; shift ++) {
+                if (memo[shift] == Index.GOOD) {
+                    memo[idx] = Index.GOOD;
+                    break;
+                }
+            }
+        }
+
+        return nums[0] == Index.GOOD;
     }
 	
 	public static void main(String[] args) {
