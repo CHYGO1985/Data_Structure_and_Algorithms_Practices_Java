@@ -7,6 +7,8 @@ package Array;
  * author jingjiejiang Feb 26, 2019
  * @history Oct 16, 2020
  *
+ * ref: https://leetcode.com/problems/rotate-array/solution/ 
+ * 
  */
 public class RotateArray {
 	// public void rotate(int[] nums, int k) {
@@ -33,27 +35,26 @@ public class RotateArray {
 	
 	// refactor of previous method
 	public void rotate(int[] nums, int k) {
-        
-        if (k == 0) return ;
-        
-        int len = nums.length;
-        int curIdx = 0, preNum = nums[curIdx], startIdx = 0;
-        int count = 0;
-        
-        while (count < len) {
-            
-            if (count > 0 && curIdx == startIdx) {
-                startIdx ++;
-                curIdx = startIdx;
-                preNum = nums[curIdx];
-            }
-            
-            int nextIdx = (curIdx + k) % len;
-            int tmp = nums[nextIdx];
-            nums[nextIdx] = preNum;
-            preNum = tmp;
-            curIdx = nextIdx;
-            count ++;
+    if (nums === undefined || nums.length < 2) return;
+
+    let count = 0, shift = 0, start = 0;
+    let len = nums.length;
+    let preNum = nums[shift];
+
+    while (count < nums.length) {
+        // if back to original start, start from next one, rest all nums
+        if (count > 0 && shift === start) {
+            start += 1;
+            shift = start;
+            preNum = nums[shift];
         }
+
+        // tmp is to keep the num that will be replaced
+        let tmp = nums[(shift + k) % len]; 
+        nums[(shift + k) % len] = preNum;
+        preNum = tmp;
+        count++;
+        //shift is the next number for moving
+        shift = (shift + k) % len;
     }
 }
