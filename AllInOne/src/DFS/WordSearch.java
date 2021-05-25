@@ -98,13 +98,15 @@ public class WordSearch {
     }
 
     // dfs design 3 key elements:
-    // 1) end condition:  if (charPos == word.length()) return true;
+    // 1) quitting condition:  if (charPos == word.length()) return true;
     // 2) back tracking variable: visited[nextRow][nextCol]
     // 3) the loop condition: for (int dir = 0; dir < dirs.length; dir ++)
     private boolean hasWord(char[][] board, boolean[][] visited, String word, int row, int col, int charPos) {
 
+        // quitting condition
         if (charPos == word.length()) return true;
 
+        // the loop condition
         for (int dir = 0; dir < dirs.length; dir ++) {
 
             int nextRow = row + dirs[dir][0];
@@ -114,6 +116,7 @@ public class WordSearch {
                 !visited[nextRow][nextCol] &&
                 board[nextRow][nextCol] == word.charAt(charPos)) {
 
+                // back tracking variable
                 visited[nextRow][nextCol] = true;
                 if (hasWord(board, visited, word, nextRow, nextCol, charPos + 1)) return true;
                 visited[nextRow][nextCol] = false;
