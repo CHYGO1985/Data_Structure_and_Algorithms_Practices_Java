@@ -9,7 +9,7 @@
  * 
  */
 class FirstAndLastPosOfEleInSortedArray {
-    public int[] searchRange(int[] nums, int target) {
+    public int[] searchRange1(int[] nums, int target) {
         
         assert nums != null && nums.length >= 0;
 
@@ -17,6 +17,7 @@ class FirstAndLastPosOfEleInSortedArray {
 
         if (start == nums.length || nums[start] != target) return new int[]{- 1, - 1};
 
+        // cannot use start + 1 directly, as return new int[]{start, start + 1}; for case [1], 1
         return new int[]{start, findLeftBoundry(nums, target + 1) - 1};
     }
 
