@@ -25,7 +25,8 @@ class Solution {
 
             // cur start <= pre end, then check whether the pre interval
             if (intervals[idx][0] <= curInterval[1]) {
-                curInterval[1] = intervals[idx][1] > curInterval[1] ? intervals[idx][1] : curInterval[1];
+                // curInterval[1] = intervals[idx][1] > curInterval[1] ? intervals[idx][1] : curInterval[1];
+                curInterval[1] = Math.max(intervals[idx][1], curInterval[1]);
             } else {
                 res.add(curInterval);
                 curInterval = intervals[idx];
