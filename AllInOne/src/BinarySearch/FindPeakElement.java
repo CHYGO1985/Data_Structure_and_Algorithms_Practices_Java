@@ -13,6 +13,9 @@ public class FindPeakElement {
 
         assert nums != null && nums.length >= 1;
 
+        // hi = nums.length - 1 as we will need to compare [mid] and [mid + 1]
+        // if hi == nums.length, then nums[mid + 1] will exceed the range 
+        // for exaple, num.length = 5, we have lo = [3], mid = [4], hi = [5], then [mid + 1] will exceed the range
         int lo = 0, hi = nums.length - 1;
 
         while (lo < hi) {
