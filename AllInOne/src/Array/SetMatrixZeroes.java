@@ -1,4 +1,11 @@
-
+/**
+ * 
+ * 73. Set Matrix Zeroes
+ * 
+ * @author jingjiejiang
+ * @history May 31, 2021
+ * 
+ */
 public class SetMatrixZeroes {
 
 	// Idea: method 1: use the O(mn) extra space to store the status
