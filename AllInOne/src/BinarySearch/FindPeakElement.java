@@ -13,6 +13,8 @@ public class FindPeakElement {
 
         assert nums != null && nums.length >= 1;
 
+        // hi = nums.length - 1 as [mid] < [mid + 1], lo = mid + 1, so if hi = nums.length
+        // lo can be at nums.length which is overflow
         int lo = 0, hi = nums.length - 1;
 
         while (lo < hi) {
@@ -26,6 +28,7 @@ public class FindPeakElement {
             }
         }
 
-        return hi;
+        // can return lo or hi
+        return lo;
     }
 }
