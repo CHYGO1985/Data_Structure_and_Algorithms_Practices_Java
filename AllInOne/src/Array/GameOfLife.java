@@ -1,4 +1,7 @@
 /**
+ * 
+ * 289. Game of Life
+ * 
  * round 1: 1.5 hours, unsolved
  * 
  * ref: https://discuss.leetcode.com/topic/29054/easiest-java-solution-with-explanation
@@ -14,6 +17,7 @@
  * 
  * @author jingjiejiang
  * @history Jun 14, 2017
+ * 2. Jun 3, 2021
  * 
  */ 
 public class GameOfLife {
