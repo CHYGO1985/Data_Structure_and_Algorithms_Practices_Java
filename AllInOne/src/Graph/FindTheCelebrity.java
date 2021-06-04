@@ -26,7 +26,10 @@
  * 
  * @author jingjiejiang
  * @history
+ * 
  * 1. Sep 27, 2017
+ * 2. Mar 31, 2021
+ * 
  */
 public class FindTheCelebrity {
 	
@@ -34,7 +37,7 @@ public class FindTheCelebrity {
 		return (a > b);
 	}
 	
-	public int findCelebrity(int n) {
+	public int findCelebrity1(int n) {
         
         if (n == 0) return -1;
         if (n == 1) return 0;
@@ -79,6 +82,21 @@ public class FindTheCelebrity {
             }
         }
         
+        return res;
+    }
+
+    public int findCelebrity(int n) {
+    
+        int res = 0;
+
+        for (int idx = 0; idx < n; idx ++) {
+            if (knows(res, idx)) res = idx;
+        }
+
+        for (int idx = 0; idx < n; idx ++) {
+            if (res != idx && (knows(res, idx) || !knows(idx, res))) return -1;
+        }
+
         return res;
     }
 

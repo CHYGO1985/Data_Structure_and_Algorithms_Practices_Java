@@ -29,6 +29,7 @@ public class FindPeakElement {
             }
         }
 
-        return hi;
+        // can return lo or hi
+        return lo;
     }
 }

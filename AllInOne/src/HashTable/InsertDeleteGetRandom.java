@@ -1,9 +1,17 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 
+ * 380. Insert Delete GetRandom O(1)
+ * 
+ * @author jingjiejiang
+ * @history Jun 1, 2021
+ * 
+ */
 public class InsertDeleteGetRandom {
 
 	// round 1: 40 minutes, beat 90.25% 
@@ -20,8 +28,8 @@ public class InsertDeleteGetRandom {
     /** Initialize your data structure here. */
     public InsertDeleteGetRandom() {
         
-        map = new HashMap<Integer, Integer>();
-        list = new ArrayList<Integer>();
+        map = new HashMap<>();
+        list = new ArrayList<>();
         
     }
     
@@ -46,11 +54,11 @@ public class InsertDeleteGetRandom {
             // *** avoid index change: swap the replaced one with the last one, renew the map
             // ref: https://discuss.leetcode.com/topic/53216/java-solution-using-a-hashmap-and-an-arraylist-
             // along-with-a-follow-up-131-ms
-            if (index < list.size() - 1) {
-                int temp = list.get(list.size() - 1);
-                list.set(index, temp);
-                map.put(temp, index);
-            }
+           
+            int temp = list.get(list.size() - 1);
+            list.set(index, temp);
+            map.put(temp, index);
+            
             list.remove(list.size() - 1);
             map.remove(val);
             return true;
@@ -59,12 +67,64 @@ public class InsertDeleteGetRandom {
             return false;
         }
     }
-    
+
     /** Get a random element from the set. */
     public int getRandom() {
         
         int index = (int)(Math.random() * list.size());
         // *** do not use index - 1 here, as index won't exceed list.size()
         return list.get(index);
+    }
+
+    class RandomizedSet {
+
+        private Map<Integer, Integer> numsMap;
+        private List<Integer> numsList;
+
+        /** Initialize your data structure here. */
+        public RandomizedSet() {
+
+            numsMap = new HashMap<>();
+            numsList = new LinkedList<>();
+        }
+
+        /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+        public boolean insert(int val) {
+            
+            if (numsMap.containsKey(val)) {
+                
+                return false;
+            } 
+                
+            numsList.add(val);
+            numsMap.put(val, numsList.size() - 1);
+
+            return true;
+        }
+
+        /** Removes a value from the set. Returns true if the set contained the specified element. */
+        public boolean remove(int val) {
+
+            if (!numsMap.containsKey(val)) {
+                return false;
+            }
+                
+            int tmpIdx = numsMap.get(val);
+            int lastNum = numsList.get(numsList.size() - 1);
+
+            numsList.set(tmpIdx, lastNum);
+            numsMap.put(lastNum, tmpIdx);
+
+            numsList.remove(numsList.size() - 1);
+            numsMap.remove(val);
+
+            return true;
+        }
+
+        /** Get a random element from the set. */
+        public int getRandom() {
+
+            return numsList.get( (int)(Math.random() * numsList.size()) );
+        }   
     }
 }
