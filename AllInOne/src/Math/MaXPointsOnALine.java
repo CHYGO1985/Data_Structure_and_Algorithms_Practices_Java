@@ -4,10 +4,13 @@
  * 
  * @author jingjiejiang
  * @history Apr 2, 2021
+ * Jun 11, 2021
  * 
  */
 class Solution {
 
+    // cannot use float key = Math.abs((float) difY / difX) as key
+    // e.g. [[0,0],[1,-1],[1,1]]
     public int maxPoints(int[][] points) {
         
         if (points == null) return 0;
