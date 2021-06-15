@@ -1,6 +1,13 @@
 import java.util.Random;
 
-
+/**
+ * 
+ * 238. Product of Array Except Self
+ * 
+ * @author jingjiejiang
+ * @history Jun 16, 2021
+ * 
+ */
 public class ProductOfArrayExceptSelf {
 	
 	public static int[] productExceptSelf(int[] nums) {
