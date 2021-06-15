@@ -5,11 +5,7 @@ import java.util.Random;
  * 238. Product of Array Except Self
  * 
  * @author jingjiejiang
-<<<<<<< HEAD:AllInOne/src/Array/ProductOfArrayExceptSelf.java
  * @history Jun 16, 2021
-=======
- * 
->>>>>>> 4a2117c5d72579863b943dc4677b32052c2f650e:ProductOfArrayExceptSelf/src/ProductOfArrayExceptSelf.java
  * 
  */
 public class ProductOfArrayExceptSelf {
