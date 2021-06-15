@@ -18,15 +18,18 @@ public class ProductOfArrayExceptSelf {
         int[] output = new int[n];
         int temp = 1;
         output[0] = 1;
+        
         for (int i = 1; i < n; i++)
         {
             output[i] = output[i-1] * nums[i-1];
         }
+
         for (int i = n - 1; i >= 0 ; i--)
         {
             output[i] = temp * output[i];
             temp = temp * nums[i];
         }
+        
         return output;
     }
 
