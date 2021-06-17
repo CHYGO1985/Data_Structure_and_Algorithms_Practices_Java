@@ -10,9 +10,11 @@ import java.util.List;
  * 
  * @author jingjiejiang
  * @history Jun 1, 2017
+ * Jun 18, 2021
+ * 
  */
 public class Subsets {
-    public List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsets1(int[] nums) {
         
         List<List<Integer>> res = new LinkedList<>();
         res.add(new LinkedList<Integer>());
@@ -49,4 +51,24 @@ public class Subsets {
             tempList.remove(tempList.size() - 1);
     }
     */
+
+    public List<List<Integer>> subsets(int[] nums) {
+      
+      List<List<Integer>> list = new LinkedList<>();
+
+      backTrack(list, new ArrayList<>(), nums, 0);
+      
+      return list;
+    }
+
+    private void backTrack(List<List<Integer>> list, List<Integer> tmp, int[] nums, int start) {
+
+      list.add(new LinkedList<>(tmp));
+
+      for (int idx = start; idx < nums.length; idx ++) {
+        tmpList.add(nums[idx]);
+        backTrack(list, tmp, nums, idx + 1);
+        tmpList.remove(tmpList.size() - 1);
+      }
+    }
 }
