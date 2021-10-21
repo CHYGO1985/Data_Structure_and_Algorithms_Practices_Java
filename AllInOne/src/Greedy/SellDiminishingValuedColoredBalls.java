@@ -8,6 +8,8 @@ import java.util.PriorityQueue;
  * @author jingjiejiang
  * @history Oct 21, 2021
  * 
+ * ref: https://leetcode.com/problems/sell-diminishing-valued-colored-balls/discuss/1116418/Java-sorting-solution-or-easy-to-understand-or-O(nlogn)
+ * 
  */
 public class SellDiminishingValuedColoredBalls {
   // time limit exceeded solution
