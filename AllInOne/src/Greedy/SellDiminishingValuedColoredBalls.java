@@ -39,4 +39,19 @@ public class SellDiminishingValuedColoredBalls {
 
         return sum.remainder(divisor).intValue();
   }
+
+  /*                       
+          1  3  5  5  9  9  9    original sorted inventory
+          1  3  5  5  5  5  5    profit gain after selling all 9-value balls: (9 + 8 + 7 + 6) * 3 -> (9 + 6) * (9 - 6 + 1) / 2 * 3
+          1  3  3  3  3  3  3    (5 + 4) * (5 - 4 + 1) / 2 * 5  -> (curValue + nextValue + 1) * (curValue - nextValue) / 2 * numSameColor
+          1  1  1  1  1  1  1
+          0  0  0  0  0  0  0
+          
+          need to handle the edge case that orders left is less than the number of items to buy
+
+          for example: 5 9 9 9, the order is 8
+          then we shoudl get: 9 9 9
+                              8 8 8
+                                7 7
+  */
 }
