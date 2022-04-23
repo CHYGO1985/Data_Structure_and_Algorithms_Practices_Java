@@ -34,7 +34,6 @@ class Solution {
 
     // return maxUnit;
 
-
     assert boxTypes.length >= 1 && boxTypes.length <= 1000 && truckSize >= 1;
 
     Arrays.sort(boxTypes, (b1, b2) -> b2[1] - b1[1]);
