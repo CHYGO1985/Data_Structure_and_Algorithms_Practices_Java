@@ -23,6 +23,15 @@ public class ValidPalindrome {
         while (rightPointer >= 0 && !isAphanumeric(s.charAt(rightPointer)) ) {
             rightPointer --;
         }
+
+        // use Character.isLetterOrDigit
+        // while (leftPointer < s.length() && !Character.isLetterOrDigit(s.charAt(leftPointer))) {
+        //   leftPointer ++;
+        // }
+        
+        // while (rightPointer >= 0 && !Character.isLetterOrDigit(s.charAt(rightPointer))) {
+        //     rightPointer --;
+        // }
         
         if (leftPointer > rightPointer) {
             break;
