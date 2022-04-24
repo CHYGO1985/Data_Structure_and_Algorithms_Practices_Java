@@ -27,6 +27,10 @@ public class RomanToInteger {
       sum += romanIntMap.get(letter);
     }
 
+    if (s.contains("IV") || s.contains("IX")) sum -= 2;
+    if (s.contains("XL") || s.contains("XC")) sum -= 20;
+    if (s.contains("CD") || s.contains("CM")) sum -= 200;
+
     return sum;
   }
 }

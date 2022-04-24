@@ -3,6 +3,8 @@
  * 53. Maximum Subarray
  *
  * @author jingjie jiang
+ * @history Apr 24, 2022
+ *
  */
 class Solution {
     public int maxSubArray(int[] nums) {
