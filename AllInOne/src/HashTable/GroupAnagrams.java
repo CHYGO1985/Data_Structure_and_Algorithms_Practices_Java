@@ -27,9 +27,14 @@ public class GroupAnagrams {
         strBuilder.append(charsArr[pointer]);
       }
 
-      
+      String key = strBuilder.toString();
+      if (!strsMatchMap.containsKey(key)) {
+        strsMatchMap.put(key, new ArrayList<>());
+      }
+
+      strsMatchMap.get(key).add(strs[idx]);
     }
 
-    return new ArrayList(MatchMap.values());
+    return new ArrayList(strsMatchMap.values());
   }
 }

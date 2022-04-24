@@ -13,12 +13,14 @@ public class CamelcaseMatching {
 
     List<Boolean> resList = new ArrayList<>(queries.length);
 
+    for (String query : queries) {
+      resList.add(isMatch(query, pattern), resList.size());
+    }
 
-
-    return res;
+    return resList;
   }
 
-  private boolean isMatch(String query, String pattern) {
+  private boolean isMatch1(String query, String pattern) {
 
     assert query != null;
 
@@ -27,7 +29,12 @@ public class CamelcaseMatching {
     while (pQuery < query.length() && pPattern < pattern.length()) {
 
       char patternChar = pattern.charAt(pPattern);
-      while (pQuery < query.length() && query.charAt(pQuery) != patternChar) {
+      while (pQuery < query.length()) {
+        char queryChar = query.charAt(pQuery);
+        if (queryChar == patternChar) break;
+        if (Character.isUpperCase(queryChar)){
+          return false;
+        }
         pQuery ++;
       }
 
@@ -38,6 +45,27 @@ public class CamelcaseMatching {
       } 
 
       // pQuery >= q.length, means there is no match, do nothing
+    }
+
+    while (pQuery < query.length()) {
+      if (Character.isUpperCase(query.charAt(pQuery ++))) return false; 
+    }
+
+    return pPattern >= pattern.length() ? true : false;
+  }
+
+  private boolean isMatch(String query, String pattern) {
+
+    assert query != null;
+
+    int pPattern = 0;
+
+    for (char charQuery: query.toCharArray()) {
+      if (pPattern < pattern.length() && charQuery == pattern.charAt(pPattern)) {
+        pPattern ++;
+      } else if (Character.isUpperCase(charQuery)) { 
+        return false;
+      }
     }
 
     return pPattern >= pattern.length() ? true : false;
