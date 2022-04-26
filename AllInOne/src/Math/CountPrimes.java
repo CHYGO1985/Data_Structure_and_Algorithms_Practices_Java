@@ -1,3 +1,5 @@
+package src.Math;
+
 import java.util.Arrays;
 
 /**
