@@ -1,4 +1,4 @@
-package DepthFirstSearch;
+package src.DepthFirstSearch;
 
 import java.util.LinkedList;
 import java.util.Queue;

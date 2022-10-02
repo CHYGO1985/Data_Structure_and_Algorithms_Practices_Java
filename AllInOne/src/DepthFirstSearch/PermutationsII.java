@@ -1,3 +1,5 @@
+package src.DepthFirstSearch;
+
 import java.awt.List;
 import java.util.Arrays;
 import java.util.LinkedList;
