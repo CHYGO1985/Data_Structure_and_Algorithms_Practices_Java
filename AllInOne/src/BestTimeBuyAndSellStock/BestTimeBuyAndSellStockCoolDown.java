@@ -1,4 +1,4 @@
-package BestTimeBuyAndSellStock;
+package src.BestTimeBuyAndSellStock;
 
 /**
  * 
