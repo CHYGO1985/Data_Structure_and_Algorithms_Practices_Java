@@ -20,12 +20,20 @@ package src.Math;
  */
 class AddTwoNumbers {
   // add new val to l1
+  public static class ListNode {
+		int val;
+		ListNode next;
+	  ListNode(int x) { val = x; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+	}
+
   public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
       
     assert l1 != null && l2 != null;
 
     ListNode dummy = new ListNode(1, l1);
-    ListNdoe preL1, preL2;
+    ListNode prel1 = new ListNode(0);
+    ListNode prel2 = new ListNode(0);
 
     if (l1 == null) return l2;
     if (l2 == null) return l1;
