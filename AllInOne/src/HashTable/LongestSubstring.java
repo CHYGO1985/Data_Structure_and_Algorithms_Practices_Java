@@ -1,6 +1,7 @@
+package src.HashTable;
+
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class LongestSubstring {
 
@@ -13,22 +14,23 @@ public class LongestSubstring {
         // method 2: use a match point to record the last MAX match point
         // ref: https://discuss.leetcode.com/topic/8232/11-line-simple-java-solution-o-n-with-explanation
         
-        if (null == s || 0 == s.length())
-            return 0;
-            
-        Map<Character, Integer> map = new HashMap<Character, Integer>();
-        int max = 1;
-        int matchPoint = 0;
-        for (int i = 0; i < s.length(); i ++) {
-             
-             char temp = s.charAt(i);
-             if (map.getOrDefault(temp, -1) != -1) {
-                 matchPoint = Math.max(matchPoint, map.get(s.charAt(i)) + 1);
-             }
-             map.put(temp, i);
-             max = Math.max(max, i - matchPoint + 1);
-        } 
+        assert s != null && s.length() >= 0;
         
-        return max;
+        Map<Character, Integer> charIdxMap = new HashMap<>();
+        int matchPoint = 0;
+        int maxLen = 0;
+        
+        for (int idx = 0; idx < s.length(); idx ++) {
+            
+            char curChar = s.charAt(idx);
+            if (charIdxMap.getOrDefault(curChar, -1 ) != -1) {
+                matchPoint = Math.max(matchPoint, charIdxMap.get(curChar) + 1);
+            }
+            
+            charIdxMap.put(curChar, idx);
+            maxLen = Math.max(maxLen, idx - matchPoint + 1);
+        }
+        
+        return maxLen;
     }
 }
