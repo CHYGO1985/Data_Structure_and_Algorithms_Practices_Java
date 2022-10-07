@@ -1,3 +1,5 @@
+package src.DyanmicProgramming;
+
 import java.util.Arrays;
 
 /**
@@ -35,9 +37,9 @@ public class RegularExpressionMatching {
           if (p.charAt(row - 2) != sChar && p.charAt(row - 2) != '.') {
             matchRecords[row][col] = matchRecords[row - 2][col]; // "X*" count as empty
           } else {
-            matchRecords[row][col] = matchRecords[row - 2][col] 
-                                      || matchRecords[row - 1][col]
-                                      || matchRecords[row][col - 1];
+            matchRecords[row][col] = matchRecords[row - 2][col] // if it is '.*', we can go to [row-2][col], it counts as empty
+                                      || matchRecords[row - 1][col] // like 'a*'
+                                      || matchRecords[row][col - 1]; // if s = 'aa', 'a*', we can check the 1st 'a' in s
           }
         } else {
           matchRecords[row][col] = false;
