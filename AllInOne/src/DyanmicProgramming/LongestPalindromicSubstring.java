@@ -1,3 +1,5 @@
+package src.DyanmicProgramming;
+
 /**
  * 
  * 5. Longest Palindromic Substring
@@ -59,7 +61,7 @@ public class LongestPalindromicSubstring {
 
         for (int row = s.length() - 1; row >= 0; row --) {
           for (int col = row; col < s.length(); col ++) {
-            // col - row < 3: aa or a
+            // col - row < 3: bab, aa or a
             // dp[row + 1][col - 1] : [row + 1] ... [col - 1] is palindrome
             dp[row][col] = s.charAt(row) == s.charAt(col) && (col - row < 3 || dp[row + 1][col - 1]);
 
