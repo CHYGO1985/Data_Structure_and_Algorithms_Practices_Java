@@ -1,4 +1,4 @@
-package String;
+package src.String;
 
 /**
  * 
@@ -16,11 +16,12 @@ public class LongestCommonPrefix {
 		int idx = 1;
 		
 		while (idx < strs.length) {
+      //this loop is to find the first match of the two
 			while (strs[idx].indexOf(pre) != 0) {
 				pre = pre.substring(0, pre.length() - 1);
 			}
             
-            idx ++;
+      idx ++;
 		}
 		
 		return pre;
