@@ -25,7 +25,38 @@ public class LongestCommonPrefix {
 		}
 		
 		return pre;
+  }
+
+  public String longestCommonPrefix2(String[] strs) {
+		
+		assert strs != null && strs.length >= 1;
+			
+		return longestCommonPrefix(strs, 0 , strs.length - 1);
+  }
+
+  private String longestCommonPrefix(String[] strs, int left, int right) {
+    
+    if (left == right) {
+      return strs[left];
+    } else {
+      int mid = left + (right - left) / 2;
+      String lcpLeft = longestCommonPrefix(strs, left, mid);
+      String lcpRight = longestCommonPrefix(strs, mid + 1, right);
+      return commonPrefix(lcpLeft, lcpRight);
     }
+  }
+
+  private String commonPrefix(String left,String right) {
+    
+    int min = Math.min(left.length(), right.length());
+    for (int idx = 0; idx < min; idx ++) {
+      if (left.charAt(idx) != right.charAt(idx)) {
+        return left.substring(0, idx);
+      }
+    }
+
+    return left.substring(0, min);
+  }
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
