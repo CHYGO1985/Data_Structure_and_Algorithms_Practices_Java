@@ -1,6 +1,12 @@
+package src.DepthFirstSearch;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * 22. Generate Parentheses
+ * 
+ */
 public class GenerateParentheses {
 	
 	public List<String> generateParenthesis(int n) {
