@@ -29,4 +29,5 @@ public class RemoveDupFromSortedArr {
     }
     
     return validPos --;
+  }
 }
