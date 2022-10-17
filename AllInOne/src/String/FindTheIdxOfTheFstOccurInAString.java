@@ -9,9 +9,6 @@ public class FindTheIdxOfTheFstOccurInAString {
   public int strStr(String haystack, String needle) {    
     assert haystack != null && needle != null;
 
-    int fstOccurIdx = -1;
-    int heysStackIdx = 0;
-
     for (int idx = 0; idx < haystack.length(); idx ++) {
       int hayIdx = idx;
       int needleIdx = 0;
@@ -26,7 +23,7 @@ public class FindTheIdxOfTheFstOccurInAString {
       }
     }
 
-    return fstOccurIdx;
+    return -1;
   }
 }
 
