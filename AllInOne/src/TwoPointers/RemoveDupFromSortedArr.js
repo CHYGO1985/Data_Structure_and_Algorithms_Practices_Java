@@ -6,7 +6,7 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-  if (!nums) {
+  if (!nums) {``
     return -1;
   }   
   
