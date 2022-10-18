@@ -1,3 +1,5 @@
+package src.BinarySearch;
+
 /**
  * 
  * 29. Divide Two Integers
@@ -52,42 +54,46 @@ public class DivideTwoIntegers {
     // ues pow of two method, for divide1, it repeated calculate the results, we can either store it or skip it
     public int divide2(int dividend, int divisor) {
     
-        if (dividend == Integer.MIN_VALUE && divisor == -1) {
-            return Integer.MAX_VALUE;
-        }
+      // Special case: overflow
+      if (dividend == Integer.MIN_VALUE && divisor == -1) {
+          return Integer.MAX_VALUE;
+      }
 
-        int negtimes = 2;
+      int negtimes = 2;
 
-        if (dividend > 0) {
-            negtimes --;
-            dividend = -dividend;
-        }
+      /* We need to convert both numbers to negatives
+      * for the reasons explained above.
+      * Also, we count the number of negatives signs. */
+      if (dividend > 0) {
+          negtimes --;
+          dividend = -dividend;
+      }
 
-        if (divisor > 0) {
-            negtimes --;
-            divisor = -divisor;
-        }
+      if (divisor > 0) {
+          negtimes --;
+          divisor = -divisor;
+      }
 
-        int maxDivisor = divisor;
-        int maxPowOfTwo = 1;
-        while (maxDivisor >= HALF_INT_MIN && maxDivisor + maxDivisor >= dividend) {
+      int maxDivisor = divisor;
+      int maxPowOfTwo = 1;
+      while (maxDivisor >= HALF_INT_MIN && maxDivisor + maxDivisor >= dividend) {
 
-            maxDivisor += maxDivisor;
-            maxPowOfTwo += maxPowOfTwo;
-        }
+          maxDivisor += maxDivisor;
+          maxPowOfTwo += maxPowOfTwo;
+      }
 
-        int quotient = 0;
+      int quotient = 0;
 
-        while (dividend <= divisor) {
-            if (dividend <= maxDivisor) {
-                dividend -= maxDivisor;
-                quotient += maxPowOfTwo;
-            }
+      while (dividend <= divisor) {
+          if (dividend <= maxDivisor) {
+              dividend -= maxDivisor;
+              quotient += maxPowOfTwo;
+          }
 
-            maxDivisor >>= 1;
-            maxPowOfTwo >>= 1;
-        }
+          maxDivisor >>= 1;
+          maxPowOfTwo >>= 1;
+      }
 
-        return negtimes == 1 ? - quotient : quotient; 
+      return negtimes == 1 ? - quotient : quotient; 
     }
 }
