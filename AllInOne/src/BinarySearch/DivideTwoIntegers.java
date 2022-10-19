@@ -85,6 +85,7 @@ public class DivideTwoIntegers {
       int quotient = 0;
 
       while (dividend <= divisor) {
+          // use <=, as we are comparing neg nums
           if (dividend <= maxDivisor) {
               dividend -= maxDivisor;
               quotient += maxPowOfTwo;
