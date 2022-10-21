@@ -1,3 +1,5 @@
+package src.BinarySearch;
+
 /**
  * 
  * 34. Find First and Last Position of Element in Sorted Array
@@ -23,6 +25,8 @@ class FirstAndLastPosOfEleInSortedArray {
 
     private int findLeftBoundry(int[] nums, int target) {
 
+        // do not use right = nums.length - 1 here, as for like [1], 2, we will need the
+        // function to return pos 1 (then finally - 1 as the result)
         int left = 0, right = nums.length;
 
         while (left < right) {
