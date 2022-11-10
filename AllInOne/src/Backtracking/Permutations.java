@@ -1,9 +1,15 @@
+package src.Backtracking;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * 
+ * 46. Permutations
+ * 
+ */
 public class Permutations {
 	
 	// idea: method 1: traditional DFS method with status arrays
