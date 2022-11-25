@@ -1,3 +1,5 @@
+package src.Math;
+
 /**
  * 
  * 50. Pow(x, n)
