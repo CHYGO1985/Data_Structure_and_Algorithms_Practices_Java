@@ -1,3 +1,5 @@
+package src.DyanmicProgramming;
+
 /**
  * 
  * 53. Maximum Subarray
@@ -25,6 +27,9 @@ class Solution {
 
     // method 2:
     public int maxSubArray2(int[] nums) {
+
+      assert nums != null && nums.length >= 1;
+      
       int max_so_far = Integer.MIN_VALUE, max_ending_here = 0;
 
       for (int idx = 0; idx < nums.length; idx ++) {
