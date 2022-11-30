@@ -1,4 +1,4 @@
-package Greedy;
+package src.Greedy;
 /**
  * 
  * 55. Jump Game
@@ -32,13 +32,15 @@ public class JumpGame {
 //        return 0 == lastCon? true : false;
         
         // method 3 (mine)
-        int far = 0, idx = 0;
-		while (idx < nums.length && idx <= far) {
-			far = Math.max(far, idx + nums[idx]);
-            idx ++;
-		}
-		
-		return far >= nums.length - 1;
+        assert nums != null && nums.length >= 1;
+        
+        int far = 0;
+        
+        for (int idx = 0; idx < nums.length && idx <= far; idx ++) {
+            far = Math.max(far, idx + nums[idx]);
+        }
+        
+        return far >= nums.length - 1;
     }
 
 
