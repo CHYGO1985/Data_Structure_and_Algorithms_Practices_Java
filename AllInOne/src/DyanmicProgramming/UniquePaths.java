@@ -1,3 +1,5 @@
+package src.DyanmicProgramming;
+
 /**
  * 
  * 62. Unique Paths
@@ -44,21 +46,20 @@ public class UniquePaths {
 	public int uniquePaths(int m, int n) {
         
         // one dimensional dp
-        if (m < 0 || n < 0) return 0;
-        if (m == 0 || n == 0) return 1;
-        
+        assert m >= 1 && n <= 100;
+
         int[] dp = new int[n];
-        for (int i = 0; i < n; i ++)
-            dp[i] = 1;
-        
-        int row = 1;
-        while (row < m) {
-            for (int col = 0; col < n; col ++) {
-                if (col > 0) dp[col] += dp[col -1];
-            }
-            row ++;
+
+        for (int idx = 0; idx < n; idx ++) {
+            dp[idx] = 1;
         }
-        
-        return dp[n -1];
+
+        for (int row = 1; row < m; row ++) {
+            for (int col = 0; col < n; col ++) {
+                if (col > 0) dp[col] += dp[col - 1];
+            }
+        }
+
+        return dp[n - 1];
     } 
 }
