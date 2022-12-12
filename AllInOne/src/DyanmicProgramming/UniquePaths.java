@@ -55,8 +55,8 @@ public class UniquePaths {
         }
 
         for (int row = 1; row < m; row ++) {
-            for (int col = 0; col < n; col ++) {
-                if (col > 0) dp[col] += dp[col - 1];
+            for (int col = 1; col < n; col ++) {
+                dp[col] += dp[col - 1];
             }
         }
 
