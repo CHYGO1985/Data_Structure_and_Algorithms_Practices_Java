@@ -1,7 +1,33 @@
+package src.Array;
 import java.util.Stack;
 
-
+/*
+ * 66. Plus One
+ */
 public class PlusOneLinkedList {
+
+  public int[] plusOne(int[] digits) {
+        
+        assert digits.length >= 1 && digits.length <= 100;
+
+        for (int idx = digits.length - 1; idx >= 0; idx --) {
+            if (digits[idx] != 9) {
+                digits[idx] += 1;
+                break;
+            } else {
+                digits[idx] = 0;
+            }
+        }
+
+        if (digits[0] == 0) {
+            int[] res = new int[digits.length+1];
+            Arrays.fill(res, 0);
+            res[0] = 1;
+            return res;
+        }
+
+        return digits;
+    }
 	
 	 public class ListNode {
 		 int val;
