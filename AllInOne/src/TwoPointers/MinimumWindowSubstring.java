@@ -1,3 +1,5 @@
+package src.TwoPointers;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ public class MinimumWindowSubstring {
 
         int uniCharInT = charCntInT.size();
 
-        int left = 0, right = 0;
+        int left = 0;
         // chars that match appearance frequency as string t
         int charMatch = 0;
 
@@ -43,7 +45,7 @@ public class MinimumWindowSubstring {
         // hash map for cur windows char counts
         Map<Character, Integer> curWinCharCntMap = new HashMap<>();
 
-        while (right < s.length()) {
+        for (int right = 0; right < s.length(); right ++) {
 
             char curChar = s.charAt(right);
             curWinCharCntMap.put(curChar, curWinCharCntMap.getOrDefault(curChar, 0) + 1);
@@ -78,8 +80,6 @@ public class MinimumWindowSubstring {
 
                 left ++;
             }
-
-            right ++;
         }
 
         return res[0] == - 1 ? "" : s.substring(res[1], res[2] + 1);
