@@ -8,7 +8,7 @@ var subsets = function(nums) {
 
   const res = [];
   const getSubSet = (nums, cur, begin) => {
-    res.push([...cur]);
+    res.push([...cur]); 
 
     for (let idx = begin; idx < nums.length; idx ++) {
       cur.push(nums[idx]);
