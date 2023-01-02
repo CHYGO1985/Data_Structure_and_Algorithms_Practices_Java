@@ -1,4 +1,4 @@
-package DFS;
+package src.DepthFirstSearch;
 
 /**
  * 
