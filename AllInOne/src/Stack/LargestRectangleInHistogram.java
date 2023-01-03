@@ -1,3 +1,7 @@
+package src.Stack;
+
+import java.util.Stack;
+
 /**
  * 
  * 84. Largest Rectangle in Histogram
@@ -22,6 +26,7 @@ public class LargestRectangleInHistogram {
     int res = 0;
 
     for (int idx = 0; idx < heights.length; idx ++) {
+      // only in stack when the current one is smaller than or equal to the top ele in stack
       while ( (idxStack.peek() != -1) && 
         heights[idxStack.peek()] >= heights[idx]) {
 
@@ -34,6 +39,7 @@ public class LargestRectangleInHistogram {
       idxStack.push(idx);
     }
 
+    // store in acsending order
     while (idxStack.peek() != -1) {
       int curHeight = heights[idxStack.pop()];
       int curWidth = heights.length - idxStack.peek() - 1;
