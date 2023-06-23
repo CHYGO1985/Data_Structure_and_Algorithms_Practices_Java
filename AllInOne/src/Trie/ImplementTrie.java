@@ -1,131 +1,120 @@
 package src.Trie;
+
+import java.util.Arrays;
+
 // idea: use array to build TrieNode
 // result: 188ms. beat 28%
+/**
+ * 208. Implement Trie (Prefix Tree)
+ * 
+ */
 class TrieNode {
-    
-    // to focus on the algorithm (all the fields I set them as public)
-    // use array to represent pair infor, the index is used as the value of char
-    public TrieNode[] array;
-    // to check whether it is a leaf Node of word
-    public boolean isEnd;
-    
+    private TrieNode[] nodesArray;
+    private boolean isWord;
+
     public TrieNode() {
-        array = new TrieNode[26];
-        for (int i = 0; i < array.length; i ++) {
-            array[i] = null;
-        }
-        isEnd = false;
+        this.nodesArray = new TrieNode[26];
+        Arrays.fill(this.nodesArray, null);
+        this.isWord = false;
+    }
+
+    public TrieNode getTrieNode(char letter) {
+        return this.nodesArray[letter - 'a'];
+    }
+
+    public void setTrieNode(char letter) {
+        this.nodesArray[letter - 'a'] = new TrieNode();
+    }
+
+    public boolean containsKey(char letter) {
+        return this.nodesArray[letter - 'a'] != null;
+    }
+
+    public boolean getIsWord() {
+        return this.isWord;
+    }
+
+    public void setIsWord(boolean isWord) {
+        this.isWord = isWord;
     }
 }
- 
+
 class Trie {
 
     private TrieNode root;
-    /** Initialize your data structure here. */
+
     public Trie() {
-        root = new TrieNode();
+        this.root = new TrieNode();
     }
+
     
-    /** Inserts a word into the trie. */
     public void insert(String word) {
         
-        if (null == word || 0 == word.length()) {
-            return ;
-        }
-        
+        assert word != null && word.length() > 0;
+
         TrieNode curNode = root;
-        
-        for (int i = 0; i < word.length(); i ++) {
-            
-            char temp = word.charAt(i);
-            
-            // if there is not a match in curNode.array, then assign a value
-            if (null == curNode.array[temp - 'a']) {
-                TrieNode newNode = new TrieNode();
-                curNode.array[temp - 'a'] = newNode;
+
+        for (int idx = 0; idx < word.length(); idx ++) {
+            char curChar = word.charAt(idx);
+
+            if (curNode.containsKey(curChar) == false) {
+                curNode.setTrieNode(curChar);
             }
             
-            // go to next TriNode of current one
-            curNode = curNode.array[temp - 'a'];
+            curNode = curNode.getTrieNode(curChar);
         }
-        
-        curNode.isEnd = true;
+
+        curNode.setIsWord(true);
     }
     
-    /** Returns if the word is in the trie. */
     public boolean search(String word) {
         
-        if (null == word || 0 == word.length()) {
-            return false;
-        }
-        
-        /*
-        // refactoring to a method, as it duplicates in startsWith
+        assert word != null && word.length() > 0;
+
         TrieNode curNode = root;
-        
-        for (int i = 0; i < word.length(); i ++) {
-        
-            char temp = word.charAt(i);
-            if (curNode.array[temp - 'a'] != null) {
-                curNode = curNode.array[temp - 'a'];
-            }
-            else {
+
+        for (int idx = 0; idx < word.length(); idx ++) {
+
+            char curChar = word.charAt(idx);
+
+            if (curNode.containsKey(curChar) == false) {
                 return false;
             }
+
+            curNode = curNode.getTrieNode(curChar);
         }
-        */
-        TrieNode node = searchNode(word);
-        
-        return node == null ? false : node.isEnd == true ? true : false; 
+
+        return curNode.getIsWord();         
     }
     
-    /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
         
-        if (null == prefix || 0 == prefix.length()) {
-            return false;
-        }
-        
-        /*
+        assert prefix != null && prefix.length() > 0;
+
         TrieNode curNode = root;
-        
-        for (int i = 0; i < prefix.length(); i ++) {
-        
-            char temp = prefix.charAt(i);
-            if (curNode.array[temp - 'a'] != null) {
-                curNode = curNode.array[temp - 'a'];
-            }
-            else {
+
+        for (int idx = 0; idx < prefix.length(); idx ++) {
+
+            char curChar = prefix.charAt(idx);
+
+            if (curNode.containsKey(curChar) == false) {
                 return false;
             }
-        }
-        */
-        
-        return searchNode(prefix) == null ? false : true;
-    }
-    
-    public TrieNode searchNode (String para) {
 
-        if (null == para || 0 == para.length()) {
-            return null;
+            curNode = curNode.getTrieNode(curChar);
         }
-        
-        TrieNode curNode = root;
-        for (int i = 0; i < para.length(); i ++) {
-        
-            char temp = para.charAt(i);
-            if (curNode.array[temp - 'a'] != null) {
-                curNode = curNode.array[temp - 'a'];
-            }
-            else {
-                return null;
-            }
-        }
-        
-        return curNode;
+
+        return true;     
     }
 }
 
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
 
 public class ImplementTrie {
 	
