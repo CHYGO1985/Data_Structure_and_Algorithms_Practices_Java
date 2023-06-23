@@ -1,3 +1,4 @@
+package src.Trie;
 // idea: use array to build TrieNode
 // result: 188ms. beat 28%
 class TrieNode {
