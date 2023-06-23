@@ -1,3 +1,8 @@
+package src.TwoPointers;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * 1023. Camelcase Matching
@@ -14,7 +19,7 @@ public class CamelcaseMatching {
     List<Boolean> resList = new ArrayList<>(queries.length);
 
     for (String query : queries) {
-      resList.add(isMatch(query, pattern), resList.size());
+      resList.add(resList.size(), isMatch(query, pattern));
     }
 
     return resList;
