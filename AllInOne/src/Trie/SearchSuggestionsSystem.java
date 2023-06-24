@@ -3,6 +3,7 @@ package src.Trie;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * 1268. Search Suggestions System
@@ -123,5 +124,30 @@ class Solution {
         }
 
         return resList;
+    }
+
+    public List<List<String>> suggestedProducts1(String[] products, String searchWord) {
+        
+        List<List<String>> res = new ArrayList<>();
+        TreeMap<String, Integer> productsMap = new TreeMap<>();
+        Arrays.sort(products);
+        List<String> productsList = Arrays.asList(products);
+
+        for (int idx = 0; idx < productsList.size(); idx ++) {
+            productsMap.put(products[idx], idx);
+        }
+
+        String key = "";
+        for (char c : searchWord.toCharArray()) {
+            key += c;
+            String ceiling = productsMap.ceilingKey(key);
+            String floor = productsMap.floorKey(key + "~");
+            if (ceiling == null || floor == null) break;
+            res.add(productsList.subList(productsMap.get(ceiling), Math.min(productsMap.get(ceiling) + 3, productsMap.get(floor) + 1)));
+        }
+
+        while (res.size() < searchWord.length()) res.add(new ArrayList<>());
+
+        return res;
     }
 }
