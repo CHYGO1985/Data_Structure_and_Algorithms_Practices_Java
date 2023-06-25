@@ -2,6 +2,9 @@ package src.DyanmicProgramming;
 
 import java.util.Stack;
 
+/**
+ * 2355. Maximum Number of Books You Can Take
+ */
 public class SumOfScoresOfBuiltStrings {
   private long getSummation(int n) {
         if (n < 0)
