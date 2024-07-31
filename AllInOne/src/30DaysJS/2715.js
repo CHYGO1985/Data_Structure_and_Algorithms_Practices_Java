@@ -17,14 +17,28 @@ var cancellable = function (fn, args, t) {
 
   let isCancelled = false;
 
+  console.log(1);
+
   setTimeout(() => {
     if (!isCancelled) {
       fn(...args);
+      console.log(2);
     }
   }, t);
 
-  return () => (isCancelled = true);
+  console.log(3);
+
+  return () => {
+    console.log(4);
+    isCancelled = true;
+  };
 };
+
+// Console (1, 3 will always print out no matter cancelTimeMs > t)
+// 1
+// 3
+// 2
+// 4
 
 /**
  *  const result = [];
