@@ -68,7 +68,6 @@ public class ReverseLinkedList {
 	
 	// recursive method.
 	public static ListNode reverseList(ListNode head) {
-        
         if (head == null || head.next == null)
             return head;
     
