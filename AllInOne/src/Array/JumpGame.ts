@@ -1,5 +1,5 @@
 /**
- * 55. Jump Game
+ * 55. Jump Game 1
  */
 function canJump(nums: number[]): boolean {
   if (!nums) return false;
