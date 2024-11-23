@@ -6,11 +6,11 @@ function majorityElement(nums: number[]): number {
       countMap.set(num, 0);
     }
 
-    const curCount = countMap.get(num);
+    const curCount: number = countMap.get(num)!;
     if (curCount + 1 > nums.length / 2) {
       return num;
     }
-    countMap.set(num, countMap.get(num) + 1);
+    countMap.set(num, curCount + 1);
   }
 
   return -1;
